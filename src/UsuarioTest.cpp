@@ -42,6 +42,9 @@ void pruebasUsuario(){
 	if(u2.getContraseña() != "1234")
 		cout << " * Error con contraseña" << endl;
 
+	cout << "Prueba supervisada:" << endl;
+	u2.mostrar();
+
 	cout << "Fin de pruebas de Usuario" << endl;
 
 }

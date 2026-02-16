@@ -10,8 +10,10 @@
 using namespace std;
 
 #include "UsuarioTest.h"
+#include "FechaTest.h"
 
 int main() {
+	pruebaFecha();
 	pruebasUsuario();
 	return 0;
 }
