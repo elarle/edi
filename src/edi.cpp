@@ -13,7 +13,10 @@ using namespace std;
 #include "archivos.h"
 
 int main() {
-	leerFichero1();
+#include "FechaTest.h"
+
+int main() {
+	pruebaFecha();
 	pruebasUsuario();
 	return 0;
 }

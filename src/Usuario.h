@@ -11,6 +11,8 @@
 #include <iostream>
 using namespace std;
 
+#include "Fecha.h"
+
 class Usuario {
 private:
 	string idUsuario;
@@ -18,9 +20,12 @@ private:
 	string email;
 	string contraseña;
 
+	Fecha* fecha_nacimiento;
+
 public:
 	Usuario();
 	Usuario(string id, string nombre, string email, string contraseña);
+	Usuario(const Usuario & otro_usuario);
 	~Usuario();
 
 	/*
@@ -39,6 +44,9 @@ public:
 
 	void setContraseña(string contraseña);
 
+	//TODO: implementar pruebas de esto
+	void setFecha(const Fecha & fecha);
+
 	/*
 	 * Selectores
 	 */
@@ -51,6 +59,8 @@ public:
 
 	string getContraseña() const;
 
+	void getFecha(Fecha & fecha) const;
+	void getFecha(int &dia, int &mes, int &año) const;
 
 	void mostrar() const;
 	string pasarACadena() const;
