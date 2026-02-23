@@ -10,12 +10,11 @@
 using namespace std;
 
 #include "UsuarioTest.h"
+#include "FechaTest.h"
 #include "archivos.h"
 
 int main() {
-#include "FechaTest.h"
-
-int main() {
+	leerFichero1();
 	pruebaFecha();
 	pruebasUsuario();
 	return 0;
