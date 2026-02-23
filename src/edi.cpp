@@ -6,15 +6,15 @@
 // Description : Hello World in C++, Ansi-style
 //============================================================================
 
-#include <iostream>
-using namespace std;
+//#include <iostream>
+//using namespace std;
 
 #include "UsuarioTest.h"
 #include "FechaTest.h"
 #include "archivos.h"
 
 int main() {
-	leerFichero1();
+	leerFicheroSeleccionarAño(2003);
 	pruebaFecha();
 	pruebasUsuario();
 	return 0;
