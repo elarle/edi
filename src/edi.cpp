@@ -10,8 +10,10 @@
 using namespace std;
 
 #include "UsuarioTest.h"
+#include "archivos.h"
 
 int main() {
+	leerFichero1();
 	pruebasUsuario();
 	return 0;
 }
