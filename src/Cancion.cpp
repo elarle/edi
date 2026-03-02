@@ -55,14 +55,10 @@ void Cancion::setDuracion(int duracion){
 }
 
 bool Cancion::operator==(const Cancion &cancion) const{
-	return  this->titulo == cancion.titulo &&
-			this->genero == cancion.genero &&
-			this->duracion == cancion.duracion;
+	return  this->titulo == cancion.titulo;
 }
 
 bool Cancion::operator<(const Cancion &cancion) const{
-	return  this->titulo < cancion.titulo &&
-			this->genero < cancion.genero &&
-			this->duracion < cancion.duracion;;
+	return  this->titulo < cancion.titulo;
 }
 
