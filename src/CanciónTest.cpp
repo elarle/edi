@@ -91,5 +91,5 @@ void pruebasOperadoresCancion(){
 	delete c1;
 	delete c2;
 
-	cout << "Fin de pruebas de operadores de Artista" << endl;
+	cout << "Fin de pruebas de operadores de Canción" << endl;
 }
