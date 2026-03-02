@@ -29,7 +29,7 @@ class Cancion {
 
 		//Setters
 		void setTitulo(string titulo);
-		void setCGenero(string genero);
+		void setGenero(string genero);
 		void setDuracion(int duracion);
 
 		//Operadores
