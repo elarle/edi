@@ -11,11 +11,17 @@
 
 #include "UsuarioTest.h"
 #include "FechaTest.h"
+#include "ArtistaTest.h"
+
 #include "archivos.h"
 
 int main() {
 	leerFicheroSeleccionarAño(2003);
 	pruebaFecha();
+	cout << endl;
 	pruebasUsuario();
+	cout << endl;
+	pruebasArtista();
+
 	return 0;
 }
