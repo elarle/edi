@@ -93,7 +93,7 @@ inline void leerFicheroSeleccionarAño(int año_selección){
 	contador = 0;
 
 	file.open("usuarios.csv");
-	salida.open("usuarios_" + to_string(año_selección) + ".csv");
+	salida.open("usuarios_" + to_string(año_selección) + ".gen.csv");
 
 	if(file.is_open()){
 		getline(file, id_usuario); //Se hace getline aquí para descartar la primera línea que no la usamos.
