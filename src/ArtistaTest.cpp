@@ -17,40 +17,40 @@ void pruebasConstrucoresArtista(){
 
 	a1->setNombre("Pepe");
 	if(a1->getNombre() != "Pepe")
-		cout << " * Error con el getter/setter de Nombre (Default)" << endl;
+		cerr << " * Error con el getter/setter de Nombre (Default)" << endl;
 	
 	a1->setCountry("España");
 	if(a1->getCountry() != "Pepe")
-		cout << " * Error con el getter/setter de Country (Default)" << endl;
+		cerr << " * Error con el getter/setter de Country (Default)" << endl;
 
 	a1->setSeguidores(33);
 	if(a1->getSeguidores() != 33)
-		cout << " * Error con el getter/setter de Seguidores (Default)" << endl;
+		cerr << " * Error con el getter/setter de Seguidores (Default)" << endl;
 	
 	delete a1;
 
 	Artista * a2;
 	a2 = new Artista("Jose", "Portugal", 1);
 	if(a2->getNombre() != "Jose")
-		cout << " * Error con el Nombre (Parametrizado)" << endl;
+		cerr << " * Error con el Nombre (Parametrizado)" << endl;
 	
 	if(a2->getCountry() != "Portugal")
-		cout << " * Error con el Country (Parametrizado)" << endl;
+		cerr << " * Error con el Country (Parametrizado)" << endl;
 
 	if(a2->getSeguidores() != 1)
-		cout << " * Error con el Seguidores (Parametrizado)" << endl;
+		cerr << " * Error con el Seguidores (Parametrizado)" << endl;
 
 	Artista * a3;
 	a3 = new Artista(*a2);
 
 	if(a3->getNombre() != "Jose")
-		cout << " * Error con el Nombre (Copia)" << endl;
+		cerr << " * Error con el Nombre (Copia)" << endl;
 	
 	if(a3->getCountry() != "Portugal")
-		cout << " * Error con el Country (Copia)" << endl;
+		cerr << " * Error con el Country (Copia)" << endl;
 
 	if(a3->getSeguidores() != 1)
-		cout << " * Error con el Seguidores (Copia)" << endl;
+		cerr << " * Error con el Seguidores (Copia)" << endl;
 
 	cout << "Fin de pruebas de constructores de Artista" << endl;
 
@@ -68,19 +68,19 @@ void pruebasOperadoresArtista(){
 	a2 = new Artista("Pablo", "España", 33);
 
 	if(*a1 == *a2)
-		cout << " * Error con el operador (==). No son iguales." << endl;
+		cerr << " * Error con el operador (==). No son iguales." << endl;
 
 	a2->setNombre("Andrés");
 	if(!(*a1 == *a2))
-		cout << " * Error con el operador (==). Son iguales." << endl;
+		cerr << " * Error con el operador (==). Son iguales." << endl;
 
 	a1->setNombre("Pablo");
 	if((*a1 < *a2))
-		cout << " * Error con el operador (<). Órden incorrecto. Andrés < Pablo" << endl;
+		cerr << " * Error con el operador (<). Órden incorrecto. Andrés < Pablo" << endl;
 
 	a2->setNombre("Xavi");
 	if(*a2 < *a1)
-		cout << " * Error con el operador (<). Órden incorrecto. Pablo < Xavi" << endl;
+		cerr << " * Error con el operador (<). Órden incorrecto. Pablo < Xavi" << endl;
 
 	delete a1;
 	delete a2;
