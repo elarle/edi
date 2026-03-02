@@ -95,9 +95,11 @@ void Usuario::getFecha(int &dia, int &mes, int &año) const{
 
 //Métodos
 void Usuario::mostrar() const {
-	cout << "ID: " << this->idUsuario << endl;
-	cout << "Nombre: " << this->apellidosNombre << endl;
-	cout << "Fecha: " << this->fecha_nacimiento->pasarACadena() << endl;
+	cout << "Usuario{" << endl;
+	cout << "\tid: " << this->idUsuario << endl;
+	cout << "\tnombre: " << this->apellidosNombre << endl;
+	cout << "\tfecha: " << this->fecha_nacimiento->pasarACadena() << endl;
+	cout << "}" << endl;
 }
 
 string Usuario::pasarACadena() const {
