@@ -49,10 +49,14 @@ void Artista::setSeguidores(int seguidores){
 }
 
 bool Artista::operator==(const Artista &artista) const{
-	return false;
+	return  this->nombre == artista.nombre &&
+			this->country == artista.country &&
+			this->seguidores == artista.seguidores;
 }
 
 bool Artista::operator<(const Artista &artista) const{
-	return false;
+	return  this->nombre < artista.nombre &&
+			this->country < artista.country &&
+			this->seguidores < artista.seguidores;;
 }
 
