@@ -13,6 +13,7 @@ class Artista {
 		Artista();
 		Artista(string nombre, string country, int seguidores);
 		Artista(const Artista & artista);
+		~Artista();
 
 		//Getters
 		string getNombre() const;

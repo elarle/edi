@@ -12,6 +12,10 @@ Artista::Artista(const Artista & artista){
 
 }
 
+Artista::~Artista(){
+	//En principio no se reserva memoria por lo que el destructor da igual.
+}
+
 //Getters
 string Artista::getNombre() const{
 	return "";
