@@ -28,41 +28,35 @@ public:
 	Usuario(const Usuario & otro_usuario);
 	~Usuario();
 
-	/*
-	 * Modificadores
-	 */
-
-	/* PRE={}
-	 * POST={}
-	 * COMP={O()}
-	 */
+	//Setters
+	//Todos los setters tienen complejidad O(1).
 	void setApellidosNombre(string apellidos_nombre);
-
 	void setIdUsuario(string id);
-
 	void setEmail(string email);
-
 	void setContraseña(string contraseña);
 
 	//TODO: implementar pruebas de esto
 	void setFecha(const Fecha & fecha);
 
-	/*
-	 * Selectores
-	 */
-
+	//Getters
+	//Todos los getters tienen complejidad O(1).
 	string getApellidosNombre() const;
-
 	string getIdUsuario() const;
-
 	string getEmail() const;
-
 	string getContraseña() const;
 
 	void getFecha(Fecha & fecha) const;
 	void getFecha(int &dia, int &mes, int &año) const;
 
+	/**
+	 * DESC={Muestra a cout el usuario}
+	 * COMP={O(?)}
+	 */
 	void mostrar() const;
+	/**
+	 * DESC={Pasa el usuario a cadena.}
+	 * COMP={O(?)}
+	 */
 	string pasarACadena() const;
 
 };
