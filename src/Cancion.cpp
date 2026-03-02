@@ -34,7 +34,7 @@ string Cancion::getTitulo() const{
 	return this->titulo;
 }
 
-string Cancion::getGenero) const{
+string Cancion::getGenero() const{
 	return this->genero;
 }
 
