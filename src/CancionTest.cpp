@@ -4,12 +4,12 @@
  *  Created on: 2 mar 2026
  *      Author: estudiante
  */
-#include "CanciónTest.h"
+#include "CancionTest.h"
 
 #include<iostream>
 using namespace std;
 
-void pruebasCanción(){
+void pruebasCancion(){
 	pruebasConstrucoresCancion(),
 	pruebasOperadoresCancion();
 }

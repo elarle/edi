@@ -4,7 +4,7 @@
  *  Created on: 2 mar 2026
  *      Author: estudiante
  */
-#include "Canción.h"
+#include "Cancion.h"
 
 //Constructores
 Cancion::Cancion(){

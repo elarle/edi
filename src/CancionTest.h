@@ -7,7 +7,7 @@
 
 #ifndef CANCIÓNTEST_H_
 #define CANCIÓNTEST_H_
-#include "Canción.h"
+#include "Cancion.h"
 
 void pruebasCancion();
 
