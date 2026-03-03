@@ -20,7 +20,7 @@ void pruebasConstrucoresArtista(){
 		cerr << " * Error con el getter/setter de Nombre (Default)" << endl;
 	
 	a1->setCountry("España");
-	if(a1->getCountry() != "Pepe")
+	if(a1->getCountry() != "España")
 		cerr << " * Error con el getter/setter de Country (Default)" << endl;
 
 	a1->setSeguidores(33);
