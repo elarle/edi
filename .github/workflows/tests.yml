@@ -16,4 +16,10 @@ jobs:
 
       - name: Run the project tests.
         run: bash ./test.sh .temp/main
+
+      - name: Upload executable
+        uses: actions/upload-artifact@v6
+        with:
+          name: main-linux
+          path: .temp/main
         
