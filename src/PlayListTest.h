@@ -9,5 +9,7 @@ void pruebaConstructoresPlayList();
 
 void pruebaAgregarCancion();
 void pruebaEliminarCancion();
+void pruebaReproducir();
+void pruebaReproducirDesde();
 
 #endif /* PLAYLIST_TEST_H_ */

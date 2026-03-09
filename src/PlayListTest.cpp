@@ -7,6 +7,8 @@ void pruebasPlayList(){
 	pruebaConstructoresPlayList();
 	pruebaAgregarCancion();
 	pruebaEliminarCancion();
+	pruebaReproducir();
+	pruebaReproducirDesde();
 }
 
 void pruebaConstructoresPlayList(){
@@ -135,4 +137,77 @@ void pruebaEliminarCancion(){
 	cout << "Fin de pruebas de eliminarCancion" << endl;
 }
 
+void pruebaReproducir(){
+	cout << "Inicio de pruebas de reproducir" << endl;
 
+	Cancion * c1;
+	Cancion * c2;
+	Cancion * c3;
+	Cancion * c4;
+	Cancion * c5;
+	c1 = new Cancion("Canción 0", "clásica", 0);
+	c2 = new Cancion("Canción 1", "clásica", 1);
+	c3 = new Cancion("Canción 2", "clásica", 2);
+	c4 = new Cancion("Canción 3", "clásica", 3);
+	c5 = new Cancion("Canción 4", "clásica", 4);
+
+	PlayList * p1;
+	p1 = new PlayList();
+
+	p1->agregarCancion(c1);
+	p1->agregarCancion(c2);
+	p1->agregarCancion(c3);
+	p1->agregarCancion(c4);
+	p1->agregarCancion(c5);
+
+	cout << "# Prueba supervisada (0..4):" << endl;
+	p1->reproducir();
+
+	delete p1;
+
+	delete c1;
+	delete c2;
+	delete c3;
+	delete c4;
+	delete c5;
+
+	cout << "Fin de pruebas de reproducir" << endl;
+}
+
+void pruebaReproducirDesde(){
+	cout << "Inicio de pruebas de reproducirDesde" << endl;
+
+	Cancion * c1;
+	Cancion * c2;
+	Cancion * c3;
+	Cancion * c4;
+	Cancion * c5;
+	c1 = new Cancion("Canción 0", "clásica", 0);
+	c2 = new Cancion("Canción 1", "clásica", 1);
+	c3 = new Cancion("Canción 2", "clásica", 2);
+	c4 = new Cancion("Canción 3", "clásica", 3);
+	c5 = new Cancion("Canción 4", "clásica", 4);
+
+	PlayList * p1;
+	p1 = new PlayList();
+
+	p1->agregarCancion(c1);
+	p1->agregarCancion(c2);
+	p1->agregarCancion(c3);
+	p1->agregarCancion(c4);
+	p1->agregarCancion(c5);
+
+	cout << "# Prueba supervisada (2..4):" << endl;
+	p1->reproducirDesde(2);
+
+	delete p1;
+
+	delete c1;
+	delete c2;
+	delete c3;
+	delete c4;
+	delete c5;
+
+	cout << "Fin de pruebas de reproducir" << endl;
+	cout << "Fin de pruebas de reproducir" << endl;
+}
