@@ -31,6 +31,7 @@ class Cancion {
 		void setTitulo(string titulo);
 		void setGenero(string genero);
 		void setDuracion(int duracion);
+		void mostrar() const;
 
 		//Operadores
 		/**

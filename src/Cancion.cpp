@@ -54,6 +54,12 @@ void Cancion::setDuracion(int duracion){
 	this->duracion = duracion;
 }
 
+void Cancion::mostrar() const{
+	cout << "Titulo: " << this->titulo << " "
+		 << "Género: " << this->genero << " "
+		 << "Duración: " << this->duracion << endl;
+}
+
 bool Cancion::operator==(const Cancion &cancion) const{
 	return  this->titulo == cancion.titulo;
 }
