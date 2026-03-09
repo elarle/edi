@@ -55,7 +55,7 @@ void Cancion::setDuracion(int duracion){
 }
 
 void Cancion::mostrar() const{
-	cout	<< "{" << endl
+	cout	<< "Canción{" << endl
 			<< "	título: "	<< this->titulo	<< endl
 			<< "	género: "	<< this->genero	<< endl
 			<< "	duración: " << this->duracion << endl
