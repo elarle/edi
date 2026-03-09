@@ -25,7 +25,7 @@ jobs:
 
       - uses: mlugg/setup-zig@v2
       - name: Compile the proejct for windows. 
-        run: bash ./run.sh -w
+        run: bash ./run.sh -a -w
 
       - name: Upload windows executable
         uses: actions/upload-artifact@v6
