@@ -1,5 +1,31 @@
 #include "PlayList.h"
 
+//Auxiliares
+
+//DESC={Copia el contenido de la primera copia en la segunda.}
+//COMP={O(n)}
+template <class TipoDato>
+void copiarCola(Cola<TipoDato>* src, Cola<TipoDato>* dst){
+	Cola<TipoDato>* cola_aux = new Cola<TipoDato>;
+	TipoDato dato_aux;
+
+	//Primero copiamos los datos a un aux.
+	while(!src->estaVacia()){
+		cola_aux->encolar(src->getPrimero());
+		src->desencolar();
+	}
+
+	//Luego los copiamos en dato_aux para duplicarlos
+	while(!cola_aux->estaVacia()){
+		dato_aux = cola_aux->getPrimero();
+		src->encolar(dato_aux);
+		dst->encolar(dato_aux);
+		cola_aux->desencolar();
+	}
+
+	delete cola_aux;
+}
+
 //Constructores
 PlayList::PlayList(){
 	this->nombre = "";
@@ -7,7 +33,6 @@ PlayList::PlayList(){
 	this->duracion = 0;
 
 	cola = new Cola<Cancion*>;
-
 };
 
 PlayList::PlayList(string nombre){
@@ -16,10 +41,14 @@ PlayList::PlayList(string nombre){
 	this->duracion = 0;
 
 	cola = new Cola<Cancion*>;
-
 }
 PlayList::PlayList(const PlayList & playlist){
+	this->nombre = playlist.nombre;
+	this->duracion = playlist.duracion;
+	this->canciones  =playlist.canciones;
 
+	this->cola = new Cola<Cancion*>;
+	copiarCola(playlist.cola, this->cola);
 }
 PlayList::~PlayList(){
 	delete cola;
@@ -27,18 +56,18 @@ PlayList::~PlayList(){
 
 //Getters
 string PlayList::getNombre() const{
-	return "";
+	return this->nombre;
 }
 int PlayList::getDuracion() const{
-	return -1;
+	return this->duracion;
 }
 int PlayList::getCanciones() const{
-	return -1;
+	return this->canciones;
 }
 
 //Getters
 void PlayList::setNombre(string nombre){
-
+	this->nombre = nombre;
 }
 
 //Métodos
@@ -47,27 +76,33 @@ void PlayList::mostrar() const{
 	Cola<Cancion*> *aux = new Cola<Cancion*>;
 
 	while (!cola->estaVacia()){
-		c = cola->getPrimero (c);
-		c->mostrar ();
+		c = cola->getPrimero();
+		c->mostrar();
 		aux->encolar(c);
-		cola->desencolar ();
+		cola->desencolar();
 	}
 	cout << endl;
 
 	while (!aux->estaVacia()){
-		c = aux->getPrimero (c);
+		c = aux->getPrimero();
 		cola->encolar (c);
-		aux->desencolar;
+		aux->desencolar();
 	}
-delete aux;
+	delete aux;
 }
 
 void PlayList::agregarCancion(Cancion * cancion){
-
+	this->duracion += cancion->getDuracion();
+	this->canciones += 1;
+	this->cola->encolar(cancion);
 }
 
 void PlayList::eliminarCancion(){
-
+	if(!this->cola->estaVacia()){
+		this->duracion -= cola->getPrimero()->getDuracion();
+		this->canciones -= 1;
+		this->cola->desencolar();
+	}
 }
 
 void PlayList::reproducir(){
@@ -75,8 +110,9 @@ void PlayList::reproducir(){
 	Cancion *c = nullptr;
 
 	for (i = 0 ; i < this->canciones; i++){
-		c = cola->getPrimero (c);
+		c = cola->getPrimero();
 		c->mostrar();
+		cout << endl;
 		cola->desencolar ();
 		cola->encolar (c);
 	}
@@ -85,10 +121,25 @@ void PlayList::reproducir(){
 void PlayList::reproducirDesde(int indice){
 	int i;
 	Cancion *c = nullptr;
+
+	/*
 	for (i = 0 ; i < indice ; i++){
-		c = cola->getPrimero (c);
+		c = cola->getPrimero ();
 		cola->desencolar ();
 		cola->encolar (c);
 	}
 	reproducir();
+	*/
+
+	for (i = 0 ; i < this->canciones; i++){
+		c = cola->getPrimero();
+
+		if(i >= indice){
+			c->mostrar();
+			cout << endl;
+		}
+		
+		cola->desencolar();
+		cola->encolar (c);
+	}
 }
