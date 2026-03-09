@@ -58,7 +58,7 @@ void pruebaAgregarCancion(){
 	Cancion * c2;
 	Cancion * c3;
 	c1 = new Cancion("Ni mas ni menos", "Gitaneo", 67);
-	c2 = new Cancion("Son ilusiones", "Gitaneo post moderno progresivo indie comercial", 33);
+	c2 = new Cancion("Son ilusiones", "Gitaneo", 33);
 	c3 = new Cancion("Sangre gitana", "Payada clásica", 69);
 
 	PlayList * p1;
@@ -73,7 +73,7 @@ void pruebaAgregarCancion(){
 	if(p1->getCanciones() != 3)
 		cerr << " * Error con el número de canciones (Default)" << endl;
 
-	cout << "Prueba supervisada:" << endl;
+	cout << "# Prueba supervisada:" << endl;
 	p1->mostrar();
 
 	delete p1;
@@ -92,7 +92,7 @@ void pruebaEliminarCancion(){
 	Cancion * c2;
 	Cancion * c3;
 	c1 = new Cancion("Ni mas ni menos", "Gitaneo", 67);
-	c2 = new Cancion("Son ilusiones", "Gitaneo post moderno progresivo indie comercial", 33);
+	c2 = new Cancion("Son ilusiones", "Gitaneo", 33);
 	c3 = new Cancion("Sangre gitana", "Payada clásica", 69);
 
 	PlayList * p1;
@@ -107,7 +107,7 @@ void pruebaEliminarCancion(){
 		cerr << " * Error con el cálculo de la duración (1º)" << endl;
 	if(p1->getCanciones() != 2)
 		cerr << " * Error con el número de canciones (1º)" << endl;
-	cout << "Prueba supervisada:" << endl;
+	cout << "# Prueba supervisada (2):" << endl;
 	p1->mostrar();
 
 	p1->eliminarCancion();
@@ -115,7 +115,7 @@ void pruebaEliminarCancion(){
 		cerr << " * Error con el cálculo de la duración (2º)" << endl;
 	if(p1->getCanciones() != 1)
 		cerr << " * Error con el número de canciones (2º)" << endl;
-	cout << "Prueba supervisada:" << endl;
+	cout << "# Prueba supervisada (1):" << endl;
 	p1->mostrar();
 
 	p1->eliminarCancion();
@@ -123,7 +123,7 @@ void pruebaEliminarCancion(){
 		cerr << " * Error con el cálculo de la duración (3º)" << endl;
 	if(p1->getCanciones() != 0)
 		cerr << " * Error con el número de canciones (3º)" << endl;
-	cout << "Prueba supervisada:" << endl;
+	cout << "# Prueba supervisada (0):" << endl;
 	p1->mostrar();
 
 	delete p1;
