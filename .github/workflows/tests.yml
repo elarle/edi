@@ -22,4 +22,13 @@ jobs:
         with:
           name: main-linux
           path: .temp/main
+
+      - name: Compile the proejct for windows. 
+        run: bash ./run.sh -w
+
+      - name: Upload windows executable
+        uses: actions/upload-artifact@v6
+        with:
+          name: main-windows
+          path: .temp/main.exe
         

@@ -291,7 +291,7 @@ do
         ONLY_SHADERS=true
         ;;
     -w | --windows )
-        COMPILER="x86_64-w64-mingw32-c++"
+        COMPILER="zig c++ -mtargetos=windows "
         COMPILE_FOR_WINDOWS=true
         ;;
     -m | --main )
