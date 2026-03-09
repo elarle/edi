@@ -13,6 +13,7 @@
 #include "FechaTest.h"
 #include "ArtistaTest.h"
 #include "CancionTest.h"
+#include "PlayListTest.h"
 
 #include "archivos.h"
 
@@ -25,6 +26,8 @@ int main() {
 	pruebasArtista();
 	cout << endl;
 	pruebasCancion();
+	cout << endl;
+	pruebasPlayList();
 
 	return 0;
 }
