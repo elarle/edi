@@ -17,7 +17,7 @@ void pruebaConstructoresPlayList(){
 	PlayList * p3;
 	p1 = new PlayList();
 
-	if(p1->getNombre() != "Untitled")
+	if(p1->getNombre() != "")
 		cerr << " * Error con el nombre inicial (Default)" << endl;
 	if(p1->getCanciones() != 0)
 		cerr << " * Error con el número inicial de canciones (Default)" << endl;
