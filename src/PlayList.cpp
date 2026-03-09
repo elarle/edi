@@ -52,7 +52,14 @@ void PlayList::mostrar() const{
 		aux->encolar(c);
 		cola->desencolar ();
 	}
+	cout << endl;
 
+	while (!aux->estaVacia()){
+		c = aux->getPrimero (c);
+		cola->encolar (c);
+		aux->desencolar;
+	}
+delete aux;
 }
 
 void PlayList::agregarCancion(Cancion * cancion){
