@@ -23,7 +23,7 @@ jobs:
           name: main-linux
           path: .temp/main
 
-      - uses: https://codeberg.org/mlugg/setup-zig@v2
+      - uses: mlugg/setup-zig@v2
       - name: Compile the proejct for windows. 
         run: bash ./run.sh -w
 
