@@ -14,6 +14,7 @@
 #include "ArtistaTest.h"
 #include "CancionTest.h"
 #include "PlayListTest.h"
+#include "GestorUsuariosTest.h"
 
 #include "archivos.h"
 
@@ -28,6 +29,8 @@ int main() {
 	pruebasCancion();
 	cout << endl;
 	pruebasPlayList();
+	cout << endl;
+	pruebasGestorUsuarios();
 
 	return 0;
 }
