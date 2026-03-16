@@ -4,11 +4,18 @@
 #include <iostream>
 using namespace std;
 
+#include "ListaDPI.h"
+#include "Cancion.h"
+
 class Artista {
 	private:
 		string nombre;
 		string country;
 		int seguidores;
+
+		ListaDPI<Cancion*>* canciones; 
+		int numero_canciones;
+
 	public:
 		Artista();
 		Artista(string nombre, string country, int seguidores);
@@ -19,6 +26,7 @@ class Artista {
 		string getNombre() const;
 		string getCountry() const;
 		int getSeguidores() const;
+		int getNumCanciones() const;
 
 		//Setters
 		void setNombre(string nombre);
@@ -41,6 +49,12 @@ class Artista {
 		 * COMP={O(1)}
 		 */
 		bool operator<(const Artista &artista) const;
+
+		//Métodos
+		bool buscarCanción(string titulo) const;
+		void insertarCancion(string titulo, string genero, int duracion);
+
+		void mostrar() const;
 
 };
 
