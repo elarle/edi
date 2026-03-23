@@ -7,15 +7,29 @@ GestorUsuarios::GestorUsuarios(){
 GestorUsuarios::GestorUsuarios(const GestorUsuarios & gestor){
 	usuarios = new ListaDPI <Usuario *>();
 	Usuario *u = nullptr;
+	
+	//Primero hay que moverlo a la primera 
+	//posición para poder copiarlo entero.
+	gestor.usuarios->moverPrimero();
 
-	while (!usuarios->alFinal()){
+	//Lo pone al final para que se inserte así:
+	//						<1> ,nullptr
+	//				 <1>, <2> ,nullptr
+	//		  <1>, <2>, <3> ,nullptr
+	this->usuarios->moverUltimo();
+	this->usuarios->avanzar();
+
+	//Se itera sobre el GESTOR pq el nuestro puede estar al final
+	while (!gestor.usuarios->alFinal()){
 		u = gestor.usuarios->consultar();
-		Usuario *nu = new Usuario *(u);
-		usuarios->insertar(u);
+		Usuario * nu = new Usuario(*u);
+		usuarios->insertar(nu);
 		usuarios->avanzar();
 	}
-	delete u;
-	this->numero_usuarios = 0;
+
+	//Ni se te ocurra borrarlo que no es tuyo
+	//delete u;
+	this->numero_usuarios = gestor.numero_usuarios;
 }
 
 GestorUsuarios::~GestorUsuarios(){
@@ -31,6 +45,8 @@ GestorUsuarios::~GestorUsuarios(){
 }
 
 int GestorUsuarios::numElementos() const{
+	//Tenemos una variable que los cuenta ya
+	/*
 	int n = 0;
 	usuarios->moverPrimero();
 	while(!usuarios->alFinal()){
@@ -38,67 +54,81 @@ int GestorUsuarios::numElementos() const{
 		usuarios->avanzar();
 	}
 	return n;
+	*/
+	return this->numero_usuarios;
 }
 
 bool GestorUsuarios::buscar(string nombre, Usuario* &usuario) const{
 	Usuario *u = nullptr;
-	usuarios->moverPrimero();
 	bool enc = false;
 	bool mayor = false;
 
-	while(!usuarios->alFinal() && !enc && !mayor){
+	this->usuarios->moverPrimero();
+
+	while(!this->usuarios->alFinal() && !enc && !mayor){
 		u = usuarios->consultar();
-		if (u->getApellidosNombre == nombre){
+		if (u->getApellidosNombre() == nombre){
 			enc = true;
 			usuario = u;
-		}
-		else {
-			if(u->getApellidosNombre < nombre){
+		} else {
+			if(u->getApellidosNombre() > nombre){
 				mayor = true;
 			}
 			else usuarios->avanzar();
 		}
 	}
-	delete u;
+	//NO BORRES NADA SI NO ES AUXILIAR A LO QUE HAYAS HECHO NEW
+	//delete u;
 	return enc;
 }
 
 void GestorUsuarios::insertar(string id, string nombre, string email, string contraseña){
 	Usuario *u = nullptr;
-	usuarios->moverPrimero();
 	bool igual = false;
 	bool enc = false;
 
+	usuarios->moverPrimero();
+
 	while (!usuarios->alFinal() && !enc && !igual){
 		u = usuarios->consultar();
+
 		if (u->getApellidosNombre() == nombre){
+			//Ya está. No se inserta
 			igual = true;
-		}
-		else {
-			if (u->getApellidosNombre > nombre){
+		} else {
+			//En la lista se apunta a '2' y nombre es '1'
+			if (u->getApellidosNombre() > nombre){
 				enc = true;
 			}
 			else {
 				usuarios->avanzar();
 			}
 		}
-		if (!igual){
-			Usuario *nuevo = new Usuario(id, nombre, email, contraseña);
-			usuarios->insertar(nuevo);
-		}
+
 	}
-	delete u;
+	if (!igual){
+		Usuario *nuevo = new Usuario(id, nombre, email, contraseña);
+		nuevo->mostrar();
+		usuarios->insertar(nuevo);
+		this->numero_usuarios++;
+	}
+
+	//PERO QUE NO BORRES U QUE NO LE HAS HECHO NEW
+	//delete u;
 }
 
 void GestorUsuarios::mostrar() const{
 	Usuario *u = nullptr;
-	usuarios->moverPrimero();
 
-	while(!usuarios->alFinal()){
-		u = usuarios->consultar();
+	this->usuarios->moverPrimero();
+
+	while(!this->usuarios->alFinal()){
+		u = this->usuarios->consultar();
 		u->mostrar();
+		this->usuarios->avanzar();
 	}
-	delete u;
+	//BROOOOOOOOOO
+	//delete u;
 }
 
 

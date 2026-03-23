@@ -38,7 +38,8 @@ void pruebasInsertarGestorUsuarios(){
 	gu1->insertar("1", "Paco", "paco@a.com", "1234");
 	gu1->insertar("2", "Paco2", "paco@a.com", "1234");
 	gu1->insertar("3", "Paco3", "paco@a.com", "1234");
-
+	
+	gu1->mostrar();
 	if(gu1->numElementos() != 3)
 		cerr << " * Error con el número de elementos al insertar usuario" << endl;
 
@@ -61,7 +62,7 @@ void pruebasBuscarGestorUsuarios(){
 	if(!gu1->buscar("Paco2", usuario))
 		cerr << " * Error con buscando usuario (1)" << endl;
 
-	if(!gu1->buscar("Paco4", usuario))
+	if(gu1->buscar("Paco4", usuario))
 		cerr << " * Error con buscando usuario (2)" << endl;
 
 	cout << "Fin de pruebas de buscar de GestorUsuarios" << endl;
