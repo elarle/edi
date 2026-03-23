@@ -133,8 +133,13 @@ return enc;
 }
 
 void Usuario::crearPlayList(string nombre){
-
-
+	PlayList *p;
+	if (!buscarPlaylist(nombre, p)){
+	    p = new PlayList (nombre);
+		this->playlists->alFinal();
+		this->playlists->avanzar();
+		this->playlists->insertar(p);
+	}
 }
 
 void Usuario::addCancionPlaylist(string nombre_playlist, Cancion* cancion){
