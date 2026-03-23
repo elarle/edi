@@ -74,7 +74,7 @@ public:
 	 * PRE={La playlist debe ser un nullptr / no estar reservada}
 	 * DESC={Crea una copia de la lista de este usuario en playlist. La memoria es responsabilidad del usuario}
 	 */
-	void compartirPlaylist(PlayList* &playlist) const;
+	void compartirPlaylist(string nombre, PlayList* &playlist) const;
 
 	/**
 	 * DESC={Añade a las listas de usuario una copia de la playlist COPIADA.}
