@@ -159,8 +159,11 @@ void Usuario::reproducirPlayList(string nombre) const{
 	}
 }
 
-void Usuario::compartirPlaylist(PlayList* &playlist) const{
-
+void Usuario::compartirPlaylist(string nombre, PlayList* &playlist) const{
+	PlayList *pl;
+	if(buscarPlaylist(nombre, pl)){
+		playlist = new PlayList (*pl);
+	}
 }
 
 void Usuario::addPlaylistCompartida(const PlayList* &playlist){
