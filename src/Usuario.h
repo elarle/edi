@@ -87,6 +87,11 @@ public:
 	void addArtistaFavorito(const Artista* artista);
 
 	/**
+	 * DESC={Coomprueba si un parámetro se repite en una misma ListaDPI}
+	 */
+	bool existe (string parametro);
+
+	/**
 	 * DESC={Muestra a cout el usuario}
 	 * COMP={O(?)}
 	 */
