@@ -26,8 +26,9 @@ class GestorUsuarios{
 		bool buscar(string nombre, Usuario* &usuario) const;
 		
 		/**
-		 * DESC={Inserta un nuevo usuario si no se repite ni el id, nombre ni email}
-		 * COMP={O(1)}
+		 * TODO: Comprobar que siga el orden el test
+		 * DESC={Inserta un nuevo usuario en órden si no se repite ni el id, nombre ni email}
+		 * COMP={O(n)}
 		 */
 		void insertar(string id, string nombre, string email, string contraseña);
 		
