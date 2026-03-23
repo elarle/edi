@@ -143,11 +143,20 @@ void Usuario::crearPlayList(string nombre){
 }
 
 void Usuario::addCancionPlaylist(string nombre_playlist, Cancion* cancion){
-
+	PlayList *p;
+	if(buscarPlaylist(nombre_playlist, p)){
+		p->agregarCancion(cancion);
+	}
 }
 
 void Usuario::reproducirPlayList(string nombre) const{
-
+	PlayList *p;
+	this->playlists->moverPrimero();
+	while(!this->playlists->alFinal()){
+		p = this->playlists->consultar();
+		p->reproducir();
+		this->playlists->avanzar();
+	}
 }
 
 void Usuario::compartirPlaylist(PlayList* &playlist) const{
