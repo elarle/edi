@@ -16,6 +16,8 @@ Usuario::Usuario() {
 	this->email = "";
 
 	this->fecha_nacimiento = new Fecha();
+
+	this->playlists = new ListaDPI<PlayList*>();
 }
 
 Usuario::Usuario(string id, string nombre, string email, string contraseña) {
@@ -25,6 +27,8 @@ Usuario::Usuario(string id, string nombre, string email, string contraseña) {
 	this->contraseña = contraseña;
 
 	this->fecha_nacimiento = new Fecha();
+
+	this->playlists = new ListaDPI<PlayList*>();
 }
 
 Usuario::Usuario(const Usuario & otro_usuario){
@@ -34,10 +38,18 @@ Usuario::Usuario(const Usuario & otro_usuario){
 	this->contraseña = otro_usuario.contraseña;
 
 	this->fecha_nacimiento = new Fecha(*otro_usuario.fecha_nacimiento);
+
+	this->playlists = new ListaDPI<PlayList*>(*otro_usuario.playlists);
 }
 
 Usuario::~Usuario() {
 	delete this->fecha_nacimiento;
+
+	this->playlists->moverPrimero();
+	while(!this->playlists->estaVacia()){
+		this->playlists->eliminar();
+	}
+	delete this->playlists;
 }
 
 //Setters
@@ -104,4 +116,25 @@ void Usuario::mostrar() const {
 
 string Usuario::pasarACadena() const {
 	return this->idUsuario + " " + this->apellidosNombre;
+}
+
+//TODO: Implementar todo esto
+void Usuario::crearPlayList(string nombre){
+
+}
+
+void Usuario::addCancionPlaylist(string nombre_playlist, Cancion* cancion){
+
+}
+
+void Usuario::reproducirPlayList(string nombre) const{
+
+}
+
+void Usuario::compartirPlaylist(PlayList* &playlist) const{
+
+}
+
+void Usuario::addPlaylistCompartida(const PlayList* &playlist){
+
 }

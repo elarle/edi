@@ -12,6 +12,9 @@
 using namespace std;
 
 #include "Fecha.h"
+#include "PlayList.h"
+#include "Artista.h"
+#include "ListaDPI.h"
 
 class Usuario {
 private:
@@ -21,6 +24,9 @@ private:
 	string contraseña;
 
 	Fecha* fecha_nacimiento;
+
+	ListaDPI<PlayList*>* playlists;
+	ListaDPI<Artista*>* artistas_favoritos;
 
 public:
 	Usuario();
@@ -47,6 +53,38 @@ public:
 
 	void getFecha(Fecha & fecha) const;
 	void getFecha(int &dia, int &mes, int &año) const;
+
+	//Métodos
+	
+	/**
+	 * DESC={Crea una playlist del usuario si no existe una con ese nombre}
+	 */
+	void crearPlayList(string nombre);
+
+	/**
+	 * DESC={Si la playlist existe se le añade la canción}
+	 */
+	void addCancionPlaylist(string nombre_playlist, Cancion * cancion);
+
+	/**
+	 * DESC={Muestra las canciones de la playlist}
+	 */
+	void reproducirPlayList(string nombre) const;
+	/**
+	 * PRE={La playlist debe ser un nullptr / no estar reservada}
+	 * DESC={Crea una copia de la lista de este usuario en playlist. La memoria es responsabilidad del usuario}
+	 */
+	void compartirPlaylist(PlayList* &playlist) const;
+
+	/**
+	 * DESC={Añade a las listas de usuario una copia de la playlist COPIADA.}
+	 */
+	void addPlaylistCompartida(const PlayList* &playlist);
+
+	/**
+	 * DESC={Inserta un artista favorito en el usuario si NO está ya en favoritos}
+	 */
+	void addArtistaFavorito(const Artista* artista);
 
 	/**
 	 * DESC={Muestra a cout el usuario}
