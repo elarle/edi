@@ -119,7 +119,21 @@ string Usuario::pasarACadena() const {
 }
 
 //TODO: Implementar todo esto
+
+bool Usuario::buscarPlaylist (string nombre, PlayList *&p ) const{
+	this->playlists->moverPrimero();
+	bool enc = false;
+	while(!this->playlists->alFinal() && !enc){
+		p = this->playlists->consultar();
+		if (p->getNombre() == nombre){
+			enc = true;
+		}
+	}
+return enc;
+}
+
 void Usuario::crearPlayList(string nombre){
+
 
 }
 
