@@ -16,7 +16,7 @@ Usuario::Usuario() {
 	this->email = "";
 
 	this->fecha_nacimiento = new Fecha();
-
+	this->artistas_favoritos = new ListaDPI<Artista*>();
 	this->playlists = new ListaDPI<PlayList*>();
 }
 
@@ -27,7 +27,7 @@ Usuario::Usuario(string id, string nombre, string email, string contraseña) {
 	this->contraseña = contraseña;
 
 	this->fecha_nacimiento = new Fecha();
-
+	this->artistas_favoritos = new ListaDPI<Artista*>();
 	this->playlists = new ListaDPI<PlayList*>();
 }
 
@@ -38,7 +38,7 @@ Usuario::Usuario(const Usuario & otro_usuario){
 	this->contraseña = otro_usuario.contraseña;
 
 	this->fecha_nacimiento = new Fecha(*otro_usuario.fecha_nacimiento);
-
+	this->artistas_favoritos = new ListaDPI<Artista*>(*otro_usuario.artistas_favoritos);
 	this->playlists = new ListaDPI<PlayList*>(*otro_usuario.playlists);
 }
 
