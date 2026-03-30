@@ -2,6 +2,7 @@
 
 GestorUsuarios::GestorUsuarios(){
 	usuarios = new ListaDPI<Usuario *> ();
+	numero_usuarios = 0;
 }
 
 GestorUsuarios::GestorUsuarios(const GestorUsuarios & gestor){
