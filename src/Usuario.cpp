@@ -128,7 +128,9 @@ bool Usuario::buscarPlaylist (string nombre, PlayList *&p ) const{
 		if (p->getNombre() == nombre){
 			enc = true;
 		}
-	}
+		else
+			this->playlists->avanzar();
+		}
 return enc;
 }
 
@@ -166,6 +168,12 @@ void Usuario::compartirPlaylist(string nombre, PlayList* &playlist) const{
 	}
 }
 
-void Usuario::addPlaylistCompartida(const PlayList* &playlist){
+void Usuario::addPlaylistCompartida(const PlayList* &p){
+	PlayList* aux;
 
+	if (!buscarPlaylist(p->getNombre(), aux)){
+		this->playlists->moverUltimo();
+		this->playlists->avanzar();
+		this->playlists->insertar(new PlayList (*p));
+	}
 }
