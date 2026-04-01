@@ -19,13 +19,20 @@ Artista::Artista(string nombre, string country, int seguidores){
 	this->canciones = new ListaDPI<Cancion*>;
 }
 
-Artista::Artista(const Artista & artista){
-	this->nombre = artista.nombre;
-	this->country = artista.country;
-	this->seguidores = artista.seguidores;
+Artista::Artista(const Artista & a){
+	this->nombre = a.nombre;
+	this->country = a.country;
+	this->seguidores = a.seguidores;
+	this->numero_canciones = a.numero_canciones;
+	Cancion *c;
+	this->canciones = new ListaDPI<Cancion*>;
+	a.canciones->moverPrimero();
 
-	this->numero_canciones = artista.numero_canciones;
-	//TODO: Hacer algoritmo para copiar todas las canciones
+	while (!a.canciones->alFinal()){
+		c = a.canciones->consultar();
+		this->canciones->insertar(new Cancion (*c));
+		a.canciones->avanzar();
+	}
 }
 
 Artista::~Artista(){
