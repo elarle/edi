@@ -18,7 +18,7 @@
 
 #include "archivos.h"
 
-int main() {
+int main_tests() {
 	leerFicheroSeleccionarAño(2003);
 	pruebaFecha();
 	cout << endl;
