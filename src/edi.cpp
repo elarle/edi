@@ -15,6 +15,7 @@
 #include "CancionTest.h"
 #include "PlayListTest.h"
 #include "GestorUsuariosTest.h"
+#include "SistemaTest.h"
 
 #include "archivos.h"
 
@@ -31,6 +32,8 @@ int main_tests() {
 	pruebasPlayList();
 	cout << endl;
 	pruebasGestorUsuarios();
+	cout << endl;
+	pruebasSistema();
 
 	return 0;
 }
