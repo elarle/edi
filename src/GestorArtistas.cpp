@@ -40,7 +40,7 @@ bool GestorArtistas::buscar(string nombre, Artista* &a) const{
 
 	while(!this->artistas->alFinal() && !enc){
 		a = this->artistas->consultar();
-		if(a->getNombre == nombre){
+		if(a->getNombre() == nombre){
 			enc = true;
 		}
 		else
@@ -56,7 +56,7 @@ void GestorArtistas::insertar(string nombre, string country, int seguidores){
 
 	while(!this->artistas->alFinal() && !buscar(nombre, aux)){
 		aux = this->artistas->consultar();
-		if(aux->getNombre > nombre){
+		if(aux->getNombre() > nombre){
 			this->artistas->insertar(new Artista (nombre, country, seguidores));
 		}
 		else
