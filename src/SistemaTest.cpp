@@ -26,3 +26,25 @@ void pruebasConstructoresSistema(){
 
 	cout << "FinalizadaS pruebas de constructores de Sistema" << endl;
 }
+
+void pruebasBuscarUsuarioSistema(){
+	cout << "Iniciando pruebas de constructores de Sistema" << endl;
+	
+	Sistema* s1;
+	s1 = new Sistema();
+	//Ni idea de qué cookeamos aquí
+	delete s1;
+
+	cout << "FinalizadaS pruebas de constructores de Sistema" << endl;
+}
+
+void pruebasBuscarArtistaSistema(){
+	cout << "Iniciando pruebas de constructores de Sistema" << endl;
+	
+	Sistema* s1;
+	s1 = new Sistema();
+	//Ni idea de qué cookeamos aquí
+	delete s1;
+
+	cout << "FinalizadaS pruebas de constructores de Sistema" << endl;
+}
