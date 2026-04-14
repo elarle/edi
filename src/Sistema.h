@@ -12,6 +12,7 @@ class Sistema{
 	public:
 		Sistema();
 		Sistema(const Sistema& sistema);
+		~Sistema();
 
 		/*
 		 * DESC={
