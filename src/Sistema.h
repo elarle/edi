@@ -1,0 +1,106 @@
+#ifndef SISTEMA_H_
+#define SISTEMA_H_
+
+#include "GestorUsuarios.h"
+#include "GestorArtistas.h"
+
+class Sistema{
+	private:
+		GestorUsuarios* gestorUsuarios;
+		GestorArtistas* gestorArtistas;
+	
+	public:
+		Sistema();
+		Sistema(const Sistema& sistema);
+		~Sistema();
+
+		/*
+		 * DESC={
+		 *		Muestra los usuarios registrados por órden alfabético.
+		 * }
+		 */
+		void mostrarUsuarios() const;
+
+		/*
+		 * DESC={
+		 *		Devuelve un puntero a una copia del Usuario solicitado.
+		 *		En caso de no existir dicho usuario se devuelve nullptr.
+		 * }
+		 *	POST={La memoria la gestiona quien llama a la función.}
+		 */
+		Usuario* buscarUsuario(string nombreApellidos) const;
+
+		/**
+		 * DESC={
+		 *		Muestra todos los artistas del sistema junto con sus canciones.
+		 * }
+		 */
+		void mostrarArtistas() const;
+
+		/*
+		 * DESC={
+		 *		Devuelve un puntero a una copia del Artista solicitado.
+		 *		En caso de no existir dicho artista se devuelve nullptr.
+		 * }
+		 *	POST={La memoria la gestiona quien llama a la función.}
+		 */
+		Artista* buscarArtista(string nombre) const;
+
+
+		/*
+		 * DESC={
+		 *		Reproduce la playlist del usuario solicitado.
+		 *		En caso de no existir la playlist o el usuario la función no hace nada.
+		 * }
+		 */
+		void reproducirPlaylistUsuario(string usuario, string playlist);
+
+		/**
+		 * PRE={
+		 *		usrc: Debe ser un usuario válido.
+		 *		udst: Debe ser un usuario válido.
+		 *		playlist: Debe ser una playlist válida del usuario usrc.
+		 *	}
+		 * DESC = {
+		 *		Crea una copia de la playlist seleccionada del usuario src al usuario dest.
+		 * }
+		 */
+		void compartirPlaylist(string usrc, string udst, string playlist);
+
+		/**
+		 * PRE={
+		 *		usuario: Debe ser un usuario válido.
+		 *		playlist: Debe ser una playlist válida de usuario.
+		 * }
+		 * DESC={
+		 *		Elimina la playlist indicada del usuario.Elimina la playlist indicada del usuario.
+		 * }
+		 */
+		void eliminarPlaylistUsuario(string usuario, string playlist);
+
+		/*
+		 * PRE={
+		 *		usuario: Debe ser un usuario válido.
+		 *		artista: Debe ser un artista válido.
+		 * }
+		 * DESC={
+		 *		Añade a favoritos del usuario el artista indicado.
+		 * }
+		 */
+		void addFavorito(string usuario, string artista);
+
+		/*
+		 * PRE={
+		 *		usuario: Debe ser un usuario válido.
+		 *		artista: Debe ser un artista válido.
+		 * }
+		 * DESC={
+		 *		 Elimina de favoritos del usuario el artista indicado.
+		 * }
+		 */
+		void borrarFavorito(string usuario, string artista);
+		
+
+};
+
+#endif /* SISTEMA_H_ */

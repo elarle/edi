@@ -15,10 +15,11 @@
 #include "CancionTest.h"
 #include "PlayListTest.h"
 #include "GestorUsuariosTest.h"
+#include "SistemaTest.h"
 
 #include "archivos.h"
 
-int main() {
+int main_tests() {
 	leerFicheroSeleccionarAño(2003);
 	pruebaFecha();
 	cout << endl;
@@ -31,6 +32,8 @@ int main() {
 	pruebasPlayList();
 	cout << endl;
 	pruebasGestorUsuarios();
+	cout << endl;
+	pruebasSistema();
 
 	return 0;
 }
