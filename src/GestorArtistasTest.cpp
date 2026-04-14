@@ -18,18 +18,18 @@ void pruebasGestorArtistas(){
 void pruebaConstructoresGestorArtistas(){
 	cout << "Iniciando pruebas de constructres de GestorArtistas" << endl;
 
-	GestorArtistas ga1;
-	GestorArtistas ga2;
+	GestorArtistas* ga1;
+	GestorArtistas* ga2;
 
 	ga1 = new GestorArtistas();
 
-	if(ga1.numElementos != 0){
+	if(ga1->numElementos() != 0){
 		cerr << "Error con el número de elementos del gestor (default)" << endl;
 	}
 
-	ga2 = new GestorArtistas(ga1);
+	ga2 = new GestorArtistas(*ga1);
 
-	if(ga1.numElementos != 0){
+	if(ga1->numElementos() != 0){
 		cerr << "Error con el número de elementos del gestor (default)" << endl;
 	}
 
