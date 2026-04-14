@@ -8,6 +8,6 @@ void pruebasGestorArtistas();
 void pruebaConstructoresGestorArtistas();
 void pruebaInsertarGestorArtistas();
 void pruebaBuscarGestorArtistas();
-void pruebaNumElemenosGestorArtistas();
+void pruebaNumElementosGestorArtistas();
 
 #endif /* GESTOR_ARTISTAS_TEST_H_ */

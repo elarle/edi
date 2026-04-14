@@ -48,3 +48,52 @@ void pruebasBuscarArtistaSistema(){
 
 	cout << "FinalizadaS pruebas de constructores de Sistema" << endl;
 }
+
+void pruebasMostrarArtistasSistema(){
+	cout << "Iniciando pruebas de de MostrarArtistasSistema" << endl;
+
+
+	cout << "Finalizadas pruebas de de MostrarArtistasSistema" << endl;
+}
+
+void pruebasMostrarUsuariosSistema(){
+	cout << "Iniciando pruebas de de MostrarUsuariosSistema" << endl;
+
+
+	cout << "Finalizadas pruebas de de MostrarUsuariosSistema" << endl;
+}
+
+void pruebasReproducirPlaylistUsuarioSistema(){
+	cout << "Iniciando pruebas de de ReproducirPlaylistUsuarioSistema" << endl;
+
+
+	cout << "Finalizadas pruebas de de ReproducirPlaylistUsuarioSistema" << endl;
+}
+
+void pruebasCompartirPlaylistSistema(){
+	cout << "Iniciando pruebas de de CompartirPlaylistSistema" << endl;
+
+
+	cout << "Finalizadas pruebas de de CompartirPlaylistSistema" << endl;
+}
+
+void pruebasEliminarPlaylistUsuarioSistema(){
+	cout << "Iniciando pruebas de de EliminarPlaylistUsuarioSistema" << endl;
+
+
+	cout << "Finalizadas pruebas de de EliminarPlaylistUsuarioSistema" << endl;
+}
+
+void pruebasAddFavoritoSistema(){
+	cout << "Iniciando pruebas de de AddFavoritoSistema" << endl;
+
+
+	cout << "Finalizadas pruebas de de AddFavoritoSistema" << endl;
+}
+
+void pruebasBorrarFavoritoSistema(){
+	cout << "Iniciando pruebas de de BorrarFavoritoSistema" << endl;
+
+
+	cout << "Finalizadas pruebas de de BorrarFavoritoSistema" << endl;
+}

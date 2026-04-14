@@ -9,10 +9,10 @@ void pruebasGestorArtistas(){
 
 	pruebaInsertarGestorArtistas();
 	pruebaBuscarGestorArtistas();
-	pruebaNumElemenosGestorArtistas();
+	pruebaNumElementosGestorArtistas();
 }
 
-void pruebasConstructoresGestorUsuarios(){
+void pruebaConstructoresGestorArtistas(){
 
 	cout << "Iniciando prueba de constructores de GestorArtistas" << endl;
 
@@ -39,5 +39,17 @@ void pruebasConstructoresGestorUsuarios(){
 }
 
 void pruebaMetodosGestorArtistas(){
+
+}
+
+void pruebaBuscarGestorArtistas(){
+
+}
+
+void pruebaNumElementosGestorArtistas(){
+
+}
+
+void pruebaInsertarGestorArtistas(){
 
 }
