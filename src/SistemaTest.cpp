@@ -24,6 +24,8 @@ void pruebasConstructoresSistema(){
 	//Ni idea de qué cookeamos aquí
 	delete s1;
 
+	cerr << " * Prueba vacía" << endl;
+
 	cout << "FinalizadaS pruebas de constructores de Sistema" << endl;
 }
 
@@ -34,6 +36,7 @@ void pruebasBuscarUsuarioSistema(){
 	s1 = new Sistema();
 	//Ni idea de qué cookeamos aquí
 	delete s1;
+	cerr << " * Prueba vacía" << endl;
 
 	cout << "FinalizadaS pruebas de constructores de Sistema" << endl;
 }
@@ -45,6 +48,7 @@ void pruebasBuscarArtistaSistema(){
 	s1 = new Sistema();
 	//Ni idea de qué cookeamos aquí
 	delete s1;
+	cerr << " * Prueba vacía" << endl;
 
 	cout << "FinalizadaS pruebas de constructores de Sistema" << endl;
 }
@@ -52,6 +56,7 @@ void pruebasBuscarArtistaSistema(){
 void pruebasMostrarArtistasSistema(){
 	cout << "Iniciando pruebas de de MostrarArtistasSistema" << endl;
 
+	cerr << " * Prueba vacía" << endl;
 
 	cout << "Finalizadas pruebas de de MostrarArtistasSistema" << endl;
 }
@@ -59,6 +64,7 @@ void pruebasMostrarArtistasSistema(){
 void pruebasMostrarUsuariosSistema(){
 	cout << "Iniciando pruebas de de MostrarUsuariosSistema" << endl;
 
+	cerr << " * Prueba vacía" << endl;
 
 	cout << "Finalizadas pruebas de de MostrarUsuariosSistema" << endl;
 }
@@ -66,6 +72,7 @@ void pruebasMostrarUsuariosSistema(){
 void pruebasReproducirPlaylistUsuarioSistema(){
 	cout << "Iniciando pruebas de de ReproducirPlaylistUsuarioSistema" << endl;
 
+	cerr << " * Prueba vacía" << endl;
 
 	cout << "Finalizadas pruebas de de ReproducirPlaylistUsuarioSistema" << endl;
 }
@@ -73,6 +80,7 @@ void pruebasReproducirPlaylistUsuarioSistema(){
 void pruebasCompartirPlaylistSistema(){
 	cout << "Iniciando pruebas de de CompartirPlaylistSistema" << endl;
 
+	cerr << " * Prueba vacía" << endl;
 
 	cout << "Finalizadas pruebas de de CompartirPlaylistSistema" << endl;
 }
@@ -80,6 +88,7 @@ void pruebasCompartirPlaylistSistema(){
 void pruebasEliminarPlaylistUsuarioSistema(){
 	cout << "Iniciando pruebas de de EliminarPlaylistUsuarioSistema" << endl;
 
+	cerr << " * Prueba vacía" << endl;
 
 	cout << "Finalizadas pruebas de de EliminarPlaylistUsuarioSistema" << endl;
 }
@@ -87,6 +96,7 @@ void pruebasEliminarPlaylistUsuarioSistema(){
 void pruebasAddFavoritoSistema(){
 	cout << "Iniciando pruebas de de AddFavoritoSistema" << endl;
 
+	cerr << " * Prueba vacía" << endl;
 
 	cout << "Finalizadas pruebas de de AddFavoritoSistema" << endl;
 }
@@ -94,6 +104,7 @@ void pruebasAddFavoritoSistema(){
 void pruebasBorrarFavoritoSistema(){
 	cout << "Iniciando pruebas de de BorrarFavoritoSistema" << endl;
 
+	cerr << " * Prueba vacía" << endl;
 
 	cout << "Finalizadas pruebas de de BorrarFavoritoSistema" << endl;
 }
