@@ -30,7 +30,7 @@ class GestorUsuarios{
 		 * DESC={Inserta un nuevo usuario en órden si no se repite ni el id, nombre ni email}
 		 * COMP={O(n)}
 		 */
-		void insertar(string id, string nombre, string email, string contraseña);
+		void insertar(string id, string nombre, string email, string contraseña, Fecha* fecha);
 		
 		void mostrar() const;
 

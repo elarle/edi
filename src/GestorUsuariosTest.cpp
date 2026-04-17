@@ -29,20 +29,24 @@ void pruebasConstructoresGestorUsuarios(){
 	cout << "Fin de pruebas de constructres de GestorUsuarios" << endl;
 }
 
+//TODO: Mejorar esta prueba para que compruebe parámetros del usuario
 void pruebasInsertarGestorUsuarios(){
 	cout << "Iniciando pruebas de insertar de GestorUsuarios" << endl;
 	
 	GestorUsuarios* gu1;
 	gu1 = new GestorUsuarios();
 
-	gu1->insertar("1", "Paco", "paco@a.com", "1234");
-	gu1->insertar("2", "Paco2", "paco@a.com", "1234");
-	gu1->insertar("3", "Paco3", "paco@a.com", "1234");
+	Fecha * fecha = new Fecha(1,2,3);
+
+	gu1->insertar("1", "Paco", "paco@a.com", "1234", fecha);
+	gu1->insertar("2", "Paco2", "paco@a.com", "1234", fecha);
+	gu1->insertar("3", "Paco3", "paco@a.com", "1234", fecha);
 	
 	gu1->mostrar();
 	if(gu1->numElementos() != 3)
 		cerr << " * Error con el número de elementos al insertar usuario" << endl;
 
+	delete fecha;
 	delete gu1;
 
 	cout << "Fin de pruebas de insertar de GestorUsuarios" << endl;
@@ -54,16 +58,21 @@ void pruebasBuscarGestorUsuarios(){
 	GestorUsuarios* gu1;
 	Usuario* usuario;
 	gu1 = new GestorUsuarios();
+	
 
-	gu1->insertar("1", "Paco", "paco@a.com", "1234");
-	gu1->insertar("2", "Paco2", "paco@a.com", "1234");
-	gu1->insertar("3", "Paco3", "paco@a.com", "1234");
+	Fecha * fecha = new Fecha(4,5,6);
+
+	gu1->insertar("1", "Paco", "paco@a.com", "1234", fecha);
+	gu1->insertar("2", "Paco2", "paco@a.com", "1234", fecha);
+	gu1->insertar("3", "Paco3", "paco@a.com", "1234", fecha);
 
 	if(!gu1->buscar("Paco2", usuario))
 		cerr << " * Error con buscando usuario (1)" << endl;
 
 	if(gu1->buscar("Paco4", usuario))
 		cerr << " * Error con buscando usuario (2)" << endl;
+
+	delete fecha;
 
 	cout << "Fin de pruebas de buscar de GestorUsuarios" << endl;
 }
