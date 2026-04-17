@@ -40,7 +40,7 @@ int menu(string nombreSistema) {
 }
 
 
-int main() {
+int main2() {
 	// TODO Crear un objeto dinámico de la clase Sistema
 	// los datos se cargan automáticamente.
 	// TODO no olvidar hacer new al puntero al Sistema
