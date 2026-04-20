@@ -8,7 +8,7 @@ Sistema::Sistema(){
 
 Sistema::Sistema(const Sistema& sistema){
 	this->gestorUsuarios = new GestorUsuarios(*(sistema.gestorUsuarios));
-	this->gestorUsuarios = new GestorUsuarios(*(sistema.gestorUsuarios));
+	this->gestorArtistas = new GestorArtistas(*(sistema.gestorArtistas));
 }
 
 Sistema::~Sistema(){
