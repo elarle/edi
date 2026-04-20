@@ -1,19 +1,13 @@
-/*
- * GestorArtistaTest.h
- *
- *  Created on: 13 abr 2026
- *      Author: estudiante
- */
+#ifndef GESTOR_ARTISTAS_TEST_H_
+#define GESTOR_ARTISTAS_TEST_H_
 
-#ifndef GESTORARTISTASTEST_H_
-#define GESTORARTISTASTEST_H_
 #include "GestorArtistas.h"
 
 void pruebasGestorArtistas();
 
 void pruebaConstructoresGestorArtistas();
-void pruebaNumElementosGestorArtistas();
-void pruebaBuscarGestorArtistas();
 void pruebaInsertarGestorArtistas();
+void pruebaBuscarGestorArtistas();
+void pruebaNumElementosGestorArtistas();
 
-#endif /* GESTORARTISTASTEST_H_ */
+#endif /* GESTOR_ARTISTAS_TEST_H_ */
