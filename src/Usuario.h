@@ -30,7 +30,7 @@ private:
 
 public:
 	Usuario();
-	Usuario(string id, string nombre, string email, string contraseña);
+	Usuario(string id, string nombre, string email, string contraseña, Fecha* fecha);
 	Usuario(const Usuario & otro_usuario);
 	~Usuario();
 

@@ -22,7 +22,7 @@ void pruebaConstructoresGestorArtistas(){
 
 	if(g1->numElementos() != 0)
 		cerr << " * Error con el número de elementos (default)" << endl;
-
+		
 	//¿Deberíamos hacer una prueba aparte para esto?
 	g1->insertar("Pepe", "ES", 33);
 	if(g1->numElementos() != 1)
@@ -44,7 +44,7 @@ void pruebaBuscarGestorArtistas(){
 
 	GestorArtistas* g1;
 	Artista* busqueda = nullptr;
-
+	
 	g1 = new GestorArtistas();
 
 	g1->insertar("Pepe", "ES", 33);
@@ -103,9 +103,9 @@ void pruebaInsertarGestorArtistas(){
 	g1 = new GestorArtistas();
 
 	g1->insertar("Pepe", "ES", 33);
-	g1->insertar("Andrés", "Marruecos", 1);
+	g1->insertar("Andrés", "Marruecos", 1);	
 	g1->insertar("Diego", "India", 6767);
-
+	
 	if(!g1->buscar("Pepe", busqueda)){
 		cerr << " * Error con la primera inserción" << endl;
 	}

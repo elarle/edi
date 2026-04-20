@@ -20,7 +20,11 @@ class GestorArtistas{
 		 */
 		int numElementos() const;
 		/**
-		 * DESC={Devuelve true si hay algún artista cuyo nombre coincida}
+		 * DESC={
+		 *		Devuelve true si hay algún artista cuyo nombre coincida
+		 *    Devuelve una copia del artista encontrado en el parámetro artista.
+		 *    La memoria de artista es responsabilidad del usuario. 
+		 *	}
 		 * COMP={O(n)}
 		 */
 		bool buscar(string nombre, Artista* &artista) const;

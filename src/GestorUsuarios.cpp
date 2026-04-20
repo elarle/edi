@@ -83,7 +83,7 @@ bool GestorUsuarios::buscar(string nombre, Usuario* &usuario) const{
 	return enc;
 }
 
-void GestorUsuarios::insertar(string id, string nombre, string email, string contraseña){
+void GestorUsuarios::insertar(string id, string nombre, string email, string contraseña, Fecha* fecha){
 	Usuario *u = nullptr;
 	bool igual = false;
 	bool enc = false;
@@ -108,7 +108,7 @@ void GestorUsuarios::insertar(string id, string nombre, string email, string con
 
 	}
 	if (!igual){
-		Usuario *nuevo = new Usuario(id, nombre, email, contraseña);
+		Usuario *nuevo = new Usuario(id, nombre, email, contraseña, fecha);
 		nuevo->mostrar();
 		usuarios->insertar(nuevo);
 		this->numero_usuarios++;

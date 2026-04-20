@@ -72,3 +72,10 @@ bool Artista::operator<(const Artista &artista) const{
 	return  this->nombre < artista.nombre;
 }
 
+void Artista::mostrar() const{
+	cout << "Artista {" << endl;
+	cout << "	Nombre: " << this->nombre << endl;
+	cout << "	País: " << this->country << endl;
+	cout << "	Seguidores: " << this->seguidores << endl;
+	cout << "}" << endl;
+}

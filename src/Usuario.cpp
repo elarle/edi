@@ -20,13 +20,13 @@ Usuario::Usuario() {
 	this->playlists = new ListaDPI<PlayList*>();
 }
 
-Usuario::Usuario(string id, string nombre, string email, string contraseña) {
+Usuario::Usuario(string id, string nombre, string email, string contraseña, Fecha* fecha) {
 	this->idUsuario = id;
 	this->apellidosNombre = nombre;
 	this->email = email;
 	this->contraseña = contraseña;
 
-	this->fecha_nacimiento = new Fecha();
+	this->fecha_nacimiento = new Fecha(*fecha);
 	this->artistas_favoritos = new ListaDPI<Artista*>();
 	this->playlists = new ListaDPI<PlayList*>();
 }
