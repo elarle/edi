@@ -39,7 +39,7 @@ bool GestorArtistas::buscar(string nombre, Artista* &a) const{
 	bool enc = false;
 	this->artistas->moverPrimero();
 
-	while(!this->artistas->alFinal() && !enc){
+	while(!this->artistas->alFinal() && !enc && this->artistas != nullptr){
 		a = this->artistas->consultar();
 		if(a->getNombre() == nombre){
 			enc = true;
