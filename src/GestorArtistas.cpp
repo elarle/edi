@@ -34,6 +34,7 @@ int GestorArtistas::numElementos() const{
 	return this->numero_artistas;
 }
 
+//TODO: Esto hace coredump. Arreglar lo primero.
 bool GestorArtistas::buscar(string nombre, Artista* &a) const{
 	bool enc = false;
 	this->artistas->moverPrimero();
@@ -51,19 +52,45 @@ bool GestorArtistas::buscar(string nombre, Artista* &a) const{
 }
 
 void GestorArtistas::insertar(string nombre, string country, int seguidores){
-	Artista *aux;
-	this->artistas->moverPrimero();
+	
+	Artista* a = nullptr;
+	bool igual = false;
+	bool enc = false;
 
-	while(!this->artistas->alFinal() && !buscar(nombre, aux)){
-		aux = this->artistas->consultar();
-		if(aux->getNombre() > nombre){
-			this->artistas->insertar(new Artista (nombre, country, seguidores));
+	artistas->moverPrimero();
+
+	while (!artistas->alFinal() && !enc && !igual){
+		a = artistas->consultar();
+
+		if (a->getNombre() == nombre){
+			//Ya está. No se inserta
+			igual = true;
+		} else {
+			//En la lista se apunta a '2' y nombre es '1'
+			if (a->getNombre() > nombre){
+				enc = true;
+			}
+			else {
+				artistas->avanzar();
+			}
 		}
-		else
-			this->artistas->avanzar();
+
+	}
+	if (!igual){
+		Artista *nuevo = new Artista(nombre, country, seguidores);
+		nuevo->mostrar();
+		artistas->insertar(nuevo);
+		this->numero_artistas++;
 	}
 }
 
 void GestorArtistas::mostrar() const{
+	Artista* a = nullptr;
+	this->artistas->moverPrimero();
 
+	while(!this->artistas->alFinal()){
+		a = this->artistas->consultar();
+		a->mostrar();
+		this->artistas->avanzar();
+	}
 }

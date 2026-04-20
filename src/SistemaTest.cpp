@@ -55,16 +55,27 @@ void pruebasBuscarArtistaSistema(){
 
 void pruebasMostrarArtistasSistema(){
 	cout << "Iniciando pruebas de de MostrarArtistasSistema" << endl;
+	Sistema* s1;
+	s1 = new Sistema();
 
-	cerr << " * Prueba vacía" << endl;
+	s1->cargarArtistas("artistas.csv");
+	s1->mostrarArtistas();
+
+	delete s1;
 
 	cout << "Finalizadas pruebas de de MostrarArtistasSistema" << endl;
 }
 
 void pruebasMostrarUsuariosSistema(){
 	cout << "Iniciando pruebas de de MostrarUsuariosSistema" << endl;
+	
+	Sistema* s1;
+	s1 = new Sistema();
 
-	cerr << " * Prueba vacía" << endl;
+	s1->cargarUsuarios("usuarios.csv");
+	//s1->mostrarUsuarios();
+
+	delete s1;
 
 	cout << "Finalizadas pruebas de de MostrarUsuariosSistema" << endl;
 }
