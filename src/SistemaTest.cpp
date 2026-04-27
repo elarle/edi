@@ -70,7 +70,18 @@ void pruebasBuscarArtistaSistema(){
 void pruebasReproducirPlaylistUsuarioSistema(){
 	cout << "Iniciando pruebas de de ReproducirPlaylistUsuarioSistema" << endl;
 
-	cerr << " * Prueba vacía" << endl;
+	Sistema* s;
+	Usuario* u = s->buscarUsuario("Coronado Perez, Pablo");
+
+	if(u == nullptr){
+		cerr << " * Prueba vacía" << endl;
+	}
+	else{
+		u->crearPlayList("TestSistema");
+		u->reproducirPlayList("TestSistema");
+	}
+	delete s;
+	delete u;
 
 	cout << "Finalizadas pruebas de de ReproducirPlaylistUsuarioSistema" << endl;
 }
