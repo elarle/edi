@@ -4,6 +4,9 @@
 Sistema::Sistema(){
 	this->gestorUsuarios = new GestorUsuarios();
 	this->gestorArtistas = new GestorArtistas();
+	cargarUsuarios("usuarios.csv");
+	cargarArtistas("artistas.csv");
+	cargarCanciones("canciones.csv");
 }
 
 Sistema::Sistema(const Sistema& sistema){
