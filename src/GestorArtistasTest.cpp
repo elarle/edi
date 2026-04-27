@@ -40,7 +40,7 @@ void pruebaConstructoresGestorArtistas(){
 }
 
 void pruebaBuscarGestorArtistas(){
-	cout << "Iniciando prueba de constructores de GestorArtistas" << endl;
+	cout << "Iniciando prueba de buscar de GestorArtistas" << endl;
 
 	GestorArtistas* g1;
 	Artista* busqueda = nullptr;
@@ -67,7 +67,7 @@ void pruebaBuscarGestorArtistas(){
 
 	delete g1;
 
-	cout << "Finalizada prueba de constructores de GestorArtistas" << endl;
+	cout << "Finalizada prueba de buscar de GestorArtistas" << endl;
 }
 
 void pruebaNumElementosGestorArtistas(){
