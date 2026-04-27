@@ -34,7 +34,6 @@ int GestorArtistas::numElementos() const{
 	return this->numero_artistas;
 }
 
-//TODO: Esto hace coredump. Arreglar lo primero.
 bool GestorArtistas::buscar(string nombre, Artista* &a) const{
 	bool enc = false;
 	this->artistas->moverPrimero();

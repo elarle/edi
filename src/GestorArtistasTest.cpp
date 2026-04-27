@@ -51,18 +51,17 @@ void pruebaBuscarGestorArtistas(){
 	g1->insertar("Andrés", "Marruecos", 1);
 	g1->insertar("Diego", "India", 6767);
 
+	//NO SE DEBE HACER DELETE DE LA BÚSQUEDA
+	//LA MEMORIA DEVUELTA PERTENECE AL GESTOR
+
 	if(!g1->buscar("Pepe", busqueda) || busqueda == nullptr)
 		cerr << " * Error con la primera búsqueda" << endl;
-	if(busqueda != nullptr)
-		delete busqueda;
 
 	if(!g1->buscar("Diego", busqueda) || busqueda == nullptr)
 		cerr << " * Error con la segunda búsqueda" << endl;
-	if(busqueda != nullptr)
-		delete busqueda;
 
 	busqueda = nullptr;
-	if(!g1->buscar("Felipe", busqueda) || busqueda == nullptr)
+	if(!g1->buscar("Felipe", busqueda) || busqueda != nullptr)
 		cerr << " * Error con la tercera búsqueda" << endl;
 
 	delete g1;
