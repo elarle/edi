@@ -40,7 +40,7 @@ void pruebaConstructoresGestorArtistas(){
 }
 
 void pruebaBuscarGestorArtistas(){
-	cout << "Iniciando prueba de constructores de GestorArtistas" << endl;
+	cout << "Iniciando prueba de buscar de GestorArtistas" << endl;
 
 	GestorArtistas* g1;
 	Artista* busqueda = nullptr;
@@ -61,12 +61,12 @@ void pruebaBuscarGestorArtistas(){
 		cerr << " * Error con la segunda búsqueda" << endl;
 
 	busqueda = nullptr;
-	if(!g1->buscar("Felipe", busqueda) || busqueda != nullptr)
+	if(g1->buscar("Felipe", busqueda) || busqueda != nullptr)
 		cerr << " * Error con la tercera búsqueda" << endl;
 
 	delete g1;
 
-	cout << "Finalizada prueba de constructores de GestorArtistas" << endl;
+	cout << "Finalizada prueba de buscar de GestorArtistas" << endl;
 }
 
 void pruebaNumElementosGestorArtistas(){
@@ -86,8 +86,8 @@ void pruebaNumElementosGestorArtistas(){
 
 	g1->insertar("Diego", "India", 6767);
 
-	if(g1->numElementos() != 4)
-		cerr << " * Error con el número de elementos en gestor con 4 artistas" << endl;
+	if(g1->numElementos() != 3)
+		cerr << " * Error con el número de elementos en gestor con duplicados" << endl;
 
 	delete g1;
 
