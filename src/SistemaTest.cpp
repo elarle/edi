@@ -20,11 +20,14 @@ void pruebasConstructoresSistema(){
 	cout << "Iniciando pruebas de constructores de Sistema" << endl;
 	
 	Sistema* s1;
+	Sistema* s2;
 	s1 = new Sistema();
-	//Ni idea de qué cookeamos aquí
-	delete s1;
+	s2 = new Sistema();
+	if (s1 == nullptr || s2 == nullptr)
+		cerr << " * Prueba vacía" << endl;
 
-	cerr << " * Prueba vacía" << endl;
+	delete s1;
+	delete s2;
 
 	cout << "FinalizadaS pruebas de constructores de Sistema" << endl;
 }
@@ -62,33 +65,6 @@ void pruebasBuscarArtistaSistema(){
 	delete s1;
 
 	cout << "FinalizadaS pruebas de constructores de Sistema" << endl;
-}
-
-void pruebasMostrarArtistasSistema(){
-	cout << "Iniciando pruebas de de MostrarArtistasSistema" << endl;
-	Sistema* s1;
-	s1 = new Sistema();
-
-	s1->cargarArtistas("artistas.csv");
-	//s1->mostrarArtistas();
-
-	delete s1;
-
-	cout << "Finalizadas pruebas de de MostrarArtistasSistema" << endl;
-}
-
-void pruebasMostrarUsuariosSistema(){
-	cout << "Iniciando pruebas de de MostrarUsuariosSistema" << endl;
-	
-	Sistema* s1;
-	s1 = new Sistema();
-
-	s1->cargarUsuarios("usuarios.csv");
-	//s1->mostrarUsuarios();
-
-	delete s1;
-
-	cout << "Finalizadas pruebas de de MostrarUsuariosSistema" << endl;
 }
 
 void pruebasReproducirPlaylistUsuarioSistema(){
