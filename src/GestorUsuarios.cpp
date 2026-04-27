@@ -109,7 +109,7 @@ void GestorUsuarios::insertar(string id, string nombre, string email, string con
 	}
 	if (!igual){
 		Usuario *nuevo = new Usuario(id, nombre, email, contraseña, fecha);
-		nuevo->mostrar();
+		//nuevo->mostrar();
 		usuarios->insertar(nuevo);
 		this->numero_usuarios++;
 	}

@@ -30,25 +30,36 @@ void pruebasConstructoresSistema(){
 }
 
 void pruebasBuscarUsuarioSistema(){
-	cout << "Iniciando pruebas de constructores de Sistema" << endl;
+	cout << "Iniciando pruebas de buscarUsuario de Sistema" << endl;
 	
 	Sistema* s1;
 	s1 = new Sistema();
-	//Ni idea de qué cookeamos aquí
+	
+	s1->cargarUsuarios("usuarios.csv");
+
+	Usuario* busqueda = nullptr;
+	busqueda = s1->buscarUsuario("Sanchez Mancera, Andres");
+	if(busqueda == nullptr)
+		cerr << " * Error con la primera búsquea." << endl;
+
 	delete s1;
-	cerr << " * Prueba vacía" << endl;
 
 	cout << "FinalizadaS pruebas de constructores de Sistema" << endl;
 }
 
 void pruebasBuscarArtistaSistema(){
-	cout << "Iniciando pruebas de constructores de Sistema" << endl;
+	cout << "Iniciando pruebas de buscarArtista de Sistema" << endl;
 	
 	Sistema* s1;
 	s1 = new Sistema();
-	//Ni idea de qué cookeamos aquí
+	s1->cargarArtistas("artistas.csv");
+
+	Artista* busqueda = nullptr;
+	busqueda = s1->buscarArtista("Violadores del Verso");
+	if(busqueda == nullptr)
+		cerr << " * Error con la primera búsquea." << endl;
+
 	delete s1;
-	cerr << " * Prueba vacía" << endl;
 
 	cout << "FinalizadaS pruebas de constructores de Sistema" << endl;
 }
@@ -59,7 +70,7 @@ void pruebasMostrarArtistasSistema(){
 	s1 = new Sistema();
 
 	s1->cargarArtistas("artistas.csv");
-	s1->mostrarArtistas();
+	//s1->mostrarArtistas();
 
 	delete s1;
 

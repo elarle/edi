@@ -34,19 +34,24 @@ int GestorArtistas::numElementos() const{
 	return this->numero_artistas;
 }
 
-//TODO: Esto hace coredump. Arreglar lo primero.
 bool GestorArtistas::buscar(string nombre, Artista* &a) const{
 	bool enc = false;
 	this->artistas->moverPrimero();
+	
+	Artista* aux;
 
-	while(!this->artistas->alFinal() && !enc){
-		a = this->artistas->consultar();
-		if(a->getNombre() == nombre){
+	while(!this->artistas->alFinal() && !enc && this->artistas != nullptr){
+		aux = this->artistas->consultar();
+		if(aux->getNombre() == nombre){
 			enc = true;
 		}
 		else
 			this->artistas->avanzar();
 	}
+
+	//Si no se encuentra no se modifica el puntero
+	if(enc)
+		a = aux;
 
 	return enc;
 }
@@ -78,7 +83,7 @@ void GestorArtistas::insertar(string nombre, string country, int seguidores){
 	}
 	if (!igual){
 		Artista *nuevo = new Artista(nombre, country, seguidores);
-		nuevo->mostrar();
+		//nuevo->mostrar();
 		artistas->insertar(nuevo);
 		this->numero_artistas++;
 	}
