@@ -44,4 +44,6 @@ void pruebasConstructoresArtista();
  */
 void pruebasOperadoresArtista();
 
+void pruebaInsertarBuscarCancion();
+
 #endif /* ARTISTA_TEST_H_ */

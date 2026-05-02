@@ -87,3 +87,43 @@ void pruebasOperadoresArtista(){
 
 	cout << "Fin de pruebas de operadores de Artista" << endl;
 }
+
+//DUDA: Podemos hacer las pruebas conjuntas?
+void pruebaInsertarBuscarCancion(){
+	cout << "Inicio de pruebas de insertar/buscarCacion" << endl;
+
+	Artista * a1;
+	Artista * a2;
+	a1 = new Artista("Andrés", "Marruecos", 67);
+
+	a1->insertarCancion("a", "flamenqueo", 33);
+	a1->insertarCancion("b", "jijiji", 19238);
+	a1->insertarCancion("c", "elpepe", 19238);
+
+	if(!a1->buscarCancion("a"))
+		cerr << " * Error con la primera canción" << endl;
+
+	if(!a1->buscarCancion("c"))
+		cerr << " * Error con la tercera canción" << endl;
+	
+	if(!a1->buscarCancion("b"))
+		cerr << " * Error con la segunda canción" << endl;
+
+	//Probar el constructor por copia
+	a2 = new Artista(*a1);
+	if(!a2->buscarCancion("a"))
+		cerr << " * Error con la primera canción (copia)" << endl;
+
+	if(!a2->buscarCancion("c"))
+		cerr << " * Error con la tercera canción (copia)" << endl;
+	
+	if(!a2->buscarCancion("b"))
+		cerr << " * Error con la segunda canción (copia)" << endl;
+
+	delete a1;
+	delete a2;
+
+	cout << "Fin de pruebas de insertar/buscarCanción" << endl;
+}
+
+
