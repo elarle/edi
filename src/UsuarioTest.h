@@ -10,20 +10,20 @@
 
 #include "Usuario.h"
 
-/*
- * Diseño de las pruebas
- * Caso 1:
- * 	1. constructor por defecto
- * 	2. invocamos los metodos set para dar los siguientes valores:
- * 	3. mostramos la información del objeto y comprobamos que es correcta
- * 	4. Invocamos los metodos get y comparamos con la salida.
+/**
+ * DESC={Crea punteros de Usuario para comprobar que la clase guarda bien la información.
+ * Primero usa el constructor por defecto y los métodos set y get para los datos básicos
+ * como nombre, ID, email y contraseña. Luego prueba el constructor con parámetros
+ * usando también un objeto Fecha. Al final muestra los datos por pantalla para
+ * revisarlos y borra todos los objetos creados.}
  *
- * Caso 2:
- * 	1. constructor con parámetros
- * 	2. comprobamos con los metodos get que coincidan con lo asignado
+ * COMP={O(1)}
  *
+ * PRE={La clase Usuario debe tener sus constructores, métodos get/set y la función mostrar.}
+ *
+ * POST={Informa si alguno de los datos del usuario no se ha guardado o recuperado
+ * correctamente durante las pruebas.}
  */
 void pruebasUsuario();
-
 
 #endif /* USUARIOTEST_H_ */
