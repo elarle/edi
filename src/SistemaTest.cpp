@@ -5,8 +5,6 @@ using namespace std;
 
 void pruebasSistema(){
 	pruebasConstructoresSistema();
-	pruebasMostrarUsuariosSistema();
-	pruebasMostrarArtistasSistema();
 	pruebasBuscarUsuarioSistema();
 	pruebasBuscarArtistaSistema();
 	pruebasReproducirPlaylistUsuarioSistema();
@@ -38,12 +36,11 @@ void pruebasBuscarUsuarioSistema(){
 	Sistema* s1;
 	s1 = new Sistema();
 	
-	s1->cargarUsuarios("usuarios.csv");
-
-	Usuario* busqueda = nullptr;
-	busqueda = s1->buscarUsuario("Sanchez Mancera, Andres");
+	//DUDA: Debemos devolver una copia o el usuario directo?
+	Usuario* busqueda = s1->buscarUsuario("DanielJ");
 	if(busqueda == nullptr)
 		cerr << " * Error con la primera búsquea." << endl;
+	//TODO: Comprobar que el usuario sea el correcto
 
 	delete s1;
 
@@ -70,8 +67,9 @@ void pruebasBuscarArtistaSistema(){
 void pruebasReproducirPlaylistUsuarioSistema(){
 	cout << "Iniciando pruebas de de ReproducirPlaylistUsuarioSistema" << endl;
 
-	Sistema* s;
+	Sistema* s = new Sistema();
 	Usuario* u = s->buscarUsuario("Coronado Perez, Pablo");
+
 
 	if(u == nullptr){
 		cerr << " * Prueba vacía" << endl;
@@ -80,7 +78,8 @@ void pruebasReproducirPlaylistUsuarioSistema(){
 		u->crearPlayList("TestSistema");
 		u->reproducirPlayList("TestSistema");
 	}
-	delete s;
+	//NO SE HACE DELETE DEL USUARIO POR QUE ES DE SISTEMA
+	//delete s;
 	delete u;
 
 	cout << "Finalizadas pruebas de de ReproducirPlaylistUsuarioSistema" << endl;

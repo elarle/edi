@@ -79,3 +79,24 @@ void Artista::mostrar() const{
 	cout << "	Seguidores: " << this->seguidores << endl;
 	cout << "}" << endl;
 }
+
+void Artista::insertarCancion(string nombre, string genero, int duracion) {
+	this->canciones->moverUltimo();
+	this->canciones->insertar(
+		new Cancion(nombre, genero, duracion)
+	);
+}
+
+bool Artista::buscarCancion(string nombre)const {
+	bool enc;
+	enc = false;
+	
+	this->canciones->moverPrimero();
+	
+	while(!enc && !this->canciones->alFinal()){
+		if(this->canciones->consultar()->getTitulo() == nombre)
+			enc = true;
+	}
+
+	return enc;
+}

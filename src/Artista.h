@@ -47,20 +47,7 @@ class Artista {
 		 *		Si devuelve false el segundo operando estaría primero.
 		 * }
 		 * COMP={O(1)}
-		 */void pruebaInsertarCancion(){
-	cout << "Inicio de pruebas de operadores de insetarCanción" << endl;
-
-	Artista * a1;
-	Artista * a2;
-	a1 = new Artista("Andrés", "Marruecos", 67);
-	a2 = new Artista("Pablo", "España", 33);
-
-
-	delete a1;
-	delete a2;
-
-	cout << "Fin de pruebas de operadores de insertarCanción" << endl;
-}
+		 */
 		bool operator<(const Artista &artista) const;
 
 		//Métodos
