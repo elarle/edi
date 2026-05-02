@@ -4,11 +4,11 @@
 using namespace std;
 
 void pruebasArtista(){
-	pruebasConstrucoresArtista(),
+	pruebasConstructoresArtista(),
 	pruebasOperadoresArtista();
 }
 
-void pruebasConstrucoresArtista(){
+void pruebasConstrutcoresArtista(){
 
 	cout << "Iniciando pruebas de constructores de Artista" << endl;
 

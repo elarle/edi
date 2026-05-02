@@ -28,7 +28,7 @@ void pruebasArtista();
  * POST={Avisa por la consola si el nombre, el país o los seguidores no se guardan
  *  o no se leen correctamente.}
  */
-void pruebasConstrucoresArtista();
+void pruebasConstructoresArtista();
 
 /**
  * DESC={Crea dos punteros de Artista para comparar sus nombres usando los operadores.
