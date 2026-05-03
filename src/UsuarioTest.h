@@ -10,6 +10,8 @@
 
 #include "Usuario.h"
 
+void pruebasUsuario();
+
 /**
  * DESC={Crea punteros de Usuario para comprobar que la clase guarda bien la información.
  * Primero usa el constructor por defecto y los métodos set y get para los datos básicos
@@ -24,6 +26,21 @@
  * POST={Informa si alguno de los datos del usuario no se ha guardado o recuperado
  * correctamente durante las pruebas.}
  */
-void pruebasUsuario();
+void pruebasConstructoresUsuario();
+
+//TODO: Mezclar con buscar
+void pruebasCrearPlayList();
+
+void pruebasAddCancionPlaylist();
+
+void pruebasReproducirPlaylist();
+
+void pruebasCompartirPlaylist();
+
+void pruebasAddPlaylistCompartida();
+
+void pruebasAddArtistaFavorito();
+
+void pruebasBuscarPlaylist();
 
 #endif /* USUARIOTEST_H_ */
