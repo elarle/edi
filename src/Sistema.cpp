@@ -7,6 +7,7 @@ Sistema::Sistema(){
 	cargarUsuarios("usuarios.csv");
 	cargarArtistas("artistas.csv");
 	cargarCanciones("canciones.csv");
+	cargarPlayLists("playLists.csv");
 }
 
 Sistema::Sistema(const Sistema& sistema){
@@ -180,6 +181,9 @@ void Sistema::cargarPlayLists(string archivo){
 	string nombre_playlist;
 	string artista;
 	string cancion;
+	Usuario* usuario;
+	Artista* artista_encontrado;
+	Cancion* cancion_encontrada;
 
 	contador = 0;
 
@@ -199,15 +203,23 @@ void Sistema::cargarPlayLists(string archivo){
 
 				contador++;
 				
-				//TODO: Añadir cancion a la playlist
+				usuario = nullptr;
+				artista_encontrado = nullptr;
+				cancion_encontrada = nullptr;
+
+				if(this->gestorUsuarios->buscar(apellidos_nombre, usuario) &&
+					this->gestorArtistas->buscar(artista, artista_encontrado) &&
+					artista_encontrado->buscarCancion(cancion, cancion_encontrada)){
+
+					usuario->crearPlayList(nombre_playlist);
+					usuario->addCancionPlaylist(nombre_playlist, cancion_encontrada);
+				}
 			}
-		}
-		//cout << "Cargados: " << contador << " usuarios." << endl;
-		file.close();
-
-	} else cerr << "Error abriendo el archivo usuario.csv. No existe" << endl;
+			//cout << "Cargados: " << contador << " usuarios." << endl;
+			file.close();
+			}
+		} else cerr << "Error abriendo el archivo usuario.csv. No existe" << endl;
 }
-
 
 void Sistema::mostrarUsuarios() const{
 	this->gestorUsuarios->mostrar();
@@ -233,4 +245,55 @@ Artista* Sistema::buscarArtista(string artista) const{
 	this->gestorArtistas->buscar(artista, busqueda);
 
 	return busqueda;
+}
+
+void Sistema::reproducirPlaylistUsuario(string usuario, string playlist){
+	Usuario* u = nullptr;
+
+	if(this->gestorUsuarios->buscar(usuario, u)){
+		u->reproducirPlayList(playlist);
+	}
+}
+
+void Sistema::compartirPlaylist(string usrc, string udst, string playlist){
+	Usuario* src = nullptr;
+	Usuario* dst = nullptr;
+	PlayList* p = nullptr;
+	const PlayList* aux = nullptr;
+
+	if(this->gestorUsuarios->buscar(usrc, src) && this->gestorUsuarios->buscar(udst, dst)){
+		src->compartirPlaylist(playlist, p);
+
+		if(p != nullptr){
+			aux = p;
+			dst->addPlaylistCompartida(aux);
+			delete p;
+		}
+	}
+}
+
+void Sistema::eliminarPlaylistUsuario(string usuario, string playlist){
+	Usuario* u = nullptr;
+
+	if(this->gestorUsuarios->buscar(usuario, u)){
+		u->eliminarPlayList(playlist);
+	}
+}
+
+
+void Sistema::addFavorito(string usuario, string artista){
+	Usuario* u = nullptr;
+	Artista* a = nullptr;
+
+	if(this->gestorUsuarios->buscar(usuario, u) && this->gestorArtistas->buscar(artista, a)){
+		u->addArtistaFavorito(a);
+	}
+}
+
+void Sistema::borrarFavorito(string usuario, string artista){
+	Usuario* u = nullptr;
+
+	if(this->gestorUsuarios->buscar(usuario, u)){
+		u->borrarArtistaFavorito(artista);
+	}
 }
