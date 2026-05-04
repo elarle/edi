@@ -72,6 +72,37 @@ bool Artista::operator<(const Artista &artista) const{
 	return  this->nombre < artista.nombre;
 }
 
+bool Artista::buscarCancion(string titulo, Cancion* &cancion) const{
+	Cancion *c;
+	bool enc = false;
+
+	cancion = nullptr;
+	this->canciones->moverPrimero();
+
+	while(!this->canciones->alFinal() && !enc){
+		c = this->canciones->consultar();
+		if(c->getTitulo() == titulo){
+			enc = true;
+			cancion = c;
+		}
+		else
+			this->canciones->avanzar();
+	}
+
+	return enc;
+}
+
+void Artista::insertarCancion(string titulo, string genero, int duracion){
+	Cancion *c;
+
+	if(!buscarCancion(titulo, c)){
+		this->canciones->moverUltimo();
+		this->canciones->avanzar();
+		this->canciones->insertar(new Cancion(titulo, genero, duracion));
+		this->numero_canciones++;
+	}
+}
+
 void Artista::mostrar() const{
 	cout << "Artista {" << endl;
 	cout << "	Nombre: " << this->nombre << endl;
