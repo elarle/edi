@@ -5,8 +5,9 @@ using namespace std;
 
 void pruebasSistema(){
 	pruebasConstructoresSistema();
+
 	pruebasCargarDatosSistema();
-	pruebasBuscarUsuarioSistema();
+
 	pruebasBuscarArtistaSistema();
 	pruebasReproducirPlaylistUsuarioSistema();
 	pruebasCompartirPlaylistSistema();
@@ -44,11 +45,12 @@ void pruebasConstructoresSistema(){
 }
 
 void pruebasCargarDatosSistema(){
-	cout << "Iniciando pruebas de carga de datos de Sistema" << endl;
+cout << "Iniciando pruebas de carga de datos de Sistema" << endl;
 
 	Sistema* s;
 	Usuario* u;
 	Artista* a;
+	Cancion* c;
 	PlayList* p;
 
 	s = new Sistema();
@@ -68,12 +70,16 @@ void pruebasCargarDatosSistema(){
 	a = s->buscarArtista("Harry Styles");
 	if(a == nullptr)
 		cerr << " * Error cargando artista desde fichero" << endl;
+	else{
+		c = nullptr;
+		if(!a->buscarCancion("Adore You", c) || c == nullptr)
+			cerr << " * Error cargando canciones desde fichero" << endl;
+	}
 
 	delete s;
 
 	cout << "Finalizadas pruebas de carga de datos de Sistema" << endl;
 }
-
 
 void pruebasBuscarUsuarioSistema(){
 	cout << "Iniciando pruebas de buscarUsuario de Sistema" << endl;
@@ -81,18 +87,31 @@ void pruebasBuscarUsuarioSistema(){
 	Sistema* s1;
 	s1 = new Sistema();
 	
-	s1->cargarUsuarios("usuarios.csv");
-
-	Usuario* busqueda = nullptr;
-	busqueda = s1->buscarUsuario("Sanchez Mancera, Andres");
+	//DUDA: Debemos devolver una copia o el usuario directo?
+	Usuario* busqueda = s1->buscarUsuario("Coronado Perez, Pablo");
 	if(busqueda == nullptr)
 		cerr << " * Error con la primera búsquea." << endl;
+	else if(busqueda->getIdUsuario() != "PabloCa")
+		cerr << " * Error con la primera búsqueda. Usuario incorrecto." << endl;
+
+	busqueda = s1->buscarUsuario("Sanchez Mancera, Andres");
+	if(busqueda == nullptr)
+		cerr << " * Error con la segunda búsquea." << endl;
+	else if(busqueda->getIdUsuario() != "AndresS")
+		cerr << " * Error con la segunda búsqueda. Usuario incorrecto." << endl;
+
+	busqueda = nullptr;
+	busqueda = s1->buscarUsuario("Perikillo");
+
+	if(busqueda != nullptr)
+		cerr << " * Error con la tercera búsqueda." << endl;
 
 	delete s1;
 
 	cout << "FinalizadaS pruebas de constructores de Sistema" << endl;
 }
 
+//TODO: Añadir más casos
 void pruebasBuscarArtistaSistema(){
 	cout << "Iniciando pruebas buscarArtista Sistema" << endl;
 
@@ -116,61 +135,61 @@ void pruebasBuscarArtistaSistema(){
 	cout << "Finalizadas pruebas buscarArtista Sistema" << endl;
 }
 
+//TODO: Esta prueba está mal hecha, esto se va para usuario
 void pruebasReproducirPlaylistUsuarioSistema(){
-cout << "Iniciando pruebas de reproducirPlaylistUsuario de Sistema" << endl;
+	cout << "Iniciando pruebas de reproducirPlaylistUsuario de Sistema" << endl;
 
-	Sistema* s;
-	Usuario* u;
-	PlayList* p;
-	Cancion* c1;
-	Cancion* c2;
-	Cancion* c3;
+		Sistema* s;
+		Usuario* u;
+		PlayList* p;
+		Cancion* c1;
+		Cancion* c2;
+		Cancion* c3;
 
-	s = new Sistema();
-	u = s->buscarUsuario("Coronado Perez, Pablo");
+		s = new Sistema();
+		u = s->buscarUsuario("Coronado Perez, Pablo");
 
-	if(u == nullptr){
-		cerr << " * Error preparando usuario para reproducir playlist" << endl;
+		if(u == nullptr){
+			cerr << " * Error preparando usuario para reproducir playlist" << endl;
+			delete s;
+			return;
+		}
+
+		c1 = new Cancion("Cancion sistema 1", "Pop", 170);
+		c2 = new Cancion("Cancion sistema 2", "Rock", 193);
+		c3 = new Cancion("Cancion sistema 3", "Trap", 153);
+
+		u->crearPlayList("TestSistema");
+		u->addCancionPlaylist("TestSistema", c1);
+		u->addCancionPlaylist("TestSistema", c2);
+		u->addCancionPlaylist("TestSistema", c3);
+
+		p = nullptr;
+		if(!u->buscarPlaylist("TestSistema", p) || p == nullptr)
+			cerr << " * Error creando playlist para reproducir" << endl;
+		else{
+			if(p->getCanciones() != 3)
+				cerr << " * Error con el numero de canciones antes de reproducir" << endl;
+		}
+
+		cout << "# Prueba supervisada, deben verse 3 canciones:" << endl;
+		s->reproducirPlaylistUsuario("Coronado Perez, Pablo", "TestSistema");
+
+		if(p != nullptr){
+			if(p->getCanciones() != 3)
+				cerr << " * Error reproducir modifica la playlist" << endl;
+		}
+
+		s->reproducirPlaylistUsuario("Usuario Inexistente", "TestSistema");
+		s->reproducirPlaylistUsuario("Coronado Perez, Pablo", "Playlist Inexistente");
+
+		delete c1;
+		delete c2;
+		delete c3;
 		delete s;
-		return;
+
+		cout << "Finalizadas pruebas de reproducirPlaylistUsuario de Sistema" << endl;
 	}
-
-	c1 = new Cancion("Cancion sistema 1", "Pop", 170);
-	c2 = new Cancion("Cancion sistema 2", "Rock", 193);
-	c3 = new Cancion("Cancion sistema 3", "Trap", 153);
-
-	u->crearPlayList("TestSistema");
-	u->addCancionPlaylist("TestSistema", c1);
-	u->addCancionPlaylist("TestSistema", c2);
-	u->addCancionPlaylist("TestSistema", c3);
-
-	p = nullptr;
-	if(!u->buscarPlaylist("TestSistema", p) || p == nullptr)
-		cerr << " * Error creando playlist para reproducir" << endl;
-	else{
-		if(p->getCanciones() != 3)
-			cerr << " * Error con el numero de canciones antes de reproducir" << endl;
-	}
-
-	cout << "# Prueba supervisada, deben verse 3 canciones:" << endl;
-	s->reproducirPlaylistUsuario("Coronado Perez, Pablo", "TestSistema");
-
-	if(p != nullptr){
-		if(p->getCanciones() != 3)
-			cerr << " * Error reproducir modifica la playlist" << endl;
-	}
-
-	s->reproducirPlaylistUsuario("Usuario Inexistente", "TestSistema");
-	s->reproducirPlaylistUsuario("Coronado Perez, Pablo", "Playlist Inexistente");
-
-	delete c1;
-	delete c2;
-	delete c3;
-	delete s;
-
-	cout << "Finalizadas pruebas de reproducirPlaylistUsuario de Sistema" << endl;
-}
-
 
 void pruebasCompartirPlaylistSistema(){
 cout << "Iniciando pruebas de compartirPlaylist de Sistema" << endl;

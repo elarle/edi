@@ -28,7 +28,7 @@ void pruebasArtista();
  * POST={Avisa por la consola si el nombre, el país o los seguidores no se guardan
  *  o no se leen correctamente.}
  */
-void pruebasConstrucoresArtista();
+void pruebasConstructoresArtista();
 
 /**
  * DESC={Crea dos punteros de Artista para comparar sus nombres usando los operadores.
@@ -43,5 +43,7 @@ void pruebasConstrucoresArtista();
  * POST={Informa si el programa se equivoca al comparar o al ordenar los nombres de los artistas.}
  */
 void pruebasOperadoresArtista();
+
+void pruebaInsertarBuscarCancion();
 
 #endif /* ARTISTA_TEST_H_ */

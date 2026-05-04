@@ -8,6 +8,11 @@
 #include "UsuarioTest.h"
 
 void pruebasUsuario(){
+	pruebasConstructoresUsuario();
+	pruebasCrearPlayList();
+}
+
+void pruebasConstructoresUsuario(){
 
 	cout << "Inicio de pruebas de Usuario" << endl;
 
@@ -55,4 +60,45 @@ void pruebasUsuario(){
 
 }
 
+void pruebasCrearPlayList(){
+	cout << "Iniciando pruebas de CrearPlaylist" << endl;
+	
+	Usuario* u1 = new Usuario();
+	PlayList* p = nullptr;
+	u1->crearPlayList("Test1");
+	u1->crearPlayList("AndresCoran");
+	
+	if(!u1->buscarPlaylist("Test1", p))
+		cerr << " * Error con la primera playlist" << endl;
+	else if(p == nullptr)
+		cerr << " * Error con la primera playlist (nula)" << endl;		
+	else if(p->getNombre() != "Test1")
+		cerr << " * Error con la primera playlist (incorrecta)" << endl;
 
+	p = nullptr;
+	if(!u1->buscarPlaylist("AndresCoran", p))
+		cerr << " * Error con la segunda playlist" << endl;
+	else if(p == nullptr)
+		cerr << " * Error con la segunda playlist (nula)" << endl;		
+	else if(p->getNombre() != "AndresCoran")
+		cerr << " * Error con la segunda playlist (incorrecta)" << endl;
+
+	p = nullptr;
+	if(u1->buscarPlaylist("PEPE", p))
+		cerr << " * Error con la tercera búsqueda" << endl;
+	else if(p != nullptr)
+		cerr << " * Error en la tercera búsqueda (no nula)" << endl; 
+
+
+	cout << "Finalizadas pruebas de CrearPlaylist" << endl;
+}
+
+void pruebasAddCancionPlaylist(){
+	cout << "Iniciando pruebas de AddCancionPlaylist" << endl;
+	cout << "Finalizadas pruebas de AddCancionPlaylist" << endl;
+}
+
+void pruebasTemplate(){
+	cout << "Iniciando pruebas de Template" << endl;
+	cout << "Finalizadas pruebas de Template" << endl;
+}
