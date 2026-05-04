@@ -90,40 +90,43 @@ void pruebasOperadoresArtista(){
 
 //DUDA: Podemos hacer las pruebas conjuntas?
 void pruebaInsertarBuscarCancion(){
-	cout << "Inicio de pruebas de insertar/buscarCacion" << endl;
+	cout << "Inicio de pruebas de insertar/buscarCancion" << endl;
 
 	Artista * a1;
 	Artista * a2;
+	Cancion *c;
+
 	a1 = new Artista("Andrés", "Marruecos", 67);
 
 	a1->insertarCancion("a", "flamenqueo", 33);
 	a1->insertarCancion("b", "jijiji", 19238);
 	a1->insertarCancion("c", "elpepe", 19238);
 
-	if(!a1->buscarCancion("a"))
+	if(!a1->buscarCancion("a", c))
 		cerr << " * Error con la primera canción" << endl;
 
-	if(!a1->buscarCancion("c"))
+	if(!a1->buscarCancion("c", c))
 		cerr << " * Error con la tercera canción" << endl;
 	
-	if(!a1->buscarCancion("b"))
+	if(!a1->buscarCancion("b", c))
 		cerr << " * Error con la segunda canción" << endl;
 
-	//Probar el constructor por copia
+	// Probar el constructor por copia
 	a2 = new Artista(*a1);
-	if(!a2->buscarCancion("a"))
+
+	if(!a2->buscarCancion("a", c))
 		cerr << " * Error con la primera canción (copia)" << endl;
 
-	if(!a2->buscarCancion("c"))
+	if(!a2->buscarCancion("c", c))
 		cerr << " * Error con la tercera canción (copia)" << endl;
 	
-	if(!a2->buscarCancion("b"))
+	if(!a2->buscarCancion("b", c))
 		cerr << " * Error con la segunda canción (copia)" << endl;
 
 	delete a1;
 	delete a2;
 
-	cout << "Fin de pruebas de insertar/buscarCanción" << endl;
+	cout << "Fin de pruebas de insertar/buscarCancion" << endl;
 }
 
 
