@@ -7,10 +7,10 @@ void pruebasSistema();
 
 void pruebasConstructoresSistema();
 
-void pruebasMostrarUsuariosSistema();
+void pruebasCargarDatosSistema();
+
 void pruebasBuscarUsuarioSistema();
 
-void pruebasMostrarArtistasSistema();
 void pruebasBuscarArtistaSistema();
 
 void pruebasReproducirPlaylistUsuarioSistema();
