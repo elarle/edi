@@ -51,7 +51,7 @@ class Artista {
 		bool operator<(const Artista &artista) const;
 
 		//Métodos
-		bool buscarCanción(string titulo) const;
+		bool buscarCancion(string titulo, Cancion* &cancion) const;
 		void insertarCancion(string titulo, string genero, int duracion);
 
 		void mostrar() const;
