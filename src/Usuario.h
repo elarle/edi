@@ -15,6 +15,7 @@ using namespace std;
 #include "PlayList.h"
 #include "Artista.h"
 #include "ListaDPI.h"
+#include "Cancion.h"
 
 class Usuario {
 private:
@@ -77,6 +78,11 @@ public:
 	void compartirPlaylist(string nombre, PlayList* &playlist) const;
 
 	/**
+	 * DESC={Elimina una playlist del usuario si existe}
+	 */
+	void eliminarPlayList(string nombre);
+
+	/**
 	 * DESC={Añade a las listas de usuario una copia de la playlist COPIADA.}
 	 */
 	void addPlaylistCompartida(const PlayList* &playlist);
@@ -85,6 +91,16 @@ public:
 	 * DESC={Inserta un artista favorito en el usuario si NO está ya en favoritos}
 	 */
 	void addArtistaFavorito(const Artista* artista);
+
+	/**
+	 * DESC={Elimina un artista favorito del usuario si existe}
+	 */
+	void borrarArtistaFavorito(string nombre);
+
+	/**
+	 * DESC={Busca un artista favorito por nombre}
+	 */
+	bool buscarArtistaFavorito(string nombre, Artista *&artista) const;
 
 	/**
 	 * DESC={Coomprueba si un parámetro se repite en una misma ListaDPI}
