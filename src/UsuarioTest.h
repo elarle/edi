@@ -10,6 +10,7 @@
 
 #include "Usuario.h"
 
+//TODO: Mejorar precondiciones
 void pruebasUsuario();
 
 /**
@@ -28,19 +29,32 @@ void pruebasUsuario();
  */
 void pruebasConstructoresUsuario();
 
-//TODO: Mezclar con buscar
+//TODO: Mejorar precondiciones
+//También mezclar con buscar
 void pruebasCrearPlayList();
 
+//TODO: Implementar
+//TODO: Mejorar precondiciones
 void pruebasAddCancionPlaylist();
 
+//TODO: Implementar
+//TODO: Mejorar precondiciones
 void pruebasReproducirPlaylist();
 
+//TODO: Implementar
+//TODO: Mejorar precondiciones
 void pruebasCompartirPlaylist();
 
+//TODO: Implementar
+//TODO: Mejorar precondiciones
 void pruebasAddPlaylistCompartida();
 
+//TODO: Implementar
+//TODO: Mejorar precondiciones
 void pruebasAddArtistaFavorito();
 
+//TODO: Implementar
+//TODO: Mejorar precondiciones
 void pruebasBuscarPlaylist();
 
 #endif /* USUARIOTEST_H_ */
