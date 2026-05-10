@@ -11,6 +11,8 @@ STATS_FILE="./.temp/stats"
 
 COMPILER="g++"
 
+MEMORY_LIMIT=500M
+
 WINDOWS_OBJECT_DEPENDENCIES=""
 WINDOWS_COMPILE_DEPNDENCIES=""
 
@@ -340,7 +342,7 @@ if [ "$RUN_AFTER_COMPILE" != false ]; then
     echo "Running program:"
     echo "   === PROGRAM OUTPUT ===   "
     echo
-    .temp/main
+	systemd-run --scope -p MemoryMax=$MEMORY_LIMIT --user .temp/main
 fi
 echo
 echo "========================"
