@@ -26,6 +26,8 @@ GestorUsuarios::GestorUsuarios(const GestorUsuarios & gestor){
 		Usuario * nu = new Usuario(*u);
 		usuarios->insertar(nu);
 		usuarios->avanzar();
+
+		gestor.usuarios->avanzar();
 	}
 
 	//Ni se te ocurra borrarlo que no es tuyo
