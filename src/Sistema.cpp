@@ -78,9 +78,8 @@ void Sistema::cargarUsuarios(string archivo){
 		}
 		//cout << "Cargados: " << contador << " usuarios." << endl;
 		file.close();
-
-	} else cerr << "Error abriendo el archivo usuario.csv. No existe" << endl;
-
+	} else cerr << "Error abriendo el archivo de artistas: "<< archivo << endl;
+	
 	delete fecha;
 }
 
@@ -121,7 +120,7 @@ void Sistema::cargarArtistas(string archivo){
 		//cout << "Cargados: " << contador << " artistas." << endl;
 		file.close();
 
-	} else cerr << "Error abriendo el archivo: " << archivo << " No existe" << endl;
+	} else cerr << "Error abriendo el archivo de artistas: "<< archivo << endl;
 
 	delete fecha;
 }
@@ -169,8 +168,7 @@ void Sistema::cargarCanciones(string archivo){
 		}
 		//cout << "Cargados: " << contador << " usuarios." << endl;
 		file.close();
-
-	} else cerr << "Error abriendo el archivo usuario.csv. No existe" << endl;
+	} else cerr << "Error abriendo el archivo de canciones: "<< archivo << endl;
 }
 
 void Sistema::cargarPlayLists(string archivo){
@@ -215,10 +213,9 @@ void Sistema::cargarPlayLists(string archivo){
 					usuario->addCancionPlaylist(nombre_playlist, cancion_encontrada);
 				}
 			}
-			//cout << "Cargados: " << contador << " usuarios." << endl;
 			file.close();
-			}
-		} else cerr << "Error abriendo el archivo usuario.csv. No existe" << endl;
+		}
+	} else cerr << "Error abriendo el archivo de playlists: "<< archivo << endl;
 }
 
 void Sistema::mostrarUsuarios() const{
