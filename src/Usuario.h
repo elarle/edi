@@ -99,11 +99,13 @@ public:
 
 	/**
 	 * DESC={Busca un artista favorito por nombre}
+	 * POST={Si no se encuentra el artista, no se modifica el puntero p}
 	 */
 	bool buscarArtistaFavorito(string nombre, Artista *&artista) const;
 
 	/**
 	 * DESC={Coomprueba si un parámetro se repite en una misma ListaDPI}
+	 * POST={Si no se encuentra la playlist, no se modifica el puntero p}
 	 */
 	bool buscarPlaylist (string parametro, PlayList *&p) const;
 

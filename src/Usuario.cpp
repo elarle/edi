@@ -139,20 +139,24 @@ string Usuario::pasarACadena() const {
 	return this->idUsuario + " " + this->apellidosNombre;
 }
 
-//TODO: Implementar todo esto
-
+//NO SE MODIFICA EL PUNTERO SI NO SE ENCUENTRA
 bool Usuario::buscarPlaylist (string nombre, PlayList *&p ) const{
 	this->playlists->moverPrimero();
 	bool enc = false;
+	PlayList* aux;
+
 	while(!this->playlists->alFinal() && !enc){
-		p = this->playlists->consultar();
-		if (p->getNombre() == nombre){
+		aux = this->playlists->consultar();
+
+		if (aux->getNombre() == nombre)
 			enc = true;
-		}
 		else
 			this->playlists->avanzar();
-		}
-return enc;
+	}
+	if(enc)
+		p = aux;
+
+	return enc;
 }
 
 void Usuario::crearPlayList(string nombre){
