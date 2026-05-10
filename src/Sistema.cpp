@@ -7,7 +7,7 @@ Sistema::Sistema(){
 	cargarUsuarios("usuarios.csv");
 	cargarArtistas("artistas.csv");
 	cargarCanciones("canciones.csv");
-	cargarPlayLists("playLists.csv");
+	cargarPlayLists("playList.csv");
 }
 
 Sistema::Sistema(const Sistema& sistema){
