@@ -38,8 +38,28 @@ Usuario::Usuario(const Usuario & otro_usuario){
 	this->contraseña = otro_usuario.contraseña;
 
 	this->fecha_nacimiento = new Fecha(*otro_usuario.fecha_nacimiento);
-	this->artistas_favoritos = new ListaDPI<Artista*>(*otro_usuario.artistas_favoritos);
-	this->playlists = new ListaDPI<PlayList*>(*otro_usuario.playlists);
+
+	//NO SE PUEDE COPIAR ASÍ. Hay que hacerlas independientes.
+	//this->artistas_favoritos = new ListaDPI<Artista*>(*otro_usuario.artistas_favoritos);
+	//this->playlists = new ListaDPI<PlayList*>(*otro_usuario.playlists);
+	
+	this->artistas_favoritos = new ListaDPI<Artista*>;
+	otro_usuario.artistas_favoritos->moverPrimero();
+	while(!otro_usuario.artistas_favoritos->alFinal()){
+		artistas_favoritos->insertar(
+			new Artista(*otro_usuario.artistas_favoritos->consultar())
+		);
+		otro_usuario.artistas_favoritos->avanzar();
+	}
+
+	this->playlists = new ListaDPI<PlayList*>;
+	otro_usuario.playlists->moverPrimero();
+	while(!otro_usuario.playlists->alFinal()){
+		playlists->insertar(
+			new PlayList(*otro_usuario.playlists->consultar())
+		);
+		otro_usuario.playlists->avanzar();
+	}
 }
 
 Usuario::~Usuario() {
@@ -48,6 +68,7 @@ Usuario::~Usuario() {
 	this->playlists->moverPrimero();
 	while(!this->playlists->estaVacia()){
 		this->playlists->eliminar();
+		this->playlists->avanzar();
 	}
 	delete this->playlists;
 }
