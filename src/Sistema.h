@@ -109,7 +109,16 @@ class Sistema{
 		 * }
 		 */
 		void borrarFavorito(string usuario, string artista);
-		
+
+		/**
+		 * PRE={
+		 *			
+		 * }
+		 * DESC={
+		 *
+		 * }
+		 **/
+		Artista* buscarMayorArtista() const;
 
 };
 

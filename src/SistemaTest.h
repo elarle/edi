@@ -33,4 +33,7 @@ void pruebasAddFavoritoSistema();
 //TODO: Mejorar precondiciones
 void pruebasBorrarFavoritoSistema();
 
+//TODO: Mejorar precondiciones
+void pruebasMayorArtistaSistema();
+
 #endif /* SISTEMA_TEST_H_ */

@@ -192,7 +192,7 @@ void Sistema::cargarPlayLists(string archivo){
 
 		while(!file.eof()){
 			getline(file, apellidos_nombre, ';'); //Leer hasta el primer para el id;
-								
+
 			//Descartamos la última lina para no tener usuarios de más
 			if(!file.eof()){
 				getline(file, nombre_playlist, ';'); //Leer hasta la segunda ;
@@ -205,6 +205,12 @@ void Sistema::cargarPlayLists(string archivo){
 				artista_encontrado = nullptr;
 				cancion_encontrada = nullptr;
 
+				//cout << "USUARIO: " << apellidos_nombre << endl
+				//		<< "PLAYLIST: " << nombre_playlist << endl
+				//		<< "ARTISTA: " << artista << endl
+				//		<< "CANCION: " << cancion << endl
+				//		<< endl;	
+
 				if(this->gestorUsuarios->buscar(apellidos_nombre, usuario) &&
 					this->gestorArtistas->buscar(artista, artista_encontrado) &&
 					artista_encontrado->buscarCancion(cancion, cancion_encontrada)){
@@ -213,8 +219,8 @@ void Sistema::cargarPlayLists(string archivo){
 					usuario->addCancionPlaylist(nombre_playlist, cancion_encontrada);
 				}
 			}
-			file.close();
 		}
+		file.close();
 	} else cerr << "Error abriendo el archivo de playlists: "<< archivo << endl;
 }
 
@@ -293,4 +299,8 @@ void Sistema::borrarFavorito(string usuario, string artista){
 	if(this->gestorUsuarios->buscar(usuario, u)){
 		u->borrarArtistaFavorito(artista);
 	}
+}
+
+Artista* Sistema::buscarMayorArtista() const{
+	return this->gestorArtistas->mayorSeguidores();
 }

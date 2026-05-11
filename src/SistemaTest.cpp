@@ -14,6 +14,7 @@ void pruebasSistema(){
 	pruebasEliminarPlaylistUsuarioSistema();
 	pruebasAddFavoritoSistema();
 	pruebasBorrarFavoritoSistema();
+	pruebasMayorArtistaSistema();
 }
 
 void pruebasConstructoresSistema(){
@@ -116,7 +117,6 @@ void pruebasBuscarArtistaSistema(){
 	cout << "Iniciando pruebas buscarArtista Sistema" << endl;
 
 	Sistema* s = new Sistema();
-	s->cargarArtistas("artistas.csv");
 
 	Artista* a1 = s->buscarArtista("Rosalía");
 	if(a1 == nullptr)
@@ -353,4 +353,28 @@ cout << "Iniciando pruebas de borrarFavorito de Sistema" << endl;
 
 	cout << "Finalizadas pruebas de borrarFavorito de Sistema" << endl;
 }
+
+void pruebasMayorArtistaSistema(){
+	cout << "Iniciando pruebas de mayorSeguidores de Sistema" << endl;
+
+	Sistema* s;
+	s = new Sistema();
+
+	//Caso de prueba de los csv
+	Usuario* usr = s->buscarUsuario("Sanchez Mancera, Andres");
+	Artista* a = s->buscarArtista("Rosalía");
+	usr->addArtistaFavorito(a);
+
+	Artista* mayor = nullptr;
+	mayor = s->buscarMayorArtista();
+	a->mostrar();
+	mayor->mostrar();
+	if(mayor->getNombre() != "Rosalía")
+		cerr << " * Error con el primer mayor" << endl;
+
+	delete s;
+
+	cout << "Finalizadas pruebas de mayorSeguidores de Sistema" << endl;
+}
+
 
