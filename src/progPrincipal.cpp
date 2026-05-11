@@ -10,7 +10,7 @@
 #include <iostream>
 using namespace std;
 
-
+#include "Sistema.h"
 
 int menu(string nombreSistema) {
 	int opcion;
@@ -40,11 +40,12 @@ int menu(string nombreSistema) {
 }
 
 
-int main2() {
+int main() {
 	// TODO Crear un objeto dinámico de la clase Sistema
 	// los datos se cargan automáticamente.
 	// TODO no olvidar hacer new al puntero al Sistema
-
+	
+	Sistema* sistema = new Sistema(); 
 
 	bool salir = false;
 	int opcion;
@@ -54,25 +55,34 @@ int main2() {
 		opcion = menu("Simulador Spotify");
 		switch (opcion) {
 		case 1:
-
+			//Mostrar todos los usuarios
 			break;
 		case 2:
+			//Buscar y mostrar un usuario
 			break;
 		case 3:
+			//Mostrar artistas y sus canciones
 			break;
 		case 4:
+			//Buscar y mostrar un artista
 			break;
 		case 5:
+			//Reproducir una playlist de un usuario
 			break;
 		case 6:
+			//Compartir playlist entre dos usuarios
 			break;
 		case 7:
+			//Eliminar playlist de un usuario
 			break;
 		case 8:
+			//Añadir artista a favoritos de un usuario
 			break;
 		case 9:
+			//Eliminar artista de favoritos de un usuario
 			break;
 		case 10:
+			//Artista con más seguidores
 			break;
 		case 0:
 			salir = true;

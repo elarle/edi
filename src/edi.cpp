@@ -20,7 +20,7 @@
 
 #include "archivos.h"
 
-int main() {
+int main2() {
 	leerFicheroSeleccionarAño(2003);
 	pruebaFecha();
 	cout << endl;
