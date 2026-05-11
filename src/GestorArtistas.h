@@ -2,6 +2,10 @@
 #define GESTOR_ARTISTAS_H_
 
 #include "Artista.h"
+
+//#define LISTA_ARTISTAS
+#if defined LISTA_ARTISTAS
+
 #include "ListaDPI.h"
 
 class GestorArtistas{
@@ -38,6 +42,43 @@ class GestorArtistas{
 		void mostrar() const;
 
 };
+#else /* LISTA_ARTISTAS */
+#include "BSTree.h"
+class GestorArtistas{
+	private:
+		BSTree<Artista*>* artistas;
+		int numero_artistas;
 
+	public:
+		GestorArtistas();
+		GestorArtistas(const GestorArtistas & g);
+		~GestorArtistas();
 
+		void copiarArbol(BSTree<Artista*> *g);
+
+		void destruirArtistas(BSTree<Artista*> *g);
+
+		/**
+		 * DESC={Devuelve el número de artistas registrados}
+		 * COMP={O(1)}
+		 */
+		int numElementos() const;
+		/**
+		 * DESC={Devuelve true si hay algún artista cuyo nombre coincida}
+		 * COMP={O(log(n))}
+		 */
+		bool buscar(string nombre, Artista* &artista) const;
+
+		/**
+		 * TODO: Comprobar que siga el orden el test
+		 * DESC={Inserta un nuevo usuario en órden si no se repite ni el id, nombre ni email}
+		 * COMP={O(log(n))}
+		 */
+		void insertar(string nombre, string country, int seguidores);
+
+		void mostrar() const;
+
+};
+
+#endif /* LISTA_ARTISTAS */
 #endif /* GESTOR_ARTISTAS_H_ */
