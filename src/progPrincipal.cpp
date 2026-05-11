@@ -11,6 +11,7 @@
 using namespace std;
 
 #include "Sistema.h"
+#include "Usuario.h"
 
 int menu(string nombreSistema) {
 	int opcion;
@@ -39,6 +40,8 @@ int menu(string nombreSistema) {
 	return opcion;
 }
 
+#define TESTS
+#ifndef TESTS
 
 int main() {
 	// TODO Crear un objeto dinámico de la clase Sistema
@@ -54,36 +57,194 @@ int main() {
 
 		opcion = menu("Simulador Spotify");
 		switch (opcion) {
-		case 1:
+		
 			//Mostrar todos los usuarios
+		case 1:
+			sistema->mostrarUsuarios();
 			break;
-		case 2:
+
 			//Buscar y mostrar un usuario
+		case 2:{
+			string nombre;
+			getline(cin, nombre);
+			
+			Usuario* usuario = nullptr;
+			usuario = sistema->buscarUsuario(nombre);
+			if(usuario == nullptr)
+				cout << "Usuario no encontrado." << endl;
+			else {
+				usuario->mostrar();
+			}
 			break;
+		}
+
 		case 3:
+			sistema->mostrarArtistas();
 			//Mostrar artistas y sus canciones
 			break;
-		case 4:
+
 			//Buscar y mostrar un artista
+		case 4: {
+			string nombre;
+			getline(cin, nombre);
+			
+			Artista* artista = nullptr;
+			artista = sistema->buscarArtista(nombre);
+			if(artista == nullptr)
+				cout << "Artista no encontrado." << endl;
+			else 
+				artista->mostrar();
+			
 			break;
-		case 5:
+		}
+
+		case 5: {
 			//Reproducir una playlist de un usuario
+			string linea;
+			cout << "Introduzca un usuario: ";
+			getline(cin, linea);
+			
+			Usuario* usuario = nullptr;
+			PlayList* playlist = nullptr;
+			
+			usuario = sistema->buscarUsuario(linea);
+			if(usuario == nullptr)
+				cout << "Usuario no encontrado." << endl;
+			else {
+
+				cout << "Introduzca el nombre de la playlist: ";
+				getline(cin, linea);
+				if(usuario->buscarPlaylist(linea, playlist)){
+					cout << "Reproduciendo playlist: " << endl;
+					playlist->reproducir();
+				} else {
+					cout << "Playlist no encontrada" << endl;
+				};
+			}
+
 			break;
-		case 6:
-			//Compartir playlist entre dos usuarios
+		}
+			
+		//Compartir playlist entre dos usuarios
+		case 6: {
+			string linea;
+			cout << "Introduzca un usuario: ";
+			getline(cin, linea);
+			
+			Usuario* src = nullptr;
+			Usuario* dst = nullptr;
+			PlayList* playlist = nullptr;
+			
+			src = sistema->buscarUsuario(linea);
+			if(src== nullptr)
+				cout << "Usuario no encontrado." << endl;
+			else {
+				cout << "Introduzca otro usuario: ";
+				getline(cin, linea);
+				dst = sistema->buscarUsuario(linea);
+				if(dst==nullptr)
+					cout << "Usuario no encontrado." << endl;
+				else {
+					cout << "Introduzca el nombre de la playlist: ";
+					getline(cin, linea);
+					if(src->buscarPlaylist(linea, playlist)){
+						dst->addPlaylistCompartida(playlist);
+						cout << "Playlist copiada" << endl;
+					} else {
+						cout << "Playlist no encontrada" << endl;
+					};
+
+				}
+			}
 			break;
-		case 7:
+		}
+
 			//Eliminar playlist de un usuario
+		case 7: {
+			string linea;
+			cout << "Introduzca un usuario: ";
+			getline(cin, linea);
+			
+			Usuario* usr = nullptr;
+			PlayList* playlist = nullptr;
+			
+			usr = sistema->buscarUsuario(linea);
+			if(usr== nullptr)
+				cout << "Usuario no encontrado." << endl;
+			else {
+				cout << "Introduzca el nombre de la playlist: ";
+				getline(cin, linea);
+				if(usr->buscarPlaylist(linea, playlist)){
+					usr->eliminarPlayList(linea);
+					cout << "Playlist eliminada" << endl;
+				} else {
+					cout << "Playlist no encontrada" << endl;
+				};
+			}
 			break;
-		case 8:
+		}
+
+		case 8: {
 			//Añadir artista a favoritos de un usuario
+			string linea;
+			cout << "Introduzca un usuario: ";
+			getline(cin, linea);
+			
+			Usuario* usr = nullptr;
+			Artista* artista = nullptr;
+			
+			usr = sistema->buscarUsuario(linea);
+			if(usr== nullptr)
+				cout << "Usuario no encontrado." << endl;
+			else {
+				cout << "Introduzca el nombre del artista: ";
+				getline(cin, linea);
+				artista = sistema->buscarArtista(linea);
+				if(artista == nullptr){
+					cout << "Artista no encontrado" << endl;
+				} else {
+					usr->addArtistaFavorito(artista);
+					cout << "Artista añadido a favoritos" << endl;
+				};
+			}
 			break;
-		case 9:
+		}
+
 			//Eliminar artista de favoritos de un usuario
+		case 9:{
+			//Añadir artista a favoritos de un usuario
+			string linea;
+			cout << "Introduzca un usuario: ";
+			getline(cin, linea);
+			
+			Usuario* usr = nullptr;
+			Artista* artista = nullptr;
+			
+			usr = sistema->buscarUsuario(linea);
+			if(usr== nullptr)
+				cout << "Usuario no encontrado." << endl;
+			else {
+				cout << "Introduzca el nombre del artista: ";
+				getline(cin, linea);
+				artista = sistema->buscarArtista(linea);
+				if(artista == nullptr){
+					cout << "Artista no encontrado" << endl;
+				} else {
+					usr->borrarArtistaFavorito(linea);
+					cout << "Artista eliminado" << endl;
+				};
+			}
 			break;
-		case 10:
-			//Artista con más seguidores
+		}
+
+		case 10: {
+			Artista* a = sistema->buscarMayorArtista();
+			if(a != nullptr)
+				a->mostrar();
+			else
+				cout << "No hay artistas en el sistema";
 			break;
+		}
 		case 0:
 			salir = true;
 			break;
@@ -92,8 +253,10 @@ int main() {
 		}
 	}
 	// TODO no olvidar el delete al puntero al sistema
+	delete sistema;
 	return 0;
 }
 
+#endif /* TESTS */
 
 

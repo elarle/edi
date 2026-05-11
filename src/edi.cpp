@@ -8,6 +8,8 @@
 
 //#include <iostream>
 //using namespace std;
+#define TESTS
+#ifdef TESTS
 
 #include "UsuarioTest.h"
 #include "FechaTest.h"
@@ -20,7 +22,7 @@
 
 #include "archivos.h"
 
-int main2() {
+int main() {
 	leerFicheroSeleccionarAño(2003);
 	pruebaFecha();
 	cout << endl;
@@ -40,3 +42,4 @@ int main2() {
 
 	return 0;
 }
+#endif /* TESTS */
