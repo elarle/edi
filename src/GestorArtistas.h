@@ -84,7 +84,9 @@ class GestorArtistas{
 		 * DESC={Devuelve true si hay algún artista cuyo nombre coincida}
 		 * COMP={O(log(n))}
 		 */
-		bool buscar(BSTree<Artista*> *arbol, string nombre, Artista* &artista) const;
+		bool buscarAux(BSTree<Artista*> *arbol, string nombre, Artista* &artista) const;
+
+		bool buscar(string nombre, Artista *&a) const;
 
 		/**
 		 * TODO: Comprobar que siga el orden el test
