@@ -105,26 +105,27 @@ void GestorArtistas::mostrar() const{
 #else
 
 GestorArtistas::GestorArtistas(){
-	artistas = new BSTree<Artista*>;
-	numero_artistas = 0;
+	this->artistas = new BSTree<Artista*>;
+	this->numero_artistas = 0;
 }
 
 GestorArtistas::GestorArtistas(const GestorArtistas &g){
 	numero_artistas = g.numero_artistas;
-	copiarArbol(g.artistas);
+	copiarArbol(g.artistas, this->artistas);
 }
 
-void GestorArtistas::copiarArbol(BSTree<Artista*> *arbol){
+void GestorArtistas::copiarArbol(BSTree<Artista*> *arbol, BSTree<Artista*> *arbol2){
+	Artista *a = nullptr;
 	if(arbol != nullptr && !arbol->estaVacio()){
-		copiarArbol(arbol->getIzq());
-		Artista *a = arbol->getDato();
-		artistas->insertar(new Artista(*a));
-		copiarArbol(arbol->getDer());
+		copiarArbol(arbol->getIzq(), arbol2);
+		a = arbol->getDato();
+		arbol2->insertar(new Artista(*a));
+		copiarArbol(arbol->getDer(), arbol2);
 	}
 }
 
 GestorArtistas::~GestorArtistas(){
-	destruirArtistas(artistas);
+	destruirArtistas(this->artistas);
 }
 
 void GestorArtistas::destruirArtistas(BSTree<Artista*> *arbol){
@@ -139,5 +140,50 @@ int GestorArtistas::numElementos() const{
 	return this->numero_artistas;
 }
 
+bool GestorArtistas::buscar(BSTree<Artista*> *arbol, string nombre, Artista* &a) const{
+    bool enc = false;
+
+    if(arbol != nullptr && !arbol->estaVacio()){
+        enc = buscar(arbol->getIzq(), nombre, a);
+
+        if(!enc){
+            Artista *aux = arbol->getDato();
+            if(aux->getNombre() == nombre){
+                a = aux;
+                enc = true;
+            }
+        }
+
+        if(!enc){
+            enc = buscar(arbol->getDer(), nombre, a);
+        }
+    }
+    return enc;
+}
+
+void GestorArtistas::insertar(string nombre, string country, int seguidores){
+	Artista *a = nullptr;
+
+	bool existe = buscar(this->artistas, nombre, a);
+
+	if (!existe){
+		Artista *nuevo = new Artista(nombre, country, seguidores);
+		this->artistas->insertar(nuevo);
+		this->numero_artistas++;
+	}
+}
+
+void GestorArtistas::mostrar() const{
+	mostrarAux(this->artistas);
+}
+
+void GestorArtistas::mostrarAux(BSTree<Artista*> *arbol) const{
+	if(arbol != nullptr && !arbol->estaVacio()){
+		mostrarAux(arbol->getIzq());
+		Artista *a = arbol->getDato();
+		a->mostrar();
+		mostrarAux(arbol->getDer());
+	}
+}
 
 #endif /* LISTA_ARTISTAS */
