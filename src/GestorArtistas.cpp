@@ -140,11 +140,16 @@ int GestorArtistas::numElementos() const{
 	return this->numero_artistas;
 }
 
-bool GestorArtistas::buscar(BSTree<Artista*> *arbol, string nombre, Artista* &a) const{
+bool GestorArtistas::buscar(string nombre, Artista *&a) const{
+	bool enc = buscarAux(this->artistas, nombre, a);
+	return enc;
+}
+
+bool GestorArtistas::buscarAux(BSTree<Artista*> *arbol, string nombre, Artista* &a) const{
     bool enc = false;
 
     if(arbol != nullptr && !arbol->estaVacio()){
-        enc = buscar(arbol->getIzq(), nombre, a);
+        enc = buscarAux(arbol->getIzq(), nombre, a);
 
         if(!enc){
             Artista *aux = arbol->getDato();
@@ -155,7 +160,7 @@ bool GestorArtistas::buscar(BSTree<Artista*> *arbol, string nombre, Artista* &a)
         }
 
         if(!enc){
-            enc = buscar(arbol->getDer(), nombre, a);
+            enc = buscarAux(arbol->getDer(), nombre, a);
         }
     }
     return enc;
@@ -164,7 +169,7 @@ bool GestorArtistas::buscar(BSTree<Artista*> *arbol, string nombre, Artista* &a)
 void GestorArtistas::insertar(string nombre, string country, int seguidores){
 	Artista *a = nullptr;
 
-	bool existe = buscar(this->artistas, nombre, a);
+	bool existe = buscar(nombre, a);
 
 	if (!existe){
 		Artista *nuevo = new Artista(nombre, country, seguidores);
