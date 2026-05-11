@@ -108,5 +108,24 @@ void Artista::mostrar() const{
 	cout << "	Nombre: " << this->nombre << endl;
 	cout << "	País: " << this->country << endl;
 	cout << "	Seguidores: " << this->seguidores << endl;
+	cout << "	Canciones: ("<< this->numero_canciones << ") [" << endl;
+	//Mostrar canciones
+	this->canciones->moverPrimero();
+	while(!this->canciones->alFinal()){
+		cout << "		- " ; //Para que quede bonito
+		this->canciones->consultar()->mostrar();
+		this->canciones->avanzar();
+	}
+	cout << "	]" << endl;
+
 	cout << "}" << endl;
+}
+
+void Artista::addSeguidor(){
+	this->seguidores++;
+}
+
+void Artista::delSeguidor(){
+	if(this->seguidores > 0)
+		this->seguidores--;
 }

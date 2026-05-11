@@ -54,6 +54,9 @@ class Artista {
 		bool buscarCancion(string titulo, Cancion* &cancion) const;
 		void insertarCancion(string titulo, string genero, int duracion);
 
+		void addSeguidor();
+		void delSeguidor();
+
 		void mostrar() const;
 
 };

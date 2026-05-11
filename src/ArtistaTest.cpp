@@ -6,6 +6,9 @@ using namespace std;
 void pruebasArtista(){
 	pruebasConstructoresArtista();
 	pruebasOperadoresArtista();
+	pruebasInsertarBuscarCancion();
+	pruebasAddSeguidor();
+	pruebasDelSeguidor();
 }
 
 void pruebasConstructoresArtista(){
@@ -89,7 +92,7 @@ void pruebasOperadoresArtista(){
 }
 
 //DUDA: Podemos hacer las pruebas conjuntas?
-void pruebaInsertarBuscarCancion(){
+void pruebasInsertarBuscarCancion(){
 	cout << "Inicio de pruebas de insertar/buscarCancion" << endl;
 
 	Artista * a1;
@@ -128,5 +131,46 @@ void pruebaInsertarBuscarCancion(){
 
 	cout << "Fin de pruebas de insertar/buscarCancion" << endl;
 }
+
+//DUDA: Podemos hacer las pruebas conjuntas?
+void pruebasAddSeguidor(){
+	cout << "Inicio de pruebas de addSeguidor de Artista" << endl;
+
+	Artista * a1;
+	a1 = new Artista("Andrés", "Marruecos", 67);
+
+	a1->addSeguidor();
+	if(a1->getSeguidores() != 68)
+		cerr << " * Error insertando el primer seguidor" << endl;
+
+	a1->addSeguidor();
+	if(a1->getSeguidores() != 69)
+		cerr << " * Error insertando el primer seguidor" << endl;
+
+	delete a1;
+
+	cout << "Fin de pruebas de insertar/buscarCancion" << endl;
+}
+
+void pruebasDelSeguidor(){
+	cout << "Inicio de pruebas de delSeguidor de Artista" << endl;
+
+	Artista * a1;
+	a1 = new Artista("Andrés", "Marruecos", 67);
+	a1->delSeguidor();
+
+	if(a1->getSeguidores() != 66)
+		cerr << " * Error borrando el primer seguidor" << endl;
+
+	a1->delSeguidor();
+	if(a1->getSeguidores() != 65)
+		cerr << " * Error borrando el segundo seguidor" << endl;
+
+	delete a1;
+
+	cout << "Fin de pruebas de delSguidor de Artista" << endl;
+}
+
+
 
 
