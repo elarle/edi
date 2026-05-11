@@ -68,7 +68,6 @@ Usuario::~Usuario() {
 	this->playlists->moverPrimero();
 	while(!this->playlists->estaVacia()){
 		this->playlists->eliminar();
-		this->playlists->avanzar();
 	}
 	delete this->playlists;
 }
@@ -193,7 +192,7 @@ void Usuario::compartirPlaylist(string nombre, PlayList* &playlist) const{
 	}
 }
 
-void Usuario::addPlaylistCompartida(const PlayList* &p){
+void Usuario::addPlaylistCompartida(const PlayList* p){
 	PlayList* aux;
 
 	if (!buscarPlaylist(p->getNombre(), aux)){
@@ -211,7 +210,6 @@ void Usuario::eliminarPlayList(string nombre){
 	while(!this->playlists->alFinal() && !enc){
 		p = this->playlists->consultar();
 		if(p->getNombre() == nombre){
-			delete p;
 			this->playlists->eliminar();
 			enc = true;
 		}
@@ -246,6 +244,7 @@ void Usuario::addArtistaFavorito(const Artista* artista){
 	if(artista != nullptr && !buscarArtistaFavorito(artista->getNombre(), a)){
 		this->artistas_favoritos->moverUltimo();
 		this->artistas_favoritos->avanzar();
+		//Duda: hay que hacer new?
 		this->artistas_favoritos->insertar(new Artista(*artista));
 	}
 }

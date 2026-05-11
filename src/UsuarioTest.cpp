@@ -10,6 +10,12 @@
 void pruebasUsuario(){
 	pruebasConstructoresUsuario();
 	pruebasCrearPlayList();
+	pruebasAddCancionPlaylist();
+	pruebasReproducirPlaylist();
+	pruebasCompartirPlaylist();
+	pruebasAddPlaylistCompartida();
+	pruebasAddArtistaFavorito();
+	pruebasBuscarPlaylist();
 }
 
 void pruebasConstructoresUsuario(){

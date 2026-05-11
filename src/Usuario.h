@@ -85,7 +85,7 @@ public:
 	/**
 	 * DESC={Añade a las listas de usuario una copia de la playlist COPIADA.}
 	 */
-	void addPlaylistCompartida(const PlayList* &playlist);
+	void addPlaylistCompartida(const PlayList* playlist);
 
 	/**
 	 * DESC={Inserta un artista favorito en el usuario si NO está ya en favoritos}
@@ -107,7 +107,7 @@ public:
 	 * DESC={Coomprueba si un parámetro se repite en una misma ListaDPI}
 	 * POST={Si no se encuentra la playlist, no se modifica el puntero p}
 	 */
-	bool buscarPlaylist (string parametro, PlayList *&p) const;
+	bool buscarPlaylist (string nombre, PlayList *&p) const;
 
 	/**
 	 * DESC={Muestra a cout el usuario}
