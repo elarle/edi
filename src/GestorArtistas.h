@@ -71,7 +71,7 @@ class GestorArtistas{
 		GestorArtistas(const GestorArtistas & g);
 		~GestorArtistas();
 
-		void copiarArbol(BSTree<Artista*> *g);
+		void copiarArbol(BSTree<Artista*> *g1, BSTree<Artista*> *g2);
 
 		void destruirArtistas(BSTree<Artista*> *g);
 
@@ -84,7 +84,7 @@ class GestorArtistas{
 		 * DESC={Devuelve true si hay algún artista cuyo nombre coincida}
 		 * COMP={O(log(n))}
 		 */
-		bool buscar(string nombre, Artista* &artista) const;
+		bool buscar(BSTree<Artista*> *arbol, string nombre, Artista* &artista) const;
 
 		/**
 		 * TODO: Comprobar que siga el orden el test
@@ -94,6 +94,8 @@ class GestorArtistas{
 		void insertar(string nombre, string country, int seguidores);
 
 		void mostrar() const;
+
+		void mostrarAux(BSTree<Artista*> *g) const;
 
 };
 
