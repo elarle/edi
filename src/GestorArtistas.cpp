@@ -1,5 +1,7 @@
 #include "GestorArtistas.h"
 
+#if defined LISTA_ARTISTAS
+
 GestorArtistas::GestorArtistas(){
 	artistas = new ListaDPI<Artista*>;
 	numero_artistas = 0;
@@ -16,8 +18,8 @@ GestorArtistas::GestorArtistas(const GestorArtistas & g){
 		this->artistas->insertar(new Artista (*a));
 		g.artistas->avanzar();
 	}
-
 }
+
 GestorArtistas::~GestorArtistas(){
 	Artista *a;
 	this->artistas->moverPrimero();
@@ -126,3 +128,42 @@ Artista* GestorArtistas::mayorSeguidores() const{
 
 	return mayor;
 }
+#else
+
+GestorArtistas::GestorArtistas(){
+	artistas = new BSTree<Artista*>;
+	numero_artistas = 0;
+}
+
+GestorArtistas::GestorArtistas(const GestorArtistas &g){
+	numero_artistas = g.numero_artistas;
+	copiarArbol(g.artistas);
+}
+
+void GestorArtistas::copiarArbol(BSTree<Artista*> *arbol){
+	if(arbol != nullptr && !arbol->estaVacio()){
+		copiarArbol(arbol->getIzq());
+		Artista *a = arbol->getDato();
+		artistas->insertar(new Artista(*a));
+		copiarArbol(arbol->getDer());
+	}
+}
+
+GestorArtistas::~GestorArtistas(){
+	destruirArtistas(artistas);
+}
+
+void GestorArtistas::destruirArtistas(BSTree<Artista*> *arbol){
+    if(arbol != nullptr && !arbol->estaVacio()){
+        destruirArtistas(arbol->getIzq());
+        delete arbol->getDato();
+        destruirArtistas(arbol->getDer());
+    }
+}
+
+int GestorArtistas::numElementos() const{
+	return this->numero_artistas;
+}
+
+
+#endif /* LISTA_ARTISTAS */
