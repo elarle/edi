@@ -8,22 +8,21 @@ class Sistema{
 	private:
 		GestorUsuarios* gestorUsuarios;
 		GestorArtistas* gestorArtistas;
+
+		/**
+		 * Carga todos los usuarios del archivo indicado en el gestor.
+		 */
+		void cargarUsuarios(string archivo);
+		void cargarArtistas(string archivo);
+		void cargarPlayLists(string archivo);
+		void cargarCanciones(string archivo);
 	
 	public:
 		Sistema();
 		Sistema(const Sistema& sistema);
 		~Sistema();
 
-		/**
-		 * Carga todos los usuarios del archivo indicado en el gestor.
-		 */
-		void cargarUsuarios(string archivo);
 
-		void cargarArtistas(string archivo);
-
-		void cargarPlayLists(string archivo);
-
-		void cargarCanciones(string archivo);
 
 		/*
 		 * DESC={
