@@ -99,3 +99,30 @@ void GestorArtistas::mostrar() const{
 		this->artistas->avanzar();
 	}
 }
+
+Artista* GestorArtistas::mayorSeguidores() const{
+	Artista* aux;
+	Artista* mayor = nullptr;
+
+	int max;
+	int actual;
+
+	if(!this->artistas->estaVacia()){
+		this->artistas->moverPrimero();
+		mayor = this->artistas->consultar();
+		max = mayor->getSeguidores();
+		this->artistas->avanzar();
+
+		while(!this->artistas->alFinal()){
+			aux = this->artistas->consultar();
+			actual = aux->getSeguidores();
+			if(actual > max){
+				mayor = aux;
+				max = actual;
+			}
+			this->artistas->avanzar();
+		}
+	}
+
+	return mayor;
+}

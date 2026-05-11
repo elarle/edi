@@ -10,6 +10,7 @@ void pruebasGestorArtistas(){
 	pruebaInsertarGestorArtistas();
 	pruebaBuscarGestorArtistas();
 	pruebaNumElementosGestorArtistas();
+	pruebaMayorSeguidores();
 }
 
 void pruebaConstructoresGestorArtistas(){
@@ -124,4 +125,29 @@ void pruebaInsertarGestorArtistas(){
 	delete g1;
 
 	cout << "Finalizada prueba de insertar de GestorArtistas" << endl;
+}
+
+void pruebaMayorSeguidores(){
+	cout << "Iniciando prueba de mayorSeguidores de GestorArtistas" << endl;
+
+	GestorArtistas* g1;
+	Artista* busqueda;
+	g1 = new GestorArtistas();
+
+	busqueda = g1->mayorSeguidores();
+
+	if(busqueda != nullptr)
+		cerr << " * Error con el primer mayor. (nulo)" << endl;
+
+	g1->insertar("Pepe", "ES", 33);
+	g1->insertar("Andrés", "Marruecos", 1);	
+	g1->insertar("Diego", "India", 6767);
+
+	busqueda = g1->mayorSeguidores();
+	if(busqueda->getNombre() != "Diego")
+		cerr << " * Error con el segundo mayor" << endl;
+
+	delete g1;
+
+	cout << "Finalizada prueba de mayorSeguidores de GestorArtistas" << endl;
 }

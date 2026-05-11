@@ -35,6 +35,15 @@ class GestorArtistas{
 		 */
 		void insertar(string nombre, string country, int seguidores);
 		
+		/**
+		 * DESC={
+		 *		Devuelve un puntero al artista con más seguidores
+		 *		Si no hay artistas devuelve nullptr. 
+		 *	}
+		 * COMP={O(n)}
+		 */
+		Artista* mayorSeguidores() const;
+
 		void mostrar() const;
 
 };

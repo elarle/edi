@@ -71,4 +71,12 @@ void pruebaNumElementosGestorArtistas();
  */
 void pruebaInsertarGestorArtistas();
 
+/**
+ * DESC={}
+ * COMP={}
+ * PRE={}
+ * POST={}
+ */
+void pruebaMayorSeguidores();
+
 #endif /* GESTOR_ARTISTAS_TEST_H_ */
