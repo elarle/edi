@@ -111,8 +111,8 @@ void PlayList::reproducir(){
 
 	for (i = 0 ; i < this->canciones; i++){
 		c = cola->getPrimero();
+		cout << "	- "; //Para que quede bonito
 		c->mostrar();
-		cout << endl;
 		cola->desencolar ();
 		cola->encolar (c);
 	}
