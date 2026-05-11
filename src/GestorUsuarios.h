@@ -3,7 +3,7 @@
 
 #include "Usuario.h"
 
-#define LISTA_USUARIOS
+//#define LISTA_USUARIOS
 
 #if defined LISTA_USUARIOS
 #include "ListaDPI.h"
@@ -53,6 +53,10 @@ class GestorUsuarios{
 		GestorUsuarios(const GestorUsuarios & g);
 		~GestorUsuarios();
 
+		void copiarArbol(BSTree<Usuario*> *a1, BSTree<Usuario*> *a2);
+
+		void destruirUsuarios(BSTree<Usuario*> *a);
+
 		/**
 		 * DESC={Devuelve el número de usuarios registrados}
 		 * COMP={O(1)}
@@ -64,6 +68,8 @@ class GestorUsuarios{
 		 */
 		bool buscar(string nombre, Usuario* &usuario) const;
 		
+		bool buscarAux(BSTree<Usuario*> *a, string nombre, Usuario* &usuario) const;
+
 		/**
 		 * TODO: Comprobar que siga el orden el test
 		 * DESC={Inserta un nuevo usuario en órden si no se repite ni el id, nombre ni email}
@@ -72,6 +78,8 @@ class GestorUsuarios{
 		void insertar(string id, string nombre, string email, string contraseña, Fecha* fecha);
 		
 		void mostrar() const;
+
+		void mostrarAux(BSTree<Usuario*> *a) const;
 
 };
 

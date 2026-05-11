@@ -1,4 +1,5 @@
 #include "GestorUsuarios.h"
+#if defined LISTA_USUARIOS
 
 GestorUsuarios::GestorUsuarios(){
 	usuarios = new ListaDPI<Usuario *> ();
@@ -130,9 +131,94 @@ void GestorUsuarios::mostrar() const{
 		u->mostrar();
 		this->usuarios->avanzar();
 	}
-	//BROOOOOOOOOO
-	//delete u;
 }
 
+#else
 
+GestorUsuarios::GestorUsuarios(){
+	this->numero_usuarios = 0;
+	this->usuarios = new BSTree<Usuario*>;
+}
+
+GestorUsuarios::GestorUsuarios(const GestorUsuarios &g){
+	this->numero_usuarios = g.numero_usuarios;
+	copiarArbol(g.usuarios, this->usuarios);
+}
+
+void GestorUsuarios::copiarArbol(BSTree<Usuario*> *arbol, BSTree<Usuario*> *arbol2){
+	Usuario *u = nullptr;
+	if(arbol != nullptr && !arbol->estaVacio()){
+		copiarArbol(arbol->getIzq(), arbol2);
+		u = arbol->getDato();
+		arbol2->insertar(new Usuario(*u));
+		copiarArbol(arbol->getDer(), arbol2);
+	}
+}
+
+GestorUsuarios::~GestorUsuarios(){
+	destruirUsuarios(this->usuarios);
+}
+
+void GestorUsuarios::destruirUsuarios(BSTree<Usuario*> *arbol){
+	if(arbol != nullptr && !arbol->estaVacio()){
+		destruirUsuarios(arbol->getIzq());
+		delete arbol->getDato();
+		destruirUsuarios(arbol->getDer());
+	}
+}
+
+int GestorUsuarios::numElementos() const{
+	return this->numero_usuarios;
+}
+
+bool GestorUsuarios::buscar(string nombre, Usuario *&a) const{
+	bool enc = buscarAux(this->usuarios, nombre, a);
+	return enc;
+}
+
+bool GestorUsuarios::buscarAux(BSTree<Usuario*> *arbol, string nombre, Usuario *&a) const{
+	bool enc = false;
+
+	if(arbol != nullptr && !arbol->estaVacio()){
+		enc = buscarAux(arbol->getIzq(), nombre, a);
+
+		if(!enc){
+			Artista *aux = arbol->getDato();
+			if(aux->getNombre() == nombre){
+				a = aux;
+				enc = true;
+			}
+		}
+
+		if(!enc){
+			enc = buscarAux(arbol->getDer(), nombre, a);
+		}
+	}
+	return enc;
+}
+
+void GestorUsuarios::insertar(string id, string nombre, string email, string contraseña, Fecha* fecha){
+	Usuario *u = nullptr;
+
+	bool existe = buscar(nombre, u);
+
+	if (!existe){
+		Usuario *nuevo = new Usuario(id, nombre, email, contraseña, fecha);
+		this->usuarios->insertar(nuevo);
+		this->numero_usuarios++;
+	}
+}
+
+void GestorUsuarios::mostrar() const{
+	mostrarAux(this->usuarios);
+}
+
+void GestorUsuarios::mostrarAux(BSTree<Usuario*> *arbol) const{
+	if(arbol != nullptr && !arbol->estaVacio()){
+		mostrarAux(arbol->getIzq());
+		Usuario *u = arbol->getDato();
+		u->mostrar();
+		mostrarAux(arbol->getDer());
+	}
+}
 

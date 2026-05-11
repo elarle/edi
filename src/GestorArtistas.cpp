@@ -110,6 +110,7 @@ GestorArtistas::GestorArtistas(){
 }
 
 GestorArtistas::GestorArtistas(const GestorArtistas &g){
+	artistas = new BSTree<Artista*>;
 	numero_artistas = g.numero_artistas;
 	copiarArbol(g.artistas, this->artistas);
 }
