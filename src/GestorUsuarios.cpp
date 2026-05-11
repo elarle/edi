@@ -141,6 +141,7 @@ GestorUsuarios::GestorUsuarios(){
 }
 
 GestorUsuarios::GestorUsuarios(const GestorUsuarios &g){
+	usuarios = new BSTree<Usuario*>;
 	this->numero_usuarios = g.numero_usuarios;
 	copiarArbol(g.usuarios, this->usuarios);
 }
@@ -176,22 +177,22 @@ bool GestorUsuarios::buscar(string nombre, Usuario *&a) const{
 	return enc;
 }
 
-bool GestorUsuarios::buscarAux(BSTree<Usuario*> *arbol, string nombre, Usuario *&a) const{
+bool GestorUsuarios::buscarAux(BSTree<Usuario*> *arbol, string nombre, Usuario *&u) const{
 	bool enc = false;
 
 	if(arbol != nullptr && !arbol->estaVacio()){
-		enc = buscarAux(arbol->getIzq(), nombre, a);
+		enc = buscarAux(arbol->getIzq(), nombre, u);
 
 		if(!enc){
-			Artista *aux = arbol->getDato();
-			if(aux->getNombre() == nombre){
-				a = aux;
+			Usuario *aux = arbol->getDato();
+			if(aux->getApellidosNombre() == nombre){
+				u = aux;
 				enc = true;
 			}
 		}
 
 		if(!enc){
-			enc = buscarAux(arbol->getDer(), nombre, a);
+			enc = buscarAux(arbol->getDer(), nombre, u);
 		}
 	}
 	return enc;
@@ -222,3 +223,4 @@ void GestorUsuarios::mostrarAux(BSTree<Usuario*> *arbol) const{
 	}
 }
 
+#endif
