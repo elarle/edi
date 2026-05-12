@@ -9,18 +9,17 @@
 
 void pruebasUsuario(){
 	pruebasConstructoresUsuario();
-	pruebasCrearPlayList();
+	pruebasCrearBuscarPlayList();
 	pruebasAddCancionPlaylist();
 	pruebasReproducirPlaylist();
 	pruebasCompartirPlaylist();
 	pruebasAddPlaylistCompartida();
 	pruebasAddArtistaFavorito();
-	pruebasBuscarPlaylist();
 }
 
 void pruebasConstructoresUsuario(){
 
-	cout << "Inicio de pruebas de Usuario" << endl;
+	cout << "Inicio de pruebas de constructores de Usuario" << endl;
 
 	Usuario* u1;
 	u1 = new Usuario();
@@ -62,7 +61,7 @@ void pruebasConstructoresUsuario(){
 	delete u2;
 	delete fecha;
 
-	cout << "Fin de pruebas de Usuario" << endl;
+	cout << "Fin de pruebas de constructores de Usuario" << endl;
 
 }
 
@@ -104,31 +103,36 @@ void pruebasAddPlaylistCompartida(){
 
 	Usuario* u1 = new Usuario();
 	Usuario* u2 = new Usuario();
-	PlayList* p1 = nullptr;
-	PlayList* p2 = nullptr;
-	u1->crearPlayList("Conjunta");
-	u2->crearPlayList("Compartida");
-	u1->compartirPlaylist("Conjunta", p1);
-	u2->compartirPlaylist("Compartida", p2);
 
-	u1->addPlaylistCompartida(p2);
-	u2->addPlaylistCompartida(p1);
+	PlayList* p = nullptr;
+	
+	u1->crearPlayList("Compartida");
+	u2->crearPlayList("Conjunta");
 
-	if(!u2->buscarPlaylist("Conjunta", p1))
+	u1->compartirPlaylist("Compartida", p);
+	u2->addPlaylistCompartida(p);
+	delete p; //Compartir nos devuelve una copia y addPlaylist hace otra copia.
+	p = nullptr;
+
+	if(!u2->buscarPlaylist("Compartida", p))
 		cerr << " * Error al añadir la primera PlayList compartida" << endl;
-	else if(p1 == nullptr)
+	else if(p == nullptr)
 		cerr << " * Error al añadir la primera PlayList compartida (nula)" << endl;
-	cout << "Finalizadas pruebas de AddPlaylistCompartida" << endl;
+	
+	u2->compartirPlaylist("Conjunta", p);
+	u1->addPlaylistCompartida(p);
+	delete p; //Compartir nos devuelve una copia y addPlaylist hace otra copia.
+	p = nullptr;
 
-	if(!u1->buscarPlaylist("Conjunta", p2))
+	if(!u1->buscarPlaylist("Conjunta", p))
 		cerr << " * Error al añadir la tercera PlayList compartida" << endl;
-	else if(p2 == nullptr)
+	else if(p == nullptr)
 		cerr << " * Error al añadir la segunda PlayList compartida (nula)" << endl;
-	cout << "Finalizadas pruebas de AddPlaylistCompartida" << endl;
 
-	if(u1->buscarPlaylist("No hay", p2))
+	p = nullptr;
+	if(u1->buscarPlaylist("No hay", p))
 		cerr << " * Error al añadir la tercera búsqueda PlayList" << endl;
-	else if(p2 != nullptr)
+	else if(p != nullptr)
 		cerr << " * Error al añadir la tercera PlayList compartida (no nula)" << endl;
 
 
@@ -139,30 +143,103 @@ void pruebasAddArtistaFavorito(){
 	cout << "Iniciando pruebas de AddArtistaFavorito" << endl;
 
 	Usuario* u = new Usuario();
-	Artista* a1 = new Artista("Leiva", "España", 1000);
+	Artista* a = new Artista("Leiva", "España", 1000);
 	Artista* a2 = new Artista("Melendi", "España", 1000);
-	u->addArtistaFavorito(a1);
+	u->addArtistaFavorito(a);
 	u->addArtistaFavorito(a2);
 
-	if(!u->buscarArtistaFavorito("Leiva", a1))
+	a = nullptr;
+	if(!u->buscarArtistaFavorito("Leiva", a))
 		cerr << " * Error al añadir el primer ArtistaFavorito" << endl;
-	else if(a1 == nullptr)
+	else if(a == nullptr)
 		cerr << " * Error al añadir el primer ArtistaFavorito (nulo)" << endl;
 
-	if(!u->buscarArtistaFavorito("Melendi", a2))
+	a = nullptr;
+	if(!u->buscarArtistaFavorito("Melendi", a))
 		cerr << " * Error al añadir el segundo ArtistaFavorito" << endl;
-	else if(a1 == nullptr)
+	else if(a == nullptr)
 		cerr << " * Error al añadir el segundo ArtistaFavorito (nulo)" << endl;
 
-	if(u->buscarArtistaFavorito("Robe", a1))
+	a = nullptr;
+	if(u->buscarArtistaFavorito("Robe", a))
 		cerr << " * Error al añadir el tercer ArtistaFavorito" << endl;
-	else if(a1 == nullptr)
+	else if(a != nullptr)
 		cerr << " * Error al añadir el tercer ArtistaFavorito (no nulo)" << endl;
 
 	cout << "Finalizadas pruebas de AddArtistaFavorito" << endl;
 }
 
-void pruebasTemplate(){
-	cout << "Iniciando pruebas de Template" << endl;
-	cout << "Finalizadas pruebas de Template" << endl;
+void pruebasAddCancionPlaylist(){
+	cout << "Iniciando pruebas de AddCancionPlaylist (Prueba Supervisada)" << endl;
+
+	Usuario* u = new Usuario();
+	Cancion* c = new Cancion("Dame", "Veneno", 33);
+
+	u->crearPlayList("test");
+	u->addCancionPlaylist("test", c);
+
+	cout << "Debería mostrarse: " << endl
+			<< "	- Dame. Veneno. Duración: 33s" << endl
+			<< "Valor: " << endl;
+	u->reproducirPlayList("test");
+
+	delete u;
+	delete c;
+
+	cout << "Finalizadas pruebas de AddCancionPlaylist" << endl;
 }
+
+void pruebasReproducirPlaylist(){
+	cout << "Iniciando pruebas de AddCancionPlaylist (Prueba Supervisada)" << endl;
+
+	Usuario* u = new Usuario();
+	Cancion* c = new Cancion("Dame", "Veneno", 33);
+	Cancion* c2 = new Cancion("Dame2", "Veneno2", 34);
+	Cancion* c3 = new Cancion("Dame3", "Veneno3", 35);
+
+	u->crearPlayList("test");
+	u->addCancionPlaylist("test", c);
+	u->addCancionPlaylist("test", c2);
+	u->addCancionPlaylist("test", c3);
+
+	cout << "Debería mostrarse: " <<endl
+			<<"	- Dame. Veneno. Duración: 33s" << endl
+			<<"	- Dame2. Veneno2. Duración: 34s" << endl
+			<<"	- Dame3. Veneno3. Duración: 35s" << endl
+			<<"Valor: " << endl;
+	u->reproducirPlayList("test");
+
+	delete u;
+	delete c;
+	delete c2;
+	delete c3;
+
+	cout << "Finalizadas pruebas de AddCancionPlaylist" << endl;
+}
+
+void pruebasCompartirPlaylist(){
+	cout << "Iniciando pruebas de compartirPlaylist" << endl;
+
+	Usuario* u = new Usuario();
+	PlayList* p = nullptr;
+	Cancion* c = new Cancion("Dame", "Veneno", 33);
+	u->crearPlayList("test");
+
+	u->compartirPlaylist("test", p);
+	if(p == nullptr)
+		cerr << " * Error con el primer compartido." << endl;
+	else if(p->getNombre() != "test")
+		cerr << " * Error con el primer compartido (incorrecta)." << endl;
+
+	//Comprobar que sea el puntero exacto a la misma canción
+	u->addCancionPlaylist("test", c);
+	if(p->getCanciones() != 0)
+		cerr << " * Error con el primer compartido (incorrecta 2)." << endl;
+
+	delete p;
+	delete u;
+	delete c;
+
+	cout << "Finalizadas pruebas de  compartirPlaylist" << endl;
+}
+
