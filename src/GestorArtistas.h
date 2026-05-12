@@ -19,18 +19,22 @@ class GestorArtistas{
 		 * COMP={O(1)}
 		 */
 		int numElementos() const;
+
 		/**
 		 * DESC={
-		 *		Devuelve true si hay algún artista cuyo nombre coincida
-		 *    Devuelve una copia del artista encontrado en el parámetro artista.
-		 *    La memoria de artista es responsabilidad del usuario. 
+		 *		Busca si hay algún artista cuyo nombre coincida.
+		 *		Devuelve un puntero al artista original.
 		 *	}
+		 * POST={
+		 *		Si se encuentra, copia el puntero a artista y devuelve true.
+		 *		Si no se encuentra, no se modifica el puntero artista y devuelve false.
+		 * }
 		 * COMP={O(n)}
 		 */
 		bool buscar(string nombre, Artista* &artista) const;
 		
 		/**
-		 * DESC={Inserta un nuevo artista por órden si no se repite el nombre}
+		 * DESC={Inserta un nuevo artista por orden si no se repite el nombre}
 		 * COMP={O(n)}
 		 */
 		void insertar(string nombre, string country, int seguidores);
@@ -44,6 +48,10 @@ class GestorArtistas{
 		 */
 		Artista* mayorSeguidores() const;
 
+		/**
+		 * DESC={Muestra todos los artistas del gestor}
+		 * COMP={O(n)}
+		 */
 		void mostrar() const;
 
 };
