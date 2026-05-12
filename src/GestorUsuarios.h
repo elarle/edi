@@ -21,17 +21,22 @@ class GestorUsuarios{
 		int numElementos() const;
 		/**
 		 * DESC={Devuelve true si hay algún usuario cuyo nombre coincida}
+		 * POST={Si se encuentra, se asigna el puntero al usuario. Si no, no se modifica.}
 		 * COMP={O(n)}
 		 */
 		bool buscar(string nombre, Usuario* &usuario) const;
 		
 		/**
-		 * TODO: Comprobar que siga el orden el test
-		 * DESC={Inserta un nuevo usuario en órden si no se repite ni el id, nombre ni email}
+		 * PRE={fecha debe estar correctamente inicializado}
+		 * DESC={Inserta un nuevo usuario en orden si no se repite el nombre}
 		 * COMP={O(n)}
 		 */
 		void insertar(string id, string nombre, string email, string contraseña, Fecha* fecha);
 		
+		/**
+		 * DESC={Muestra todos los usuarios del gestor}
+		 * COMP={O(n)}
+		 */
 		void mostrar() const;
 
 };
