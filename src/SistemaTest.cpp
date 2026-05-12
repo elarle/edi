@@ -8,6 +8,7 @@ void pruebasSistema(){
 
 	pruebasCargarDatosSistema();
 
+	pruebasBuscarUsuarioSistema();
 	pruebasBuscarArtistaSistema();
 	pruebasReproducirPlaylistUsuarioSistema();
 	pruebasCompartirPlaylistSistema();
