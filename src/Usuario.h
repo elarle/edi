@@ -80,7 +80,7 @@ public:
 	/**
 	 * DESC={Elimina una playlist del usuario si existe}
 	 */
-	void eliminarPlayList(string nombre);
+	bool eliminarPlayList(string nombre);
 
 	/**
 	 * DESC={Añade a las listas de usuario una copia de la playlist COPIADA.}

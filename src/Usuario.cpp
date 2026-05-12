@@ -202,7 +202,7 @@ void Usuario::addPlaylistCompartida(const PlayList* p){
 	}
 }
 
-void Usuario::eliminarPlayList(string nombre){
+bool Usuario::eliminarPlayList(string nombre){
 	PlayList *p;
 	bool enc = false;
 
@@ -216,6 +216,7 @@ void Usuario::eliminarPlayList(string nombre){
 		else
 			this->playlists->avanzar();
 	}
+	return enc;
 }
 
 bool Usuario::buscarArtistaFavorito(string nombre, Artista *&artista) const{
