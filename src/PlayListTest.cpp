@@ -161,6 +161,14 @@ void pruebaReproducir(){
 	p1->agregarCancion(c5);
 
 	cout << "# Prueba supervisada (0..4):" << endl;
+
+	cout << "Debería verse:" << endl
+			<< "	- Canción 0. clásica. Duración: 0s" << endl
+			<< "	- Canción 1. clásica. Duración: 1s" << endl
+			<< "	- Canción 2. clásica. Duración: 2s" << endl
+			<< "	- Canción 3. clásica. Duración: 3s" << endl
+			<< "	- Canción 4. clásica. Duración: 4s" << endl
+			<< "Valor:" << endl;
 	p1->reproducir();
 
 	delete p1;
@@ -198,6 +206,12 @@ void pruebaReproducirDesde(){
 	p1->agregarCancion(c5);
 
 	cout << "# Prueba supervisada (2..4):" << endl;
+
+	cout << "Debería verse:" << endl
+			<< "	- Canción 2. clásica. Duración: 2s" << endl
+			<< "	- Canción 3. clásica. Duración: 3s" << endl
+			<< "	- Canción 4. clásica. Duración: 4s" << endl
+			<< "Valor:" << endl;
 	p1->reproducirDesde(2);
 
 	delete p1;
@@ -208,6 +222,5 @@ void pruebaReproducirDesde(){
 	delete c4;
 	delete c5;
 
-	cout << "Fin de pruebas de reproducir" << endl;
-	cout << "Fin de pruebas de reproducir" << endl;
+	cout << "Fin de pruebas de reproducirDesde" << endl;
 }
