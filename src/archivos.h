@@ -6,6 +6,10 @@
 
 using namespace std;
 
+/**
+ * DESC={Lee el archivo usuarios.csv y muestra cada línea numerada por consola}
+ * COMP={O(n)}
+ */
 inline void leerFichero1(){
 	ifstream file;
 	string linea;
@@ -28,6 +32,10 @@ inline void leerFichero1(){
 	} else cerr << "Error abriendo el archivo usuario.csv. No existe" << endl;
 }
 
+/**
+ * DESC={Lee el archivo usuarios.csv separando campos por ';' y los muestra por consola}
+ * COMP={O(n)}
+ */
 inline void leerFichero2(){
 	ifstream file;
 	int contador;
@@ -75,6 +83,10 @@ inline void leerFichero2(){
 	} else cerr << "Error abriendo el archivo usuario.csv. No existe" << endl;
 }
 
+/**
+ * DESC={Lee usuarios.csv y escribe en un archivo de salida los usuarios del año indicado}
+ * COMP={O(n)}
+ */
 inline void leerFicheroSeleccionarAño(int año_selección){
 	ifstream file;
 	ofstream salida;

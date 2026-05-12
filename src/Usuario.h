@@ -59,64 +59,77 @@ public:
 	
 	/**
 	 * DESC={Crea una playlist del usuario si no existe una con ese nombre}
+	 * COMP={O(n)}
 	 */
 	void crearPlayList(string nombre);
 
 	/**
+	 * PRE={cancion debe ser un puntero válido (no nullptr)}
 	 * DESC={Si la playlist existe se le añade la canción}
+	 * COMP={O(n)}
 	 */
 	void addCancionPlaylist(string nombre_playlist, Cancion * cancion);
 
 	/**
 	 * DESC={Muestra las canciones de la playlist}
+	 * COMP={O(n)}
 	 */
 	void reproducirPlayList(string nombre) const;
 	/**
 	 * PRE={La playlist debe ser un nullptr / no estar reservada}
 	 * DESC={Crea una copia de la lista de este usuario en playlist. La memoria es responsabilidad del usuario}
+	 * COMP={O(n)}
 	 */
 	void compartirPlaylist(string nombre, PlayList* &playlist) const;
 
 	/**
 	 * DESC={Elimina una playlist del usuario si existe}
+	 * COMP={O(n)}
 	 */
 	bool eliminarPlayList(string nombre);
 
 	/**
-	 * DESC={Añade a las listas de usuario una copia de la playlist COPIADA.}
+	 * PRE={playlist debe ser un puntero válido (no nullptr)}
+	 * DESC={Añade a las listas de usuario una copia de la playlist}
+	 * COMP={O(n)}
 	 */
 	void addPlaylistCompartida(const PlayList* playlist);
 
 	/**
+	 * PRE={artista debe ser un puntero válido (no nullptr)}
 	 * DESC={Inserta un artista favorito en el usuario si NO está ya en favoritos}
+	 * COMP={O(n)}
 	 */
 	void addArtistaFavorito(Artista* artista);
 
 	/**
 	 * DESC={Elimina un artista favorito del usuario si existe}
+	 * COMP={O(n)}
 	 */
 	void borrarArtistaFavorito(string nombre);
 
 	/**
 	 * DESC={Busca un artista favorito por nombre}
-	 * POST={Si no se encuentra el artista, no se modifica el puntero p}
+	 * POST={Si no se encuentra el artista, no se modifica el puntero}
+	 * COMP={O(n)}
 	 */
 	bool buscarArtistaFavorito(string nombre, Artista *&artista) const;
 
 	/**
-	 * DESC={Coomprueba si un parámetro se repite en una misma ListaDPI}
-	 * POST={Si no se encuentra la playlist, no se modifica el puntero p}
+	 * DESC={Busca una playlist por nombre}
+	 * POST={Si no se encuentra la playlist, no se modifica el puntero}
+	 * COMP={O(n)}
 	 */
 	bool buscarPlaylist (string nombre, PlayList *&p) const;
 
 	/**
 	 * DESC={Muestra a cout el usuario}
-	 * COMP={O(?)}
+	 * COMP={O(1)}
 	 */
 	void mostrar() const;
 	/**
 	 * DESC={Pasa el usuario a cadena.}
-	 * COMP={O(?)}
+	 * COMP={O(1)}
 	 */
 	string pasarACadena() const;
 
