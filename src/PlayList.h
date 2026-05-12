@@ -30,6 +30,7 @@ public:
 	void setNombre(string nombre);
 
 	//Métodos
+	//PRE={cancion debe estar inicializado correctamente}
 	//DESC={Añade una canción al final de la playlist y modifica los atributos}
 	//COMP={O(1)}
 	void agregarCancion(Cancion * cancion);

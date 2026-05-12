@@ -4,10 +4,9 @@
 
 //DESC={Copia el contenido de la primera copia en la segunda.}
 //COMP={O(n)}
-template <class TipoDato>
-void copiarCola(Cola<TipoDato>* src, Cola<TipoDato>* dst){
-	Cola<TipoDato>* cola_aux = new Cola<TipoDato>;
-	TipoDato dato_aux;
+void copiarCola(Cola<Cancion*>* src, Cola<Cancion*>* dst){
+	Cola<Cancion*>* cola_aux = new Cola<Cancion*>;
+	Cancion* cancion_aux;
 
 	//Primero copiamos los datos a un aux.
 	while(!src->estaVacia()){
@@ -15,11 +14,11 @@ void copiarCola(Cola<TipoDato>* src, Cola<TipoDato>* dst){
 		src->desencolar();
 	}
 
-	//Luego los copiamos en dato_aux para duplicarlos
+	//Luego los copiamos en cancion_aux para duplicarlos
 	while(!cola_aux->estaVacia()){
-		dato_aux = cola_aux->getPrimero();
-		src->encolar(dato_aux);
-		dst->encolar(dato_aux);
+		cancion_aux = cola_aux->getPrimero();
+		src->encolar(cancion_aux);
+		dst->encolar(cancion_aux);
 		cola_aux->desencolar();
 	}
 
