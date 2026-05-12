@@ -122,21 +122,12 @@ void PlayList::reproducirDesde(int indice){
 	int i;
 	Cancion *c = nullptr;
 
-	/*
-	for (i = 0 ; i < indice ; i++){
-		c = cola->getPrimero ();
-		cola->desencolar ();
-		cola->encolar (c);
-	}
-	reproducir();
-	*/
-
 	for (i = 0 ; i < this->canciones; i++){
 		c = cola->getPrimero();
 
 		if(i >= indice){
+			cout << "	- "; //Para que quede bonito
 			c->mostrar();
-			cout << endl;
 		}
 		
 		cola->desencolar();
