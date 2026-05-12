@@ -258,29 +258,41 @@ void Sistema::reproducirPlaylistUsuario(string usuario, string playlist){
 	}
 }
 
-void Sistema::compartirPlaylist(string usrc, string udst, string playlist){
+void Sistema::compartirPlaylist(string usrc, string udst, string nombre){
+			
 	Usuario* src = nullptr;
 	Usuario* dst = nullptr;
-	PlayList* p = nullptr;
-	const PlayList* aux = nullptr;
-
-	if(this->gestorUsuarios->buscar(usrc, src) && this->gestorUsuarios->buscar(udst, dst)){
-		src->compartirPlaylist(playlist, p);
-
-		if(p != nullptr){
-			aux = p;
-			dst->addPlaylistCompartida(aux);
-			delete p;
+	PlayList* playlist = nullptr;
+			
+	src = buscarUsuario(usrc);
+	if(src== nullptr)
+		cout << "Usuario " << usrc << " no encontrado." << endl;
+	else {
+		dst = buscarUsuario(udst);
+		if(dst==nullptr)
+			cout << "Usuario " << udst << " no encontrado." << endl;
+		else {
+			if(src->buscarPlaylist(nombre, playlist)){
+				dst->addPlaylistCompartida(playlist);
+				cout << "Playlist copiada" << endl;
+			} else {
+				cout << "Playlist no encontrada" << endl;
+			};
 		}
 	}
+
 }
 
 void Sistema::eliminarPlaylistUsuario(string usuario, string playlist){
 	Usuario* u = nullptr;
 
-	if(this->gestorUsuarios->buscar(usuario, u)){
-		u->eliminarPlayList(playlist);
-	}
+	if(this->gestorUsuarios->buscar(usuario, u))
+		if(u->eliminarPlayList(playlist))
+			cout << "Playlist eliminada." << endl;
+		else
+			cout << "Playlist no encontrada." << endl;
+	else 
+		cout << "Usuario no encontrado." << endl;
 }
 
 
@@ -289,15 +301,18 @@ void Sistema::addFavorito(string usuario, string artista){
 	Artista* a = nullptr;
 
 	if(this->gestorUsuarios->buscar(usuario, u) && this->gestorArtistas->buscar(artista, a)){
+		a->addSeguidor();
 		u->addArtistaFavorito(a);
 	}
 }
 
 void Sistema::borrarFavorito(string usuario, string artista){
 	Usuario* u = nullptr;
+	Artista* a = nullptr;
 
-	if(this->gestorUsuarios->buscar(usuario, u)){
+	if(this->gestorUsuarios->buscar(usuario, u) && this->gestorArtistas->buscar(artista, a)){
 		u->borrarArtistaFavorito(artista);
+		a->delSeguidor();
 	}
 }
 

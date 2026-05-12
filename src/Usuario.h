@@ -90,7 +90,7 @@ public:
 	/**
 	 * DESC={Inserta un artista favorito en el usuario si NO está ya en favoritos}
 	 */
-	void addArtistaFavorito(const Artista* artista);
+	void addArtistaFavorito(Artista* artista);
 
 	/**
 	 * DESC={Elimina un artista favorito del usuario si existe}

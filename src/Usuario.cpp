@@ -239,14 +239,14 @@ bool Usuario::buscarArtistaFavorito(string nombre, Artista *&artista) const{
 	return enc;
 }
 
-void Usuario::addArtistaFavorito(const Artista* artista){
+void Usuario::addArtistaFavorito(Artista* artista){
 	Artista *a;
 
 	if(artista != nullptr && !buscarArtistaFavorito(artista->getNombre(), a)){
 		this->artistas_favoritos->moverUltimo();
 		this->artistas_favoritos->avanzar();
 		//Duda: hay que hacer new?
-		this->artistas_favoritos->insertar(new Artista(*artista));
+		this->artistas_favoritos->insertar(artista);
 	}
 }
 
@@ -258,7 +258,6 @@ void Usuario::borrarArtistaFavorito(string nombre){
 	while(!this->artistas_favoritos->alFinal() && !enc){
 		a = this->artistas_favoritos->consultar();
 		if(a->getNombre() == nombre){
-			delete a;
 			this->artistas_favoritos->eliminar();
 			enc = true;
 		}

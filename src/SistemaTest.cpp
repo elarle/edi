@@ -363,7 +363,7 @@ void pruebasMayorArtistaSistema(){
 	//Caso de prueba de los csv
 	Usuario* usr = s->buscarUsuario("Sanchez Mancera, Andres");
 	Artista* a = s->buscarArtista("Rosalía");
-	usr->addArtistaFavorito(a);
+	s->addFavorito("Sanchez Mancera, Andres", "Rosalía");
 
 	Artista* mayor = nullptr;
 	mayor = s->buscarMayorArtista();

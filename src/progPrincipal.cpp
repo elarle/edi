@@ -10,9 +10,6 @@
 #include <iostream>
 using namespace std;
 
-#include "Sistema.h"
-#include "Usuario.h"
-
 int menu(string nombreSistema) {
 	int opcion;
 	do {
@@ -42,6 +39,9 @@ int menu(string nombreSistema) {
 
 #define TESTS
 #ifndef TESTS
+
+#include "Sistema.h"
+#include "Usuario.h"
 
 int main() {
 	// TODO Crear un objeto dinámico de la clase Sistema
@@ -127,60 +127,37 @@ int main() {
 			
 		//Compartir playlist entre dos usuarios
 		case 6: {
-			string linea;
-			cout << "Introduzca un usuario: ";
-			getline(cin, linea);
-			
-			Usuario* src = nullptr;
-			Usuario* dst = nullptr;
-			PlayList* playlist = nullptr;
-			
-			src = sistema->buscarUsuario(linea);
-			if(src== nullptr)
-				cout << "Usuario no encontrado." << endl;
-			else {
-				cout << "Introduzca otro usuario: ";
-				getline(cin, linea);
-				dst = sistema->buscarUsuario(linea);
-				if(dst==nullptr)
-					cout << "Usuario no encontrado." << endl;
-				else {
-					cout << "Introduzca el nombre de la playlist: ";
-					getline(cin, linea);
-					if(src->buscarPlaylist(linea, playlist)){
-						dst->addPlaylistCompartida(playlist);
-						cout << "Playlist copiada" << endl;
-					} else {
-						cout << "Playlist no encontrada" << endl;
-					};
+			string src;
+			string dst;
+			string playlist;
 
-				}
-			}
+			cout << "Introduzca un usuario: ";
+			getline(cin, src);
+			
+			cout << "Introduzca otro usuario: ";
+			getline(cin, dst);
+
+			cout << "Introduzca el nombre de la playlist: ";
+			getline(cin, playlist);
+
+			sistema->compartirPlaylist(src, dst, playlist);
+
 			break;
 		}
 
 			//Eliminar playlist de un usuario
 		case 7: {
-			string linea;
+			string usr;
+			string playlist;
+
 			cout << "Introduzca un usuario: ";
-			getline(cin, linea);
+			getline(cin, usr);
+
+			cout << "Introduzca el nombre de la playlist: ";
+			getline(cin, playlist);
+
+			sistema->eliminarPlaylistUsuario(usr, playlist);
 			
-			Usuario* usr = nullptr;
-			PlayList* playlist = nullptr;
-			
-			usr = sistema->buscarUsuario(linea);
-			if(usr== nullptr)
-				cout << "Usuario no encontrado." << endl;
-			else {
-				cout << "Introduzca el nombre de la playlist: ";
-				getline(cin, linea);
-				if(usr->buscarPlaylist(linea, playlist)){
-					usr->eliminarPlayList(linea);
-					cout << "Playlist eliminada" << endl;
-				} else {
-					cout << "Playlist no encontrada" << endl;
-				};
-			}
 			break;
 		}
 
