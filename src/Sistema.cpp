@@ -55,7 +55,7 @@ void Sistema::cargarUsuarios(string archivo){
 				getline(file, año);
 
 				fecha->setDia(stoi(dia));
-				fecha->setAño(stoi(mes));
+				fecha->setMes(stoi(mes));
 				fecha->setAño(stoi(año));
 
 				this->gestorUsuarios->insertar(
