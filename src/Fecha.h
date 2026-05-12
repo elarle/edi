@@ -47,12 +47,12 @@ public:
 	//Métodos
 	/**
 	 * DESC={Muestra a cout la fecha}
-	 * COMP={O(?)}
+	 * COMP={O(1)}
 	 */
 	void mostrar() const;
 	/**
 	 * DESC={Pasa la fecha a cadena.}
-	 * COMP={O(?)}
+	 * COMP={O(1)}
 	 */
 	string pasarACadena() const;
 
