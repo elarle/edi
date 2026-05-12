@@ -31,7 +31,6 @@ class Cancion {
 		void setTitulo(string titulo);
 		void setGenero(string genero);
 		void setDuracion(int duracion);
-		void mostrar() const;
 
 		//Operadores
 		/**
@@ -49,7 +48,13 @@ class Cancion {
 		 * COMP={O(1)}
 		 */
 		bool operator<(const Cancion &cancion) const;
+		
 
+		/**
+		 * DESC={Muestra la canción}
+		 * COMP={O(1)}
+		 */
+		void mostrar() const;
 };
 
 #endif /* CANCIÓN_H_ */
