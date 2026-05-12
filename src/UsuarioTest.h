@@ -31,7 +31,7 @@ void pruebasConstructoresUsuario();
 
 //TODO: Mejorar precondiciones
 //También mezclar con buscar
-void pruebasCrearPlayList();
+void pruebasCrearBuscarPlayList();
 
 //TODO: Implementar
 //TODO: Mejorar precondiciones
@@ -52,9 +52,5 @@ void pruebasAddPlaylistCompartida();
 //TODO: Implementar
 //TODO: Mejorar precondiciones
 void pruebasAddArtistaFavorito();
-
-//TODO: Implementar
-//TODO: Mejorar precondiciones
-void pruebasBuscarPlaylist();
 
 #endif /* USUARIOTEST_H_ */

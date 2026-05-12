@@ -66,7 +66,7 @@ void pruebasConstructoresUsuario(){
 
 }
 
-void pruebasCrearPlayList(){
+void pruebasCrearBuscarPlayList(){
 	cout << "Iniciando pruebas de CrearPlaylist" << endl;
 	
 	Usuario* u1 = new Usuario();
@@ -99,9 +99,67 @@ void pruebasCrearPlayList(){
 	cout << "Finalizadas pruebas de CrearPlaylist" << endl;
 }
 
-void pruebasAddCancionPlaylist(){
-	cout << "Iniciando pruebas de AddCancionPlaylist" << endl;
-	cout << "Finalizadas pruebas de AddCancionPlaylist" << endl;
+void pruebasAddPlaylistCompartida(){
+	cout << "Iniciando pruebas de AddPlaylistCompartida" << endl;
+
+	Usuario* u1 = new Usuario();
+	Usuario* u2 = new Usuario();
+	PlayList* p1 = nullptr;
+	PlayList* p2 = nullptr;
+	u1->crearPlayList("Conjunta");
+	u2->crearPlayList("Compartida");
+	u1->compartirPlaylist("Conjunta", p1);
+	u2->compartirPlaylist("Compartida", p2);
+
+	u1->addPlaylistCompartida(p2);
+	u2->addPlaylistCompartida(p1);
+
+	if(!u2->buscarPlaylist("Conjunta", p1))
+		cerr << " * Error al añadir la primera PlayList compartida" << endl;
+	else if(p1 == nullptr)
+		cerr << " * Error al añadir la primera PlayList compartida (nula)" << endl;
+	cout << "Finalizadas pruebas de AddPlaylistCompartida" << endl;
+
+	if(!u1->buscarPlaylist("Conjunta", p2))
+		cerr << " * Error al añadir la tercera PlayList compartida" << endl;
+	else if(p2 == nullptr)
+		cerr << " * Error al añadir la segunda PlayList compartida (nula)" << endl;
+	cout << "Finalizadas pruebas de AddPlaylistCompartida" << endl;
+
+	if(u1->buscarPlaylist("No hay", p2))
+		cerr << " * Error al añadir la tercera búsqueda PlayList" << endl;
+	else if(p2 != nullptr)
+		cerr << " * Error al añadir la tercera PlayList compartida (no nula)" << endl;
+
+
+	cout << "Finalizadas pruebas de AddPlaylistCompartida" << endl;
+}
+
+void pruebasAddArtistaFavorito(){
+	cout << "Iniciando pruebas de AddArtistaFavorito" << endl;
+
+	Usuario* u = new Usuario();
+	Artista* a1 = new Artista("Leiva", "España", 1000);
+	Artista* a2 = new Artista("Melendi", "España", 1000);
+	u->addArtistaFavorito(a1);
+	u->addArtistaFavorito(a2);
+
+	if(!u->buscarArtistaFavorito("Leiva", a1))
+		cerr << " * Error al añadir el primer ArtistaFavorito" << endl;
+	else if(a1 == nullptr)
+		cerr << " * Error al añadir el primer ArtistaFavorito (nulo)" << endl;
+
+	if(!u->buscarArtistaFavorito("Melendi", a2))
+		cerr << " * Error al añadir el segundo ArtistaFavorito" << endl;
+	else if(a1 == nullptr)
+		cerr << " * Error al añadir el segundo ArtistaFavorito (nulo)" << endl;
+
+	if(u->buscarArtistaFavorito("Robe", a1))
+		cerr << " * Error al añadir el tercer ArtistaFavorito" << endl;
+	else if(a1 == nullptr)
+		cerr << " * Error al añadir el tercer ArtistaFavorito (no nulo)" << endl;
+
+	cout << "Finalizadas pruebas de AddArtistaFavorito" << endl;
 }
 
 void pruebasTemplate(){
