@@ -42,6 +42,27 @@ void pruebasInsertarGestorUsuarios(){
 	gu1->insertar("2", "Paco2", "paco@a.com", "1234", fecha);
 	gu1->insertar("3", "Paco3", "paco@a.com", "1234", fecha);
 	
+	cout << "# Pruebas supervisada" << endl;
+
+	cout << "Debería mostrarse:" << endl
+			<< "Usuario{" << endl
+			<< "	id: 1" << endl
+			<< "	nombre: Paco" << endl
+			<< "	fecha: 1/2/3" << endl
+			<< "}" << endl
+			<< "Usuario{" << endl
+			<< "	id: 2" << endl
+			<< "	nombre: Paco2" << endl
+			<< "	fecha: 1/2/3" << endl
+			<< "}" << endl
+			<< "Usuario{" << endl
+			<< "	id: 3" << endl
+			<< "	nombre: Paco3" << endl
+			<< "	fecha: 1/2/3" << endl
+			<< "}" << endl;
+
+	cout << "Valor:" << endl;
+
 	gu1->mostrar();
 	if(gu1->numElementos() != 3)
 		cerr << " * Error con el número de elementos al insertar usuario" << endl;
