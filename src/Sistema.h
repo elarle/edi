@@ -59,11 +59,11 @@ class Sistema{
 
 		/*
 		 * DESC={
-		 *		Reproduce la playlist del usuario solicitado.
-		 *		En caso de no existir la playlist o el usuario la función no hace nada.
+		 *		Reproduce la playlist del usuario solicitado y devuelve true.
+		 *		En caso de no existir el usuario la función devuelve false.
 		 * }
 		 */
-		void reproducirPlaylistUsuario(string usuario, string playlist);
+		bool reproducirPlaylistUsuario(string usuario, string playlist);
 
 		/**
 		 * PRE={
@@ -75,7 +75,7 @@ class Sistema{
 		 *		Crea una copia de la playlist seleccionada del usuario src al usuario dest.
 		 * }
 		 */
-		void compartirPlaylist(string usrc, string udst, string playlist);
+		bool compartirPlaylist(string usrc, string udst, string playlist);
 
 		/**
 		 * PRE={
@@ -86,7 +86,7 @@ class Sistema{
 		 *		Elimina la playlist indicada del usuario.Elimina la playlist indicada del usuario.
 		 * }
 		 */
-		void eliminarPlaylistUsuario(string usuario, string playlist);
+		bool eliminarPlaylistUsuario(string usuario, string playlist);
 
 		/*
 		 * PRE={
@@ -97,7 +97,7 @@ class Sistema{
 		 *		Añade a favoritos del usuario el artista indicado.
 		 * }
 		 */
-		void addFavorito(string usuario, string artista);
+		bool addFavorito(string usuario, string artista);
 
 		/*
 		 * PRE={
@@ -108,7 +108,7 @@ class Sistema{
 		 *		 Elimina de favoritos del usuario el artista indicado.
 		 * }
 		 */
-		void borrarFavorito(string usuario, string artista);
+		bool borrarFavorito(string usuario, string artista);
 
 		/**
 		 * PRE={

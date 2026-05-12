@@ -22,7 +22,6 @@ Sistema::~Sistema(){
 
 void Sistema::cargarUsuarios(string archivo){
 	ifstream file;
-	int contador;
 	
 	string id_usuario;
 	string apellidos_nombre;
@@ -35,8 +34,6 @@ void Sistema::cargarUsuarios(string archivo){
 
 	Fecha* fecha;
 	fecha = new Fecha();
-
-	contador = 0;
 
 	file.open(archivo);
 
@@ -61,12 +58,6 @@ void Sistema::cargarUsuarios(string archivo){
 				fecha->setAño(stoi(mes));
 				fecha->setAño(stoi(año));
 
-				contador++;
-				//cout << contador << " ID: " << id_usuario << endl;
-				//cout << contador << " NA: " << apellidos_nombre << endl;
-				//cout << contador << " EMAIL: " << email << endl;
-				//cout << contador << " PASS: " << contraseña << endl;
-
 				this->gestorUsuarios->insertar(
 					id_usuario,
 					apellidos_nombre,
@@ -85,15 +76,12 @@ void Sistema::cargarUsuarios(string archivo){
 
 void Sistema::cargarArtistas(string archivo){
 	ifstream file;
-	int contador;
 	
 	string nombre;
 	string pais;
 	
 	Fecha* fecha;
 	fecha = new Fecha();
-
-	contador = 0;
 
 	file.open(archivo);
 
@@ -107,8 +95,6 @@ void Sistema::cargarArtistas(string archivo){
 			//Descartamos la última lina para no tener usuarios de más
 			if(!file.eof()){
 				getline(file, pais);
-
-				contador++;
 
 				this->gestorArtistas->insertar(
 					nombre,
@@ -127,8 +113,6 @@ void Sistema::cargarArtistas(string archivo){
 
 void Sistema::cargarCanciones(string archivo){
 	ifstream file;
-	int contador;
-	
 	string artista;
 	string cancion;
 	string genero;
@@ -137,8 +121,6 @@ void Sistema::cargarCanciones(string archivo){
 	int time;
 
 	Artista* cantante;
-
-	contador = 0;
 
 	file.open(archivo);
 
@@ -156,8 +138,6 @@ void Sistema::cargarCanciones(string archivo){
 
 				time = stoi(duracion);
 
-				contador++;
-				
 				if(this->gestorArtistas->buscar(artista, cantante))
 					cantante->insertarCancion(
 						cancion,
@@ -173,8 +153,6 @@ void Sistema::cargarCanciones(string archivo){
 
 void Sistema::cargarPlayLists(string archivo){
 	ifstream file;
-	int contador;
-	
 	string apellidos_nombre;
 	string nombre_playlist;
 	string artista;
@@ -182,8 +160,6 @@ void Sistema::cargarPlayLists(string archivo){
 	Usuario* usuario;
 	Artista* artista_encontrado;
 	Cancion* cancion_encontrada;
-
-	contador = 0;
 
 	file.open(archivo);
 
@@ -199,17 +175,9 @@ void Sistema::cargarPlayLists(string archivo){
 				getline(file, artista, ';'); //Leer hasta la tercera ;
 				getline(file, cancion);
 
-				contador++;
-				
 				usuario = nullptr;
 				artista_encontrado = nullptr;
 				cancion_encontrada = nullptr;
-
-				//cout << "USUARIO: " << apellidos_nombre << endl
-				//		<< "PLAYLIST: " << nombre_playlist << endl
-				//		<< "ARTISTA: " << artista << endl
-				//		<< "CANCION: " << cancion << endl
-				//		<< endl;	
 
 				if(this->gestorUsuarios->buscar(apellidos_nombre, usuario) &&
 					this->gestorArtistas->buscar(artista, artista_encontrado) &&
@@ -250,70 +218,81 @@ Artista* Sistema::buscarArtista(string artista) const{
 	return busqueda;
 }
 
-void Sistema::reproducirPlaylistUsuario(string usuario, string playlist){
+bool Sistema::reproducirPlaylistUsuario(string usuario, string playlist){
 	Usuario* u = nullptr;
+	bool enc = false;
 
 	if(this->gestorUsuarios->buscar(usuario, u)){
 		u->reproducirPlayList(playlist);
+		enc = true;
 	}
+	return enc;
 }
 
-void Sistema::compartirPlaylist(string usrc, string udst, string nombre){
+bool Sistema::compartirPlaylist(string usrc, string udst, string nombre){
 			
 	Usuario* src = nullptr;
 	Usuario* dst = nullptr;
 	PlayList* playlist = nullptr;
+
+	bool res = false;
 			
 	src = buscarUsuario(usrc);
-	if(src== nullptr)
-		cout << "Usuario " << usrc << " no encontrado." << endl;
-	else {
+	if(src!= nullptr){
+
 		dst = buscarUsuario(udst);
-		if(dst==nullptr)
-			cout << "Usuario " << udst << " no encontrado." << endl;
-		else {
+		if(dst!=nullptr){
+
 			if(src->buscarPlaylist(nombre, playlist)){
 				dst->addPlaylistCompartida(playlist);
-				cout << "Playlist copiada" << endl;
-			} else {
-				cout << "Playlist no encontrada" << endl;
-			};
+				res = true;
+			} 
 		}
 	}
-
+	return res;
 }
 
-void Sistema::eliminarPlaylistUsuario(string usuario, string playlist){
+bool Sistema::eliminarPlaylistUsuario(string usuario, string playlist){
+
 	Usuario* u = nullptr;
+	bool res = false;
 
 	if(this->gestorUsuarios->buscar(usuario, u))
 		if(u->eliminarPlayList(playlist))
-			cout << "Playlist eliminada." << endl;
-		else
-			cout << "Playlist no encontrada." << endl;
-	else 
-		cout << "Usuario no encontrado." << endl;
+			res = true;
+
+	return res;
 }
 
 
-void Sistema::addFavorito(string usuario, string artista){
+bool Sistema::addFavorito(string usuario, string artista){
+
 	Usuario* u = nullptr;
 	Artista* a = nullptr;
+
+	bool enc = false;
 
 	if(this->gestorUsuarios->buscar(usuario, u) && this->gestorArtistas->buscar(artista, a)){
 		a->addSeguidor();
 		u->addArtistaFavorito(a);
+
+		enc = true;
 	}
+
+	return enc;
 }
 
-void Sistema::borrarFavorito(string usuario, string artista){
+bool Sistema::borrarFavorito(string usuario, string artista){
 	Usuario* u = nullptr;
 	Artista* a = nullptr;
+	bool enc = false;
 
 	if(this->gestorUsuarios->buscar(usuario, u) && this->gestorArtistas->buscar(artista, a)){
 		u->borrarArtistaFavorito(artista);
 		a->delSeguidor();
+		enc = true;
 	}
+	return enc;
 }
 
 Artista* Sistema::buscarMayorArtista() const{

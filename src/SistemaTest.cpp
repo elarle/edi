@@ -172,16 +172,25 @@ void pruebasReproducirPlaylistUsuarioSistema(){
 				cerr << " * Error con el numero de canciones antes de reproducir" << endl;
 		}
 
-		cout << "# Prueba supervisada, deben verse 3 canciones:" << endl;
-		s->reproducirPlaylistUsuario("Coronado Perez, Pablo", "TestSistema");
+		cout << "# Prueba supervisada" << endl;
 
+		cout << "# Debería verse:" << endl
+				<< "	- Cancion sistema 1. Pop. Duración 170s" << endl
+				<< "	- Cancion sistema 2. Pop. Duración 193s" << endl
+				<< "	- Cancion sistema 3. Pop. Duración 153s" << endl;
+
+		cout << "Valor: " << endl;
+	
+		if(!s->reproducirPlaylistUsuario("Coronado Perez, Pablo", "TestSistema"))
+			cerr << " * Error reproduciendo una playlist existente" << endl;
+	
 		if(p != nullptr){
 			if(p->getCanciones() != 3)
 				cerr << " * Error reproducir modifica la playlist" << endl;
 		}
 
-		s->reproducirPlaylistUsuario("Usuario Inexistente", "TestSistema");
-		s->reproducirPlaylistUsuario("Coronado Perez, Pablo", "Playlist Inexistente");
+		if(s->reproducirPlaylistUsuario("Usuario Inexistente", "TestSistema"))
+			cerr << " * Error reproduciendo una playlist inexistente" << endl;
 
 		delete c1;
 		delete c2;
@@ -218,11 +227,12 @@ cout << "Iniciando pruebas de compartirPlaylist de Sistema" << endl;
 	origen->addCancionPlaylist("CompartidaSistema", c1);
 	origen->addCancionPlaylist("CompartidaSistema", c2);
 
-	s->compartirPlaylist("Coronado Perez, Pablo", "Sanchez Mancera, Andres", "CompartidaSistema");
+	if(!s->compartirPlaylist("Coronado Perez, Pablo", "Sanchez Mancera, Andres", "CompartidaSistema"))
+		cerr << " * Error compartiendo una playlist que sí existe" << endl;
 
 	p = nullptr;
 	if(!destino->buscarPlaylist("CompartidaSistema", p) || p == nullptr)
-		cerr << " * Error compartiendo playlist" << endl;
+		cerr << " * Error compartiendo playlist (1)" << endl;
 	else{
 		if(p->getCanciones() != 2)
 			cerr << " * Error con canciones de playlist compartida" << endl;
@@ -230,9 +240,12 @@ cout << "Iniciando pruebas de compartirPlaylist de Sistema" << endl;
 			cerr << " * Error con duracion de playlist compartida" << endl;
 	}
 
-	s->compartirPlaylist("Usuario Inexistente", "Sanchez Mancera, Andres", "CompartidaSistema");
-	s->compartirPlaylist("Coronado Perez, Pablo", "Usuario Inexistente", "CompartidaSistema");
-	s->compartirPlaylist("Coronado Perez, Pablo", "Sanchez Mancera, Andres", "Playlist Inexistente");
+	if(s->compartirPlaylist("Usuario Inexistente", "Sanchez Mancera, Andres", "CompartidaSistema"))
+		cerr << " * Error compariendo una playlist que no existe (2)" << endl;
+	if(s->compartirPlaylist("Coronado Perez, Pablo", "Usuario Inexistente", "CompartidaSistema"))
+		cerr << " * Error compariendo una playlist que no existe (3)" << endl;
+	if(s->compartirPlaylist("Coronado Perez, Pablo", "Sanchez Mancera, Andres", "Playlist Inexistente"))
+		cerr << " * Error compariendo una playlist que no existe (4)" << endl;
 
 	delete c1;
 	delete c2;
@@ -262,18 +275,16 @@ cout << "Iniciando pruebas de eliminarPlaylistUsuario de Sistema" << endl;
 	u->crearPlayList("BorrarSistema");
 	u->addCancionPlaylist("BorrarSistema", c);
 
-	p = nullptr;
-	if(!u->buscarPlaylist("BorrarSistema", p) || p == nullptr)
-		cerr << " * Error creando playlist para borrar" << endl;
+	if(!s->eliminarPlaylistUsuario("Coronado Perez, Pablo", "BorrarSistema"))
+		cerr << " * Error elimnando la playlist (1)" << endl;
+	else if(u->buscarPlaylist("BorrarSistema", p))
+		cerr << " * Error eliminando la playlist (1 persiste)" << endl;
 
-	s->eliminarPlaylistUsuario("Coronado Perez, Pablo", "BorrarSistema");
+	if(s->eliminarPlaylistUsuario("Usuario Inexistente", "BorrarSistema"))
+		cerr << " * Error elimnando la playlist (usuario inexistente)" << endl;
 
-	p = nullptr;
-	if(u->buscarPlaylist("BorrarSistema", p) || p != nullptr)
-		cerr << " * Error borrando playlist de usuario" << endl;
-
-	s->eliminarPlaylistUsuario("Usuario Inexistente", "BorrarSistema");
-	s->eliminarPlaylistUsuario("Coronado Perez, Pablo", "Playlist Inexistente");
+	if(s->eliminarPlaylistUsuario("Coronado Perez, Pablo", "Playlist Inexistente"))
+		cerr << " * Error elimnando la playlist (usuario inexistente 2)" << endl;
 
 	delete c;
 	delete s;
@@ -287,7 +298,7 @@ cout << "Iniciando pruebas de addFavorito de Sistema" << endl;
 
 	Sistema* s;
 	Usuario* u;
-	Artista* a;
+	Artista* a = nullptr;
 
 	s = new Sistema();
 	u = s->buscarUsuario("Coronado Perez, Pablo");
@@ -298,18 +309,16 @@ cout << "Iniciando pruebas de addFavorito de Sistema" << endl;
 		return;
 	}
 
-	s->addFavorito("Coronado Perez, Pablo", "Dua Lipa");
+	if(!s->addFavorito("Coronado Perez, Pablo", "Dua Lipa"))
+		cerr << " * Error añadiendo artista favorito (1)" << endl;
+	else if(!u->buscarArtistaFavorito("Dua Lipa", a) || a == nullptr)
+		cerr << " * Error anadiendo artista favorito (1 incorrecto)" << endl;
 
-	a = nullptr;
-	if(!u->buscarArtistaFavorito("Dua Lipa", a) || a == nullptr)
-		cerr << " * Error anadiendo artista favorito" << endl;
-	else{
-		if(a->getCountry() != "Reino Unido")
-			cerr << " * Error con datos del artista favorito" << endl;
-	}
+	if(s->addFavorito("Coronado Perez, Pablo", "Artista Inexistente"))
+		cerr << " * Error añadiendo artista favorito (inexistente 1)" << endl;
 
-	s->addFavorito("Coronado Perez, Pablo", "Artista Inexistente");
-	s->addFavorito("Usuario Inexistente", "Dua Lipa");
+	if(s->addFavorito("Usuario Inexistente", "Dua Lipa"))
+		cerr << " * Error añadiendo artista favorito (inexistente 1)" << endl;
 
 	delete s;
 
@@ -336,19 +345,19 @@ cout << "Iniciando pruebas de borrarFavorito de Sistema" << endl;
 
 	s->addFavorito("Coronado Perez, Pablo", "Dua Lipa");
 
-	a = nullptr;
-	if(!u->buscarArtistaFavorito("Dua Lipa", a) || a == nullptr)
-		cerr << " * Error preparando favorito para borrar" << endl;
-
-	s->borrarFavorito("Coronado Perez, Pablo", "Dua Lipa");
+	if(!s->borrarFavorito("Coronado Perez, Pablo", "Dua Lipa"))
+		cerr << " * Error borrando el artista favorito (1)" << endl;
 
 	a = nullptr;
 	if(u->buscarArtistaFavorito("Dua Lipa", a) || a != nullptr)
 		cerr << " * Error borrando artista favorito" << endl;
 
-	s->borrarFavorito("Usuario Inexistente", "Dua Lipa");
-	s->borrarFavorito("Coronado Perez, Pablo", "Artista Inexistente");
-
+	if(s->borrarFavorito("Usuario Inexistente", "Dua Lipa"))
+		cerr << " * Error borrando artista favorito (inexistente)" << endl;
+	
+	if(s->borrarFavorito("Coronado Perez, Pablo", "Artista Inexistente"))
+		cerr << " * Error borrando artista favorito (inexistente 2)" << endl;
+	
 	delete s;
 
 	cout << "Finalizadas pruebas de borrarFavorito de Sistema" << endl;
@@ -360,15 +369,11 @@ void pruebasMayorArtistaSistema(){
 	Sistema* s;
 	s = new Sistema();
 
-	//Caso de prueba de los csv
-	Usuario* usr = s->buscarUsuario("Sanchez Mancera, Andres");
-	Artista* a = s->buscarArtista("Rosalía");
+	//Caso de prueba con usuarios y artistas del csv
 	s->addFavorito("Sanchez Mancera, Andres", "Rosalía");
 
 	Artista* mayor = nullptr;
 	mayor = s->buscarMayorArtista();
-	a->mostrar();
-	mayor->mostrar();
 	if(mayor->getNombre() != "Rosalía")
 		cerr << " * Error con el primer mayor" << endl;
 
