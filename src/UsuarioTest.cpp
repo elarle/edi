@@ -40,6 +40,12 @@ void pruebasConstructoresUsuario(){
 		cerr << " * Error con contraseña defecto" << endl;
 
 	Fecha* fecha = new Fecha(1, 2, 3);
+	u1->setFecha(fecha);
+	Fecha* fecha_test = new Fecha();
+	u1->getFecha(*fecha_test);
+	if(fecha_test->getAño() != 3 || fecha_test->getMes() != 2 || fecha_test->getDia() != 1)
+		cerr << " * Error con la fecha" << endl;
+
 	Usuario* u2 = new Usuario("1", "pepe", "hola@a.c", "1234", fecha);
 	
 	if(u2->getApellidosNombre() != "pepe")

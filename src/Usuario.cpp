@@ -9,7 +9,6 @@
 
 //Constructores
 Usuario::Usuario() {
-	// TODO Auto-generated constructor stub
 	this->idUsuario = "";
 	this->apellidosNombre = "";
 	this->contraseña = "";
@@ -89,11 +88,11 @@ void Usuario::setContraseña(string contraseña) {
 	this->contraseña = contraseña;
 }
 
-void Usuario::setFecha(const Fecha & fecha) {
+void Usuario::setFecha(const Fecha* fecha) {
 	this->fecha_nacimiento->asignarFecha(
-		fecha.getDia(), 
-		fecha.getMes(), 
-		fecha.getAño()
+		fecha->getDia(), 
+		fecha->getMes(), 
+		fecha->getAño()
 	);
 }
 

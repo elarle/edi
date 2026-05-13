@@ -42,8 +42,7 @@ public:
 	void setEmail(string email);
 	void setContraseña(string contraseña);
 
-	//TODO: implementar pruebas de esto
-	void setFecha(const Fecha & fecha);
+	void setFecha(const Fecha* fecha);
 
 	//Getters
 	//Todos los getters tienen complejidad O(1).
@@ -52,7 +51,7 @@ public:
 	string getEmail() const;
 	string getContraseña() const;
 
-	void getFecha(Fecha & fecha) const;
+	void getFecha(Fecha& fecha) const;
 	void getFecha(int &dia, int &mes, int &año) const;
 
 	//Métodos
