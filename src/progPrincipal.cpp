@@ -37,7 +37,7 @@ int menu(string nombreSistema) {
 	return opcion;
 }
 
-#define TESTS
+//#define TESTS
 #ifndef TESTS
 
 #include "Sistema.h"
@@ -187,6 +187,7 @@ int main() {
 			else
 				cout << "No se pudo eliminar de favoritos" << endl;
 
+			break;
 		}
 			//Mostrar artista con más seguidores
 		case 10: {
