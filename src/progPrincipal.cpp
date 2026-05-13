@@ -37,7 +37,6 @@ int menu(string nombreSistema) {
 	return opcion;
 }
 
-//#define TESTS
 #ifndef TESTS
 
 #include "Sistema.h"

@@ -280,6 +280,7 @@ COMPILE_FOR_WINDOWS=false
 COMPILE_MAIN_ONLY=false
 RUN_AFTER_COMPILE=false
 USE_SANITIZER=false
+RUN_TESTS=false
 
 # Main execution
 #PARSE ARGUMENTS (--args1)
@@ -302,6 +303,11 @@ do
     -r | --run )
         RUN_AFTER_COMPILE=true
         ;;
+    -t | --test )
+        RUN_TESTS=true
+	COMPILER="$COMPILER -DTESTS"
+        ;;
+
     -san | --sanitizer )
         USE_SANITIZER=true
 		  COMPILER="$COMPILER -fsanitize=address"

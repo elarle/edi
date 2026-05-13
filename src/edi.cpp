@@ -8,7 +8,7 @@
 
 //#include <iostream>
 //using namespace std;
-#define TESTS
+
 #ifdef TESTS
 
 #include "UsuarioTest.h"
