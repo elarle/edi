@@ -219,29 +219,39 @@ void GestorArtistas::mostrar() const{
 	mostrarAux(this->artistas);
 }
 
+//No puede ser recursivo por que peta
 Artista* GestorArtistas::mayorSeguidoresAux(BSTree<Artista*>* arbol) const{
+	Cola<BSTree<Artista*>*>* pendientes = new Cola<BSTree<Artista*>*>();
 	BSTree<Artista*>* aux = nullptr;
-	Artista* res = nullptr;
 
-	if(arbol != nullptr && !arbol->estaVacio()){
-		res = arbol->getDato();
+	Artista* mayor = nullptr;
 
-		aux = artistas->getIzq();
-		if(aux != nullptr && !aux->estaVacio()){
-			//Si el de la izguierda tiene más, ese
-			if(mayorSeguidoresAux(aux)->getSeguidores() > res->getSeguidores())
-				res = aux->getDato();
-		}
+	if(!arbol->estaVacio()){
 
-		aux = artistas->getDer();
-		if(aux != nullptr && !aux->estaVacio()){
-			//Si el de la izguierda tiene más, ese
-			if(mayorSeguidoresAux(aux)->getSeguidores() > res->getSeguidores())
-				res = aux->getDato();
+		mayor = arbol->getDato();
+		pendientes->encolar(arbol->getIzq());
+		pendientes->encolar(arbol->getDer());
+
+		while(!pendientes->estaVacia()){
+			aux = pendientes->getPrimero();
+			pendientes->desencolar();
+
+			if(!aux->estaVacio()){
+				if(aux->getDato()->getSeguidores() > mayor->getSeguidores())
+					mayor = aux->getDato();
+
+				if(!aux->getIzq()->estaVacio())
+					pendientes->encolar(aux->getIzq());
+
+				if(!aux->getDer()->estaVacio())
+					pendientes->encolar(aux->getDer());
+
+			}
 		}
 	}
 
-	return res;
+	delete pendientes;
+	return mayor;
 }
 
 Artista* GestorArtistas::mayorSeguidores() const{
