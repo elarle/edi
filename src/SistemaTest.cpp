@@ -113,7 +113,6 @@ void pruebasBuscarUsuarioSistema(){
 	cout << "FinalizadaS pruebas de constructores de Sistema" << endl;
 }
 
-//TODO: Añadir más casos
 void pruebasBuscarArtistaSistema(){
 	cout << "Iniciando pruebas buscarArtista Sistema" << endl;
 
@@ -136,7 +135,6 @@ void pruebasBuscarArtistaSistema(){
 	cout << "Finalizadas pruebas buscarArtista Sistema" << endl;
 }
 
-//TODO: Esta prueba está mal hecha, esto se va para usuario
 void pruebasReproducirPlaylistUsuarioSistema(){
 	cout << "Iniciando pruebas de reproducirPlaylistUsuario de Sistema" << endl;
 

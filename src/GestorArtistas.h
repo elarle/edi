@@ -68,6 +68,7 @@ class GestorArtistas{
 		BSTree<Artista*>* artistas;
 		int numero_artistas;
 
+		//Auxiliares
 		bool buscarAux(BSTree<Artista*> *arbol, string nombre, Artista* &artista) const;
 		void mostrarAux(BSTree<Artista*> *g) const;
 		Artista* mayorSeguidoresAux(BSTree<Artista*> *a) const;
@@ -92,7 +93,6 @@ class GestorArtistas{
 		bool buscar(string nombre, Artista *&a) const;
 
 		/**
-		 * TODO: Comprobar que siga el orden el test
 		 * DESC={Inserta un nuevo usuario en órden si no se repite ni el id, nombre ni email}
 		 * COMP={O(log(n))}
 		 */

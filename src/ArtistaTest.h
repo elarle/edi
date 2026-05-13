@@ -3,51 +3,48 @@
 
 #include "Artista.h"
 
-/**
- * DESC={Llama a todas las funciones de prueba de la clase Artista para comprobar que
- * todas funcionen bien.}
- *
- * COMP={O(1)}
- *
- * PRE={La clase Artista tiene que estar terminada.}
- *
- * POST={Muestra por pantalla los fallos si alguna prueba de Artista no sale como debería.}
+/*
+ * Ejecuta todas las pruebas de artista en orden.
  */
 void pruebasArtista();
 
-/**
- * DESC={Crea varios punteros de Artista para probar los tres tipos de constructores.
- * Primero crea uno vacío y prueba los get y set; luego crea uno con datos de ejemplo y
- * finalmente usa el de copia para ver si los datos se pasan bien de un objeto a otro.
- * Al terminar, borra los objetos con delete para no dejar basura en memoria.}
- *
- * COMP={O(1)}
- *
- * PRE={El código de Artista debe tener los constructores y los métodos get/set.}
- *
- * POST={Avisa por la consola si el nombre, el país o los seguidores no se guardan
- *  o no se leen correctamente.}
+/*
+ * Creamos un artista por defecto y probamos sus setters y getters.
+ * Creamos un artista con el constructor parametrizado y comprobamos
+ * que los datos sean correctos. Creamos un artista con el constructor
+ * de copia y verificamos que los datos se dupliquen bien.
  */
 void pruebasConstructoresArtista();
 
-/**
- * DESC={Crea dos punteros de Artista para comparar sus nombres usando los operadores.
- * Prueba si el programa detecta bien cuándo dos artistas se llaman igual (==) y cuándo
- * uno va antes que otro por orden alfabético (<). Al acabar, libera la memoria de los
- * dos artistas.}
- *
- * COMP={O(1)}
- *
- * PRE={Los operadores '==' y '<' deben estar programados dentro de la clase Artista.}
- *
- * POST={Informa si el programa se equivoca al comparar o al ordenar los nombres de los artistas.}
+/*
+ * Creamos dos artistas con nombres distintos y comprobamos que
+ * el operador == detecte que son diferentes. Cambiamos un nombre
+ * para que coincidan y comprobamos que ahora sean iguales.
+ * Probamos el operador < con distintos nombres para verificar
+ * el orden alfabético.
  */
 void pruebasOperadoresArtista();
 
-//TODO: Mejorar precondiciones
+/*
+ * Creamos un artista e insertamos varias canciones.
+ * Las buscamos una a una por título para comprobar que se encuentren.
+ * Probamos el constructor de copia del artista y verificamos que
+ * las canciones también se copien correctamente.
+ */
 void pruebasInsertarBuscarCancion();
 
+/*
+ * Creamos un artista con un número inicial de seguidores.
+ * Añadimos seguidores y comprobamos que el contador se incremente
+ * correctamente en cada paso.
+ */
 void pruebasAddSeguidor();
+
+/*
+ * Creamos un artista con un número inicial de seguidores.
+ * Eliminamos seguidores y comprobamos que el contador se decremente
+ * correctamente en cada paso.
+ */
 void pruebasDelSeguidor();
 
 #endif /* ARTISTA_TEST_H_ */

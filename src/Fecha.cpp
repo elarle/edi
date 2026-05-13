@@ -8,7 +8,6 @@
 #include "Fecha.h"
 
 Fecha::Fecha() {
-
 	this->dia = 0;
 	this->mes = 0;
 	this->año = 0;
@@ -26,9 +25,7 @@ Fecha::Fecha(const Fecha &otra_fecha){
 	this->año = otra_fecha.año;
 }
 
-Fecha::~Fecha() {
-	// TODO Auto-generated destructor stub
-}
+Fecha::~Fecha(){}
 
 //Getters
 int Fecha::getDia() const{

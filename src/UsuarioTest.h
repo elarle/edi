@@ -10,47 +10,59 @@
 
 #include "Usuario.h"
 
-//TODO: Mejorar precondiciones
+/*
+ * Ejecuta todas las pruebas de usuario en orden.
+ */
 void pruebasUsuario();
 
-/**
- * DESC={Crea punteros de Usuario para comprobar que la clase guarda bien la información.
- * Primero usa el constructor por defecto y los métodos set y get para los datos básicos
- * como nombre, ID, email y contraseña. Luego prueba el constructor con parámetros
- * usando también un objeto Fecha. Al final muestra los datos por pantalla para
- * revisarlos y borra todos los objetos creados.}
- *
- * COMP={O(1)}
- *
- * PRE={La clase Usuario debe tener sus constructores, métodos get/set y la función mostrar.}
- *
- * POST={Informa si alguno de los datos del usuario no se ha guardado o recuperado
- * correctamente durante las pruebas.}
+/*
+ * Creamos un usuario por defecto y otro con el constructor parametrizado.
+ * Probamos los setters y getters de todos los campos (nombre, ID, email, contraseña).
+ * Mostramos los datos por pantalla para revisión visual.
  */
 void pruebasConstructoresUsuario();
 
-//TODO: Mejorar precondiciones
-//También mezclar con buscar
+/*
+ * Creamos un usuario y le añadimos dos playlists.
+ * Buscamos cada una por nombre y comprobamos que el nombre coincida.
+ * Buscamos una playlist que no existe y comprobamos que no la encuentre.
+ */
 void pruebasCrearBuscarPlayList();
 
-//TODO: Implementar
-//TODO: Mejorar precondiciones
+/*
+ * Creamos un usuario, creamos una playlist y le añadimos una canción.
+ * Reproducimos la playlist para comprobar visualmente que la canción aparece.
+ */
 void pruebasAddCancionPlaylist();
 
-//TODO: Implementar
-//TODO: Mejorar precondiciones
+/*
+ * Creamos un usuario, creamos una playlist y le añadimos tres canciones.
+ * Reproducimos la playlist para comprobar visualmente que todas aparecen
+ * en el orden correcto.
+ */
 void pruebasReproducirPlaylist();
 
-//TODO: Implementar
-//TODO: Mejorar precondiciones
+/*
+ * Creamos un usuario con una playlist y la compartimos.
+ * Comprobamos que el puntero devuelto no sea nulo y tenga el nombre correcto.
+ * Añadimos una canción a la playlist original y comprobamos que la playlist
+ * compartida no se modifique (es una copia independiente).
+ */
 void pruebasCompartirPlaylist();
 
-//TODO: Implementar
-//TODO: Mejorar precondiciones
+/*
+ * Creamos dos usuarios, cada uno con una playlist.
+ * Compartimos la playlist del primero con el segundo y viceversa.
+ * Comprobamos que cada uno pueda buscar la playlist que recibió.
+ * Buscamos una playlist que no se ha compartido y comprobamos que no la encuentre.
+ */
 void pruebasAddPlaylistCompartida();
 
-//TODO: Implementar
-//TODO: Mejorar precondiciones
+/*
+ * Creamos un usuario y le añadimos dos artistas como favoritos.
+ * Buscamos cada artista por nombre y comprobamos que los encuentre.
+ * Buscamos un artista que no está en favoritos y comprobamos que no lo encuentre.
+ */
 void pruebasAddArtistaFavorito();
 
 #endif /* USUARIOTEST_H_ */
