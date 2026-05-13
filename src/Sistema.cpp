@@ -222,7 +222,7 @@ bool Sistema::reproducirPlaylistUsuario(string usuario, string playlist){
 	Usuario* u = nullptr;
 	bool enc = false;
 
-	if(this->gestorUsuarios->buscar(usuario, u)){
+	if(this->gestorUsuarios->buscar(usuario, u) && u->reproducirPlayList(playlist)){
 		u->reproducirPlayList(playlist);
 		enc = true;
 	}
@@ -287,7 +287,7 @@ bool Sistema::borrarFavorito(string usuario, string artista){
 	Artista* a = nullptr;
 	bool enc = false;
 
-	if(this->gestorUsuarios->buscar(usuario, u) && this->gestorArtistas->buscar(artista, a)){
+	if(this->gestorUsuarios->buscar(usuario, u) && u->buscarArtistaFavorito(artista, a)){
 		u->borrarArtistaFavorito(artista);
 		a->delSeguidor();
 		enc = true;
