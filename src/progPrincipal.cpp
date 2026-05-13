@@ -62,6 +62,8 @@ int main() {
 			//Buscar y mostrar un usuario
 		case 2:{
 			string nombre;
+
+			cout << "Introduzca el nombre del usuario: ";
 			getline(cin, nombre);
 			
 			Usuario* usuario = nullptr;
@@ -82,6 +84,8 @@ int main() {
 			//Buscar y mostrar un artista
 		case 4: {
 			string nombre;
+
+			cout << "Introduzca el nombre del artista: ";
 			getline(cin, nombre);
 			
 			Artista* artista = nullptr;
