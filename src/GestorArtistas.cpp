@@ -130,6 +130,18 @@ Artista* GestorArtistas::mayorSeguidores() const{
 }
 #else
 
+#include "Cola.h"
+
+void copiarArbol(BSTree<Artista*> *arbol, BSTree<Artista*> *arbol2){
+	Artista *a = nullptr;
+	if(arbol != nullptr && !arbol->estaVacio()){
+		copiarArbol(arbol->getIzq(), arbol2);
+		a = arbol->getDato();
+		arbol2->insertar(new Artista(*a));
+		copiarArbol(arbol->getDer(), arbol2);
+	}
+}
+
 GestorArtistas::GestorArtistas(){
 	this->artistas = new BSTree<Artista*>;
 	this->numero_artistas = 0;
@@ -139,16 +151,6 @@ GestorArtistas::GestorArtistas(const GestorArtistas &g){
 	artistas = new BSTree<Artista*>;
 	numero_artistas = g.numero_artistas;
 	copiarArbol(g.artistas, this->artistas);
-}
-
-void GestorArtistas::copiarArbol(BSTree<Artista*> *arbol, BSTree<Artista*> *arbol2){
-	Artista *a = nullptr;
-	if(arbol != nullptr && !arbol->estaVacio()){
-		copiarArbol(arbol->getIzq(), arbol2);
-		a = arbol->getDato();
-		arbol2->insertar(new Artista(*a));
-		copiarArbol(arbol->getDer(), arbol2);
-	}
 }
 
 GestorArtistas::~GestorArtistas(){
@@ -205,10 +207,6 @@ void GestorArtistas::insertar(string nombre, string country, int seguidores){
 	}
 }
 
-void GestorArtistas::mostrar() const{
-	mostrarAux(this->artistas);
-}
-
 void GestorArtistas::mostrarAux(BSTree<Artista*> *arbol) const{
 	if(arbol != nullptr && !arbol->estaVacio()){
 		mostrarAux(arbol->getIzq());
@@ -216,6 +214,38 @@ void GestorArtistas::mostrarAux(BSTree<Artista*> *arbol) const{
 		a->mostrar();
 		mostrarAux(arbol->getDer());
 	}
+}
+void GestorArtistas::mostrar() const{
+	mostrarAux(this->artistas);
+}
+
+Artista* GestorArtistas::mayorSeguidoresAux(BSTree<Artista*>* arbol) const{
+	BSTree<Artista*>* aux = nullptr;
+	Artista* res = nullptr;
+
+	if(arbol != nullptr && !arbol->estaVacio()){
+		res = arbol->getDato();
+
+		aux = artistas->getIzq();
+		if(aux != nullptr && !aux->estaVacio()){
+			//Si el de la izguierda tiene más, ese
+			if(mayorSeguidoresAux(aux)->getSeguidores() > res->getSeguidores())
+				res = aux->getDato();
+		}
+
+		aux = artistas->getDer();
+		if(aux != nullptr && !aux->estaVacio()){
+			//Si el de la izguierda tiene más, ese
+			if(mayorSeguidoresAux(aux)->getSeguidores() > res->getSeguidores())
+				res = aux->getDato();
+		}
+	}
+
+	return res;
+}
+
+Artista* GestorArtistas::mayorSeguidores() const{
+	return mayorSeguidoresAux(this->artistas);
 }
 
 #endif /* LISTA_ARTISTAS */
