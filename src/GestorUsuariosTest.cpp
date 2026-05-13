@@ -29,7 +29,6 @@ void pruebasConstructoresGestorUsuarios(){
 	cout << "Fin de pruebas de constructres de GestorUsuarios" << endl;
 }
 
-//TODO: Mejorar esta prueba para que compruebe parámetros del usuario
 void pruebasInsertarGestorUsuarios(){
 	cout << "Iniciando pruebas de insertar de GestorUsuarios" << endl;
 	

@@ -135,6 +135,16 @@ void GestorUsuarios::mostrar() const{
 
 #else
 
+void copiarArbol(BSTree<Usuario*> *arbol, BSTree<Usuario*> *arbol2){
+	Usuario *u = nullptr;
+	if(arbol != nullptr && !arbol->estaVacio()){
+		copiarArbol(arbol->getIzq(), arbol2);
+		u = arbol->getDato();
+		arbol2->insertar(new Usuario(*u));
+		copiarArbol(arbol->getDer(), arbol2);
+	}
+}
+
 GestorUsuarios::GestorUsuarios(){
 	this->numero_usuarios = 0;
 	this->usuarios = new BSTree<Usuario*>;
@@ -144,16 +154,6 @@ GestorUsuarios::GestorUsuarios(const GestorUsuarios &g){
 	usuarios = new BSTree<Usuario*>;
 	this->numero_usuarios = g.numero_usuarios;
 	copiarArbol(g.usuarios, this->usuarios);
-}
-
-void GestorUsuarios::copiarArbol(BSTree<Usuario*> *arbol, BSTree<Usuario*> *arbol2){
-	Usuario *u = nullptr;
-	if(arbol != nullptr && !arbol->estaVacio()){
-		copiarArbol(arbol->getIzq(), arbol2);
-		u = arbol->getDato();
-		arbol2->insertar(new Usuario(*u));
-		copiarArbol(arbol->getDer(), arbol2);
-	}
 }
 
 GestorUsuarios::~GestorUsuarios(){

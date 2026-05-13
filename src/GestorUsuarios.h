@@ -52,13 +52,15 @@ class GestorUsuarios{
 	private:
 		BSTree<Usuario*>* usuarios;
 		int numero_usuarios;
+	
+		//Auxiliares
+		bool buscarAux(BSTree<Usuario*> *a, string nombre, Usuario* &usuario) const;
+		void mostrarAux(BSTree<Usuario*> *a) const;
 		
 	public:
 		GestorUsuarios();
 		GestorUsuarios(const GestorUsuarios & g);
 		~GestorUsuarios();
-
-		void copiarArbol(BSTree<Usuario*> *a1, BSTree<Usuario*> *a2);
 
 		void destruirUsuarios(BSTree<Usuario*> *a);
 
@@ -73,10 +75,8 @@ class GestorUsuarios{
 		 */
 		bool buscar(string nombre, Usuario* &usuario) const;
 		
-		bool buscarAux(BSTree<Usuario*> *a, string nombre, Usuario* &usuario) const;
 
 		/**
-		 * TODO: Comprobar que siga el orden el test
 		 * DESC={Inserta un nuevo usuario en órden si no se repite ni el id, nombre ni email}
 		 * COMP={O(log(n))}
 		 */
@@ -84,7 +84,6 @@ class GestorUsuarios{
 		
 		void mostrar() const;
 
-		void mostrarAux(BSTree<Usuario*> *a) const;
 
 };
 
