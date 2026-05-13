@@ -59,19 +59,23 @@ class GestorArtistas{
 		void mostrar() const;
 
 };
+
 #else /* LISTA_ARTISTAS */
 #include "BSTree.h"
+
 class GestorArtistas{
 	private:
 		BSTree<Artista*>* artistas;
 		int numero_artistas;
 
+		bool buscarAux(BSTree<Artista*> *arbol, string nombre, Artista* &artista) const;
+		void mostrarAux(BSTree<Artista*> *g) const;
+		Artista* mayorSeguidoresAux(BSTree<Artista*> *a) const;
+
 	public:
 		GestorArtistas();
 		GestorArtistas(const GestorArtistas & g);
 		~GestorArtistas();
-
-		void copiarArbol(BSTree<Artista*> *g1, BSTree<Artista*> *g2);
 
 		void destruirArtistas(BSTree<Artista*> *g);
 
@@ -80,12 +84,11 @@ class GestorArtistas{
 		 * COMP={O(1)}
 		 */
 		int numElementos() const;
+
 		/**
 		 * DESC={Devuelve true si hay algún artista cuyo nombre coincida}
 		 * COMP={O(log(n))}
 		 */
-		bool buscarAux(BSTree<Artista*> *arbol, string nombre, Artista* &artista) const;
-
 		bool buscar(string nombre, Artista *&a) const;
 
 		/**
@@ -95,10 +98,16 @@ class GestorArtistas{
 		 */
 		void insertar(string nombre, string country, int seguidores);
 
+		/**
+		 * DESC={
+		 *		Devuelve un puntero al artista con más seguidores
+		 *		Si no hay artistas devuelve nullptr. 
+		 *	}
+		 * COMP={O(log(n))}
+		 */
+		Artista* mayorSeguidores() const;
+
 		void mostrar() const;
-
-		void mostrarAux(BSTree<Artista*> *g) const;
-
 };
 
 #endif /* LISTA_ARTISTAS */
