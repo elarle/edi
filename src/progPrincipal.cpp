@@ -43,9 +43,6 @@ int menu(string nombreSistema) {
 #include "Usuario.h"
 
 int main() {
-	// TODO Crear un objeto dinámico de la clase Sistema
-	// los datos se cargan automáticamente.
-	// TODO no olvidar hacer new al puntero al Sistema
 	
 	Sistema* sistema = new Sistema(); 
 
@@ -204,7 +201,6 @@ int main() {
 			break;
 		}
 	}
-	// TODO no olvidar el delete al puntero al sistema
 	delete sistema;
 	return 0;
 }
