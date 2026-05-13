@@ -89,7 +89,6 @@ void pruebasBuscarUsuarioSistema(){
 	Sistema* s1;
 	s1 = new Sistema();
 	
-	//DUDA: Debemos devolver una copia o el usuario directo?
 	Usuario* busqueda = s1->buscarUsuario("Coronado Perez, Pablo");
 	if(busqueda == nullptr)
 		cerr << " * Error con la primera búsquea." << endl;

@@ -244,7 +244,6 @@ void Usuario::addArtistaFavorito(Artista* artista){
 	if(artista != nullptr && !buscarArtistaFavorito(artista->getNombre(), a)){
 		this->artistas_favoritos->moverUltimo();
 		this->artistas_favoritos->avanzar();
-		//Duda: hay que hacer new?
 		this->artistas_favoritos->insertar(artista);
 	}
 }

@@ -91,7 +91,6 @@ void pruebasOperadoresArtista(){
 	cout << "Fin de pruebas de operadores de Artista" << endl;
 }
 
-//DUDA: Podemos hacer las pruebas conjuntas?
 void pruebasInsertarBuscarCancion(){
 	cout << "Inicio de pruebas de insertar/buscarCancion" << endl;
 
@@ -132,7 +131,6 @@ void pruebasInsertarBuscarCancion(){
 	cout << "Fin de pruebas de insertar/buscarCancion" << endl;
 }
 
-//DUDA: Podemos hacer las pruebas conjuntas?
 void pruebasAddSeguidor(){
 	cout << "Inicio de pruebas de addSeguidor de Artista" << endl;
 
