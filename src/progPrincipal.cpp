@@ -164,7 +164,7 @@ int main() {
 			getline(cin, artista);
 			
 			if(sistema->addFavorito(usuario, artista))
-				cout << "Añadido artista a favortos" << endl;
+				cout << "Añadido artista a favoritos" << endl;
 			else 
 				cout << "No se ha podido añadir";
 
