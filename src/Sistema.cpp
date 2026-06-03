@@ -273,7 +273,8 @@ bool Sistema::addFavorito(string usuario, string artista){
 
 	bool enc = false;
 
-	if(this->gestorUsuarios->buscar(usuario, u) && this->gestorArtistas->buscar(artista, a)){
+	if(this->gestorUsuarios->buscar(usuario, u) && this->gestorArtistas->buscar(artista, a) &&
+	   !u->buscarArtistaFavorito(artista, a)){
 		a->addSeguidor();
 		u->addArtistaFavorito(a);
 
