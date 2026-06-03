@@ -112,7 +112,7 @@ int main() {
 			if(sistema->reproducirPlaylistUsuario(usuario, playlist))
 				cout << "Playlist reproducida" << endl;
 			else 
-				cout << "Error al reproducir playlist. Asegúrese de que el usuario o la playlist existen" << endl;
+				cout << "Error al reproducir playlist" << endl;
 
 			break;
 		}
@@ -164,7 +164,7 @@ int main() {
 			getline(cin, artista);
 			
 			if(sistema->addFavorito(usuario, artista))
-				cout << "Añadido artista a favortos" << endl;
+				cout << "Añadido artista a favoritos" << endl;
 			else 
 				cout << "No se ha podido añadir";
 
