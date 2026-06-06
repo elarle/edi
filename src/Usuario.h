@@ -70,10 +70,11 @@ public:
 	void addCancionPlaylist(string nombre_playlist, Cancion * cancion);
 
 	/**
-	 * DESC={Si encuentra la playlist, muestra sus canciones}
+	 * DESC={Si encuentra la playlist, muestra sus canciones y devuelve true}
 	 * COMP={O(n)}
 	 */
-	void reproducirPlayList(string nombre) const;
+	bool reproducirPlayList(string nombre) const;
+
 	/**
 	 * PRE={La playlist debe ser un nullptr / no estar reservada}
 	 * DESC={Crea una copia de la lista de este usuario en playlist. La memoria es responsabilidad del usuario}

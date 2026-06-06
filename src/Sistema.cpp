@@ -220,13 +220,11 @@ Artista* Sistema::buscarArtista(string artista) const{
 
 bool Sistema::reproducirPlaylistUsuario(string usuario, string playlist){
 	Usuario* u = nullptr;
-	PlayList* p = nullptr;
 	bool enc = false;
 
-	if(this->gestorUsuarios->buscar(usuario, u) && u->buscarPlaylist(playlist, p)){
-		u->reproducirPlayList(playlist);
-		enc = true;
-	}
+	if(this->gestorUsuarios->buscar(usuario, u))
+		enc = u->reproducirPlayList(playlist);
+
 	return enc;
 }
 
