@@ -131,24 +131,26 @@ Artista* GestorArtistas::mayorSeguidores() const{
 #else
 
 #include "Cola.h"
+KeyValue<string, Artista*> copiarKV(KeyValue<string, Artista*> kv){
+	return KeyValue<string, Artista*>(kv.getKey(), new Artista(*kv.getValue()));
+}
 
-void copiarArbol(BSTree<Artista*> *arbol, BSTree<Artista*> *arbol2){
-	Artista *a = nullptr;
+void copiarArbol(BSTree<KeyValue<string, Artista*>> *arbol, BSTree<KeyValue<string, Artista*>> *arbol2){
+	KeyValue <string, Artista*> a;
 	if(arbol != nullptr && !arbol->estaVacio()){
+		arbol2->insertar(copiarKV(arbol->getDato()));
 		copiarArbol(arbol->getIzq(), arbol2);
-		a = arbol->getDato();
-		arbol2->insertar(new Artista(*a));
 		copiarArbol(arbol->getDer(), arbol2);
 	}
 }
 
 GestorArtistas::GestorArtistas(){
-	this->artistas = new BSTree<Artista*>;
+	this->artistas = new BSTree<KeyValue<string, Artista*>>;
 	this->numero_artistas = 0;
 }
 
 GestorArtistas::GestorArtistas(const GestorArtistas &g){
-	artistas = new BSTree<Artista*>;
+	artistas = new BSTree<KeyValue<string, Artista*>>;
 	numero_artistas = g.numero_artistas;
 	copiarArbol(g.artistas, this->artistas);
 }
@@ -157,11 +159,11 @@ GestorArtistas::~GestorArtistas(){
 	destruirArtistas(this->artistas);
 }
 
-void GestorArtistas::destruirArtistas(BSTree<Artista*> *arbol){
+void GestorArtistas::destruirArtistas(BSTree<KeyValue<string, Artista*>> *arbol){
     if(arbol != nullptr && !arbol->estaVacio()){
         destruirArtistas(arbol->getIzq());
-        delete arbol->getDato();
         destruirArtistas(arbol->getDer());
+        delete arbol->getDato().getValue();
     }
 }
 
@@ -174,14 +176,14 @@ bool GestorArtistas::buscar(string nombre, Artista *&a) const{
 	return enc;
 }
 
-bool GestorArtistas::buscarAux(BSTree<Artista*> *arbol, string nombre, Artista* &a) const{
+bool GestorArtistas::buscarAux(BSTree<KeyValue<string, Artista*>> *arbol, string nombre, Artista* &a) const{
     bool enc = false;
 
     if(arbol != nullptr && !arbol->estaVacio()){
         enc = buscarAux(arbol->getIzq(), nombre, a);
 
         if(!enc){
-            Artista *aux = arbol->getDato();
+            Artista *aux = arbol->getDato().getValue();
             if(aux->getNombre() == nombre){
                 a = aux;
                 enc = true;
@@ -202,15 +204,15 @@ void GestorArtistas::insertar(string nombre, string country, int seguidores){
 
 	if (!existe){
 		Artista *nuevo = new Artista(nombre, country, seguidores);
-		this->artistas->insertar(nuevo);
+		this->artistas->insertar(KeyValue <string, Artista*> (nombre, nuevo));
 		this->numero_artistas++;
 	}
 }
 
-void GestorArtistas::mostrarAux(BSTree<Artista*> *arbol) const{
+void GestorArtistas::mostrarAux(BSTree<KeyValue<string, Artista*>> *arbol) const{
 	if(arbol != nullptr && !arbol->estaVacio()){
 		mostrarAux(arbol->getIzq());
-		Artista *a = arbol->getDato();
+		Artista *a = arbol->getDato().getValue();
 		a->mostrar();
 		mostrarAux(arbol->getDer());
 	}
@@ -220,15 +222,15 @@ void GestorArtistas::mostrar() const{
 }
 
 //No puede ser recursivo por que peta
-Artista* GestorArtistas::mayorSeguidoresAux(BSTree<Artista*>* arbol) const{
-	Cola<BSTree<Artista*>*>* pendientes = new Cola<BSTree<Artista*>*>();
-	BSTree<Artista*>* aux = nullptr;
+Artista* GestorArtistas::mayorSeguidoresAux(BSTree<KeyValue<string, Artista*>>* arbol) const{
+	Cola<BSTree<KeyValue<string, Artista*>>*>* pendientes = new Cola<BSTree<KeyValue<string, Artista*>>*>();
+	BSTree<KeyValue<string, Artista*>>* aux = nullptr;
 
 	Artista* mayor = nullptr;
 
 	if(!arbol->estaVacio()){
 
-		mayor = arbol->getDato();
+		mayor = arbol->getDato().getValue();
 		pendientes->encolar(arbol->getIzq());
 		pendientes->encolar(arbol->getDer());
 
@@ -237,8 +239,8 @@ Artista* GestorArtistas::mayorSeguidoresAux(BSTree<Artista*>* arbol) const{
 			pendientes->desencolar();
 
 			if(!aux->estaVacio()){
-				if(aux->getDato()->getSeguidores() > mayor->getSeguidores())
-					mayor = aux->getDato();
+				if(aux->getDato().getValue()->getSeguidores() > mayor->getSeguidores())
+					mayor = aux->getDato().getValue();
 
 				if(!aux->getIzq()->estaVacio())
 					pendientes->encolar(aux->getIzq());
