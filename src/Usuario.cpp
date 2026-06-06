@@ -174,14 +174,11 @@ void Usuario::addCancionPlaylist(string nombre_playlist, Cancion* cancion){
 	}
 }
 
-bool Usuario::reproducirPlayList(string nombre) const{
+void Usuario::reproducirPlayList(string nombre) const{
 	PlayList *p = nullptr;
-	bool enc = false;
 	if(buscarPlaylist(nombre, p) && p != nullptr){
 		p->reproducir();
-		enc = true;
 	}
-	return enc;
 }
 
 void Usuario::compartirPlaylist(string nombre, PlayList* &playlist) const{

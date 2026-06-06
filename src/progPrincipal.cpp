@@ -110,7 +110,7 @@ int main() {
 			getline(cin, playlist);
 			
 			if(sistema->reproducirPlaylistUsuario(usuario, playlist))
-				cout << "Reproduciendo playlist" << endl;
+				cout << "Playlist reproducida" << endl;
 			else 
 				cout << "Error al reproducir playlist" << endl;
 
