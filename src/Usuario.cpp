@@ -222,7 +222,7 @@ bool Usuario::buscarArtistaFavorito(string nombre, Artista *&artista) const{
 	Artista *a;
 	bool enc = false;
 
-	artista = nullptr;
+	a = nullptr;
 	this->artistas_favoritos->moverPrimero();
 
 	while(!this->artistas_favoritos->alFinal() && !enc){
