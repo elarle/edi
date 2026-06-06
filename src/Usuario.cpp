@@ -130,7 +130,11 @@ void Usuario::mostrar() const {
 	cout << "\tid: " << this->idUsuario << endl;
 	cout << "\tnombre: " << this->apellidosNombre << endl;
 	cout << "\tfecha: " << this->fecha_nacimiento->pasarACadena() << endl;
-	cout << "\tfavoritos: [" << endl;
+
+	cout << "\tfavoritos: [";
+	if(!this->artistas_favoritos->estaVacia())
+		cout << endl;
+
 	//Mostrar Artistas
 	this->artistas_favoritos->moverPrimero();
 	while(!this->artistas_favoritos->alFinal()){
