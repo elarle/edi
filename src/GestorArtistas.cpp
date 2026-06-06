@@ -180,19 +180,17 @@ bool GestorArtistas::buscarAux(BSTree<KeyValue<string, Artista*>> *arbol, string
     bool enc = false;
 
     if(arbol != nullptr && !arbol->estaVacio()){
-        enc = buscarAux(arbol->getIzq(), nombre, a);
+    	Artista *aux = arbol->getDato().getValue();
 
-        if(!enc){
-            Artista *aux = arbol->getDato().getValue();
-            if(aux->getNombre() == nombre){
-                a = aux;
-                enc = true;
-            }
-        }
+		if(aux->getNombre() == nombre){
+			a = aux;
+			enc = true;
+		}
+		if(!enc)
+			enc = buscarAux(arbol->getIzq(), nombre, a);
 
-        if(!enc){
+        if(!enc)
             enc = buscarAux(arbol->getDer(), nombre, a);
-        }
     }
     return enc;
 }
