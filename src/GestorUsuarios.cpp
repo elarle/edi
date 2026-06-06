@@ -138,8 +138,8 @@ void GestorUsuarios::mostrar() const{
 void copiarArbol(BSTree<Usuario*> *arbol, BSTree<Usuario*> *arbol2){
 	Usuario *u = nullptr;
 	if(arbol != nullptr && !arbol->estaVacio()){
-		copiarArbol(arbol->getIzq(), arbol2);
 		u = arbol->getDato();
+		copiarArbol(arbol->getIzq(), arbol2);
 		arbol2->insertar(new Usuario(*u));
 		copiarArbol(arbol->getDer(), arbol2);
 	}
