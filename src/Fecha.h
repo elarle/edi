@@ -46,7 +46,7 @@ public:
 
 	//Métodos
 	/**
-	 * DESC={Muestra a cout la fecha}
+	 * DESC={Muestra por pantalla la fecha}
 	 * COMP={O(1)}
 	 */
 	void mostrar() const;
