@@ -46,7 +46,7 @@ Usuario::Usuario(const Usuario & otro_usuario){
 	otro_usuario.artistas_favoritos->moverPrimero();
 	while(!otro_usuario.artistas_favoritos->alFinal()){
 		artistas_favoritos->insertar(
-			new Artista(*otro_usuario.artistas_favoritos->consultar())
+			otro_usuario.artistas_favoritos->consultar()
 		);
 		otro_usuario.artistas_favoritos->avanzar();
 	}
@@ -130,7 +130,15 @@ void Usuario::mostrar() const {
 	cout << "\tid: " << this->idUsuario << endl;
 	cout << "\tnombre: " << this->apellidosNombre << endl;
 	cout << "\tfecha: " << this->fecha_nacimiento->pasarACadena() << endl;
-	cout << "}" << endl;
+	cout << "\tfavoritos: [" << endl;
+	//Mostrar Artistas
+	this->artistas_favoritos->moverPrimero();
+	while(!this->artistas_favoritos->alFinal()){
+		cout << "\t\t" << this->artistas_favoritos->consultar()->getNombre() << endl;
+		this->artistas_favoritos->avanzar();
+	}
+
+	cout << "\t]\n}" << endl;
 }
 
 string Usuario::pasarACadena() const {
@@ -210,6 +218,7 @@ bool Usuario::eliminarPlayList(string nombre){
 		p = this->playlists->consultar();
 		if(p->getNombre() == nombre){
 			this->playlists->eliminar();
+			delete p;
 			enc = true;
 		}
 		else
