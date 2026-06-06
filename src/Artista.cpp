@@ -76,7 +76,6 @@ bool Artista::buscarCancion(string titulo, Cancion* &cancion) const{
 	Cancion *c;
 	bool enc = false;
 
-	cancion = nullptr;
 	this->canciones->moverPrimero();
 
 	while(!this->canciones->alFinal() && !enc){

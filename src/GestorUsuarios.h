@@ -67,13 +67,16 @@ class GestorUsuarios{
 		 */
 		int numElementos() const;
 		/**
-		 * DESC={Devuelve true si hay algún usuario cuyo nombre coincida}
+		 * DESC={
+		 *		Devuelve true y pone a usuario apuntando al usuario cuyo nombre coincida.
+		 *		Si no exsiste ninguno con ese nombre devuelve false y no modifica usuario.
+		 * }
 		 * COMP={O(log(n))}
 		 */
 		bool buscar(string nombre, Usuario* &usuario) const;
-		
 
 		/**
+		 * PRE={fecha debe estar apuntando a una fecha válida}
 		 * DESC={Inserta un nuevo usuario en órden si no se repite ni el id, nombre ni email}
 		 * COMP={O(log(n))}
 		 */

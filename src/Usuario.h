@@ -42,6 +42,9 @@ public:
 	void setEmail(string email);
 	void setContraseña(string contraseña);
 
+	/**
+	 * PRE={Fecha debe apuntar a una fecha válida}
+	 */
 	void setFecha(const Fecha* fecha);
 
 	//Getters
@@ -96,8 +99,8 @@ public:
 	void addPlaylistCompartida(const PlayList* playlist);
 
 	/**
-	 * PRE={artista debe ser un puntero válido (no nullptr)}
-	 * DESC={Inserta un artista favorito en el usuario si NO está ya en favoritos}
+		 * PRE={Si artista no es nullptr, debe ser un puntero válido}
+		 * DESC={Inserta un artista favorito en el usuario si NO está ya en favoritos}
 	 * COMP={O(n)}
 	 */
 	void addArtistaFavorito(Artista* artista);

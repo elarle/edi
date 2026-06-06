@@ -88,7 +88,10 @@ class GestorArtistas{
 		int numElementos() const;
 
 		/**
-		 * DESC={Devuelve true si hay algún artista cuyo nombre coincida}
+		 * DESC={
+		 *		Devuelve true y asigna un artista si hay algún alguno cuyo nombre coincida
+		 *		En caso de no exsitir no modifica el puntero a artista;
+		 *	}
 		 * COMP={O(log(n))}
 		 */
 		bool buscar(string nombre, Artista *&a) const;
