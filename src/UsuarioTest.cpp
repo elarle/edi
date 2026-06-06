@@ -213,10 +213,8 @@ void pruebasReproducirPlaylist(){
 			<<"	- Dame2. Veneno2. Duración: 34s" << endl
 			<<"	- Dame3. Veneno3. Duración: 35s" << endl
 			<<"Valor: " << endl;
-	if(u->reproducirPlayList("test"));
-
-	else
-		cout << "Error al reproducir Playlist" << endl;
+	if(!u->reproducirPlayList("test"))
+		cerr << "Error al reproducir Playlist" << endl;
 
 	delete u;
 	delete c;
