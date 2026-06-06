@@ -46,23 +46,20 @@ class GestorUsuarios{
 };
 
 #else /* LISTA_USUARIOS */
+#include "KeyValue.h"
 #include "BSTree.h"
 
 class GestorUsuarios{
 	private:
-		BSTree<Usuario*>* usuarios;
+		BSTree<KeyValue<string, Usuario*>>* usuarios;
 		int numero_usuarios;
 	
-		//Auxiliares
-		bool buscarAux(BSTree<Usuario*> *a, string nombre, Usuario* &usuario) const;
-		void mostrarAux(BSTree<Usuario*> *a) const;
-		
 	public:
 		GestorUsuarios();
 		GestorUsuarios(const GestorUsuarios & g);
 		~GestorUsuarios();
 
-		void destruirUsuarios(BSTree<Usuario*> *a);
+		void destruirUsuarios(BSTree<KeyValue<string, Usuario*>> *a);
 
 		/**
 		 * DESC={Devuelve el número de usuarios registrados}

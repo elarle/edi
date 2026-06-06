@@ -135,23 +135,25 @@ void GestorUsuarios::mostrar() const{
 
 #else
 
-void copiarArbol(BSTree<Usuario*> *arbol, BSTree<Usuario*> *arbol2){
-	Usuario *u = nullptr;
+KeyValue<string, Usuario*> copiarKV(KeyValue<string, Usuario*> kv){
+	return KeyValue<string, Usuario*>(kv.getKey(), new Usuario(*kv.getValue()));
+}
+void copiarArbol(BSTree<KeyValue<string, Usuario*>> *arbol, BSTree<KeyValue<string, Usuario*>> *arbol2){
+	KeyValue<string, Usuario*> u;
 	if(arbol != nullptr && !arbol->estaVacio()){
-		u = arbol->getDato();
+		arbol2->insertar(copiarKV(arbol->getDato()));
 		copiarArbol(arbol->getIzq(), arbol2);
-		arbol2->insertar(new Usuario(*u));
 		copiarArbol(arbol->getDer(), arbol2);
 	}
 }
 
 GestorUsuarios::GestorUsuarios(){
 	this->numero_usuarios = 0;
-	this->usuarios = new BSTree<Usuario*>;
+	this->usuarios = new BSTree<KeyValue<string, Usuario*>>;
 }
 
 GestorUsuarios::GestorUsuarios(const GestorUsuarios &g){
-	usuarios = new BSTree<Usuario*>;
+	usuarios = new BSTree<KeyValue<string, Usuario*>>;
 	this->numero_usuarios = g.numero_usuarios;
 	copiarArbol(g.usuarios, this->usuarios);
 }
@@ -160,11 +162,12 @@ GestorUsuarios::~GestorUsuarios(){
 	destruirUsuarios(this->usuarios);
 }
 
-void GestorUsuarios::destruirUsuarios(BSTree<Usuario*> *arbol){
+void GestorUsuarios::destruirUsuarios(BSTree<KeyValue<string, Usuario*>> *arbol){
 	if(arbol != nullptr && !arbol->estaVacio()){
 		destruirUsuarios(arbol->getIzq());
-		delete arbol->getDato();
 		destruirUsuarios(arbol->getDer());
+		//Destruimos solo el usuario
+		delete arbol->getDato().getValue();
 	}
 }
 
@@ -172,29 +175,30 @@ int GestorUsuarios::numElementos() const{
 	return this->numero_usuarios;
 }
 
-bool GestorUsuarios::buscar(string nombre, Usuario *&a) const{
-	bool enc = buscarAux(this->usuarios, nombre, a);
-	return enc;
-}
-
-bool GestorUsuarios::buscarAux(BSTree<Usuario*> *arbol, string nombre, Usuario *&u) const{
+bool buscarAux(BSTree<KeyValue<string, Usuario*>> *arbol, string nombre, Usuario *&u){
 	bool enc = false;
+	string nom;
+	KeyValue<string, Usuario*> kv;
 
 	if(arbol != nullptr && !arbol->estaVacio()){
-		enc = buscarAux(arbol->getIzq(), nombre, u);
+		kv = arbol->getDato();
+		nom = kv.getKey();
 
-		if(!enc){
-			Usuario *aux = arbol->getDato();
-			if(aux->getApellidosNombre() == nombre){
-				u = aux;
-				enc = true;
-			}
+		if(nom == nombre){
+			u = kv.getValue();
+			enc = true;
 		}
-
-		if(!enc){
-			enc = buscarAux(arbol->getDer(), nombre, u);
-		}
+		else 
+			if(arbol->getDato().getKey() > nombre)
+				enc = buscarAux(arbol->getIzq(), nombre, u);
+			else
+				enc = buscarAux(arbol->getDer(), nombre, u);
 	}
+
+	return enc;
+}
+bool GestorUsuarios::buscar(string nombre, Usuario *&a) const{
+	bool enc = buscarAux(this->usuarios, nombre, a);
 	return enc;
 }
 
@@ -205,22 +209,22 @@ void GestorUsuarios::insertar(string id, string nombre, string email, string con
 
 	if (!existe){
 		Usuario *nuevo = new Usuario(id, nombre, email, contraseña, fecha);
-		this->usuarios->insertar(nuevo);
+		this->usuarios->insertar(KeyValue<string, Usuario*>(nombre, nuevo));
 		this->numero_usuarios++;
 	}
 }
 
-void GestorUsuarios::mostrar() const{
-	mostrarAux(this->usuarios);
-}
-
-void GestorUsuarios::mostrarAux(BSTree<Usuario*> *arbol) const{
+void mostrarAux(BSTree<KeyValue<string, Usuario*>>* arbol){
 	if(arbol != nullptr && !arbol->estaVacio()){
 		mostrarAux(arbol->getIzq());
-		Usuario *u = arbol->getDato();
+		Usuario *u = arbol->getDato().getValue();
 		u->mostrar();
 		mostrarAux(arbol->getDer());
 	}
 }
+void GestorUsuarios::mostrar() const{
+	mostrarAux(this->usuarios);
+}
+
 
 #endif
