@@ -196,7 +196,7 @@ void pruebasAddCancionPlaylist(){
 }
 
 void pruebasReproducirPlaylist(){
-	cout << "Iniciando pruebas de AddCancionPlaylist (Prueba Supervisada)" << endl;
+	cout << "Iniciando pruebas de ReproducirPlaylist" << endl;
 
 	Usuario* u = new Usuario();
 	Cancion* c = new Cancion("Dame", "Veneno", 33);
@@ -213,14 +213,17 @@ void pruebasReproducirPlaylist(){
 			<<"	- Dame2. Veneno2. Duración: 34s" << endl
 			<<"	- Dame3. Veneno3. Duración: 35s" << endl
 			<<"Valor: " << endl;
-	u->reproducirPlayList("test");
+	if(u->reproducirPlayList("test"));
+
+	else
+		cout << "Error al reproducir Playlist" << endl;
 
 	delete u;
 	delete c;
 	delete c2;
 	delete c3;
 
-	cout << "Finalizadas pruebas de AddCancionPlaylist" << endl;
+	cout << "Finalizadas pruebas de ReproducirPlaylist" << endl;
 }
 
 void pruebasCompartirPlaylist(){
