@@ -62,23 +62,24 @@ class GestorArtistas{
 
 #else /* LISTA_ARTISTAS */
 #include "BSTree.h"
+#include "KeyValue.h"
 
 class GestorArtistas{
 	private:
-		BSTree<Artista*>* artistas;
+		BSTree<KeyValue<string, Artista*>>* artistas;
 		int numero_artistas;
 
 		//Auxiliares
-		bool buscarAux(BSTree<Artista*> *arbol, string nombre, Artista* &artista) const;
-		void mostrarAux(BSTree<Artista*> *g) const;
-		Artista* mayorSeguidoresAux(BSTree<Artista*> *a) const;
+		bool buscarAux(BSTree<KeyValue<string, Artista*>> *arbol, string nombre, Artista* &artista) const;
+		void mostrarAux(BSTree<KeyValue<string, Artista*>> *g) const;
+		Artista* mayorSeguidoresAux(BSTree<KeyValue<string, Artista*>> *a) const;
 
 	public:
 		GestorArtistas();
 		GestorArtistas(const GestorArtistas & g);
 		~GestorArtistas();
 
-		void destruirArtistas(BSTree<Artista*> *g);
+		void destruirArtistas(BSTree<KeyValue<string, Artista*>> *g);
 
 		/**
 		 * DESC={Devuelve el número de artistas registrados}
