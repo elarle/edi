@@ -66,6 +66,7 @@ void pruebasConstructoresUsuario(){
 	delete u1;
 	delete u2;
 	delete fecha;
+	delete fecha_test;
 
 	cout << "Fin de pruebas de constructores de Usuario" << endl;
 
@@ -100,7 +101,7 @@ void pruebasCrearBuscarPlayList(){
 	else if(p != nullptr)
 		cerr << " * Error en la tercera búsqueda (no nula)" << endl; 
 
-
+	delete u1;
 	cout << "Finalizadas pruebas de CrearPlaylist" << endl;
 }
 
@@ -141,6 +142,8 @@ void pruebasAddPlaylistCompartida(){
 	else if(p != nullptr)
 		cerr << " * Error al añadir la tercera PlayList compartida (no nula)" << endl;
 
+	delete u1;
+	delete u2;
 
 	cout << "Finalizadas pruebas de AddPlaylistCompartida" << endl;
 }
@@ -151,26 +154,30 @@ void pruebasAddArtistaFavorito(){
 	Usuario* u = new Usuario();
 	Artista* a = new Artista("Leiva", "España", 1000);
 	Artista* a2 = new Artista("Melendi", "España", 1000);
+	Artista* busqueda = nullptr;
 	u->addArtistaFavorito(a);
 	u->addArtistaFavorito(a2);
 
-	a = nullptr;
-	if(!u->buscarArtistaFavorito("Leiva", a))
+	if(!u->buscarArtistaFavorito("Leiva", busqueda))
 		cerr << " * Error al añadir el primer ArtistaFavorito" << endl;
-	else if(a == nullptr)
+	else if(busqueda == nullptr)
 		cerr << " * Error al añadir el primer ArtistaFavorito (nulo)" << endl;
 
-	a = nullptr;
-	if(!u->buscarArtistaFavorito("Melendi", a))
+	busqueda = nullptr;
+	if(!u->buscarArtistaFavorito("Melendi", busqueda))
 		cerr << " * Error al añadir el segundo ArtistaFavorito" << endl;
-	else if(a == nullptr)
+	else if(busqueda == nullptr)
 		cerr << " * Error al añadir el segundo ArtistaFavorito (nulo)" << endl;
 
-	a = nullptr;
-	if(u->buscarArtistaFavorito("Robe", a))
+	busqueda = nullptr;
+	if(u->buscarArtistaFavorito("Robe", busqueda))
 		cerr << " * Error al añadir el tercer ArtistaFavorito" << endl;
-	else if(a != nullptr)
+	else if(busqueda != nullptr)
 		cerr << " * Error al añadir el tercer ArtistaFavorito (no nulo)" << endl;
+
+	delete u;
+	delete a;
+	delete a2;
 
 	cout << "Finalizadas pruebas de AddArtistaFavorito" << endl;
 }

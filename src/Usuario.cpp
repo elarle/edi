@@ -64,8 +64,14 @@ Usuario::Usuario(const Usuario & otro_usuario){
 Usuario::~Usuario() {
 	delete this->fecha_nacimiento;
 
+	this->artistas_favoritos->moverPrimero();
+	while(!this->artistas_favoritos->estaVacia())
+		artistas_favoritos->eliminar();
+	delete this->artistas_favoritos;
+	
 	this->playlists->moverPrimero();
 	while(!this->playlists->estaVacia()){
+		delete this->playlists->consultar();
 		this->playlists->eliminar();
 	}
 	delete this->playlists;
@@ -140,6 +146,19 @@ void Usuario::mostrar() const {
 	while(!this->artistas_favoritos->alFinal()){
 		cout << "\t\t" << this->artistas_favoritos->consultar()->getNombre() << endl;
 		this->artistas_favoritos->avanzar();
+	}
+
+	cout << "\t]" << endl;
+
+	//Mostrar Playlists
+	cout << "\tplaylists: [";
+	if(!this->playlists->estaVacia())
+		cout << endl;
+
+	this->playlists->moverPrimero();
+	while(!this->playlists->alFinal()){
+		cout << "\t\t" << this->playlists->consultar()->getNombre() << endl;
+		this->playlists->avanzar();
 	}
 
 	cout << "\t]\n}" << endl;

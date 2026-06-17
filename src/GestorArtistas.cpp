@@ -157,6 +157,7 @@ GestorArtistas::GestorArtistas(const GestorArtistas &g){
 
 GestorArtistas::~GestorArtistas(){
 	destruirArtistas(this->artistas);
+	delete this->artistas;
 }
 
 void GestorArtistas::destruirArtistas(BSTree<KeyValue<string, Artista*>> *arbol){

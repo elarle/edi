@@ -123,16 +123,19 @@ int main() {
 			string dst;
 			string playlist;
 
-			cout << "Introduzca un usuario: ";
+			cout << "Introduzca un usuario de orígen: ";
 			getline(cin, src);
 			
-			cout << "Introduzca otro usuario: ";
+			cout << "Introduzca otro usuario de destino: ";
 			getline(cin, dst);
 
 			cout << "Introduzca el nombre de la playlist: ";
 			getline(cin, playlist);
 
-			sistema->compartirPlaylist(src, dst, playlist);
+			if(sistema->compartirPlaylist(src, dst, playlist))
+				cout << "Playlist compartida correctamente" << endl;
+			else 
+				cout << "Error al compartir" << endl;
 
 			break;
 		}
@@ -148,7 +151,10 @@ int main() {
 			cout << "Introduzca el nombre de la playlist: ";
 			getline(cin, playlist);
 
-			sistema->eliminarPlaylistUsuario(usr, playlist);
+			if(sistema->eliminarPlaylistUsuario(usr, playlist))
+				cout << "Playlist eliminada correctamente" << endl;
+			else 
+				cout << "La playlist no pudo ser eliminada" << endl;
 			
 			break;
 		}

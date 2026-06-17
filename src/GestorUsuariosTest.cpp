@@ -96,6 +96,7 @@ void pruebasBuscarGestorUsuarios(){
 		cerr << " * Error con buscando usuario (2)" << endl;
 
 	delete fecha;
+	delete gu1;
 
 	cout << "Fin de pruebas de buscar de GestorUsuarios" << endl;
 }

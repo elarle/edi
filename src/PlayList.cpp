@@ -50,6 +50,8 @@ PlayList::PlayList(const PlayList & playlist){
 	copiarCola(playlist.cola, this->cola);
 }
 PlayList::~PlayList(){
+	while(!this->cola->estaVacia())
+		this->cola->desencolar();
 	delete cola;
 }
 

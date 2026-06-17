@@ -160,6 +160,7 @@ GestorUsuarios::GestorUsuarios(const GestorUsuarios &g){
 
 GestorUsuarios::~GestorUsuarios(){
 	destruirUsuarios(this->usuarios);
+	delete this->usuarios;
 }
 
 void GestorUsuarios::destruirUsuarios(BSTree<KeyValue<string, Usuario*>> *arbol){
