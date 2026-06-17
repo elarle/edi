@@ -148,6 +148,19 @@ void Usuario::mostrar() const {
 		this->artistas_favoritos->avanzar();
 	}
 
+	cout << "\t]" << endl;
+
+	//Mostrar Playlists
+	cout << "\tplaylists: [";
+	if(!this->playlists->estaVacia())
+		cout << endl;
+
+	this->playlists->moverPrimero();
+	while(!this->playlists->alFinal()){
+		cout << "\t\t" << this->playlists->consultar()->getNombre() << endl;
+		this->playlists->avanzar();
+	}
+
 	cout << "\t]\n}" << endl;
 }
 
