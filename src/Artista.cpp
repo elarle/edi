@@ -36,7 +36,13 @@ Artista::Artista(const Artista & a){
 }
 
 Artista::~Artista(){
-	//En principio no se reserva memoria por lo que el destructor da igual.
+	this->canciones->moverPrimero();
+
+	while(!this->canciones->estaVacia()){
+		delete this->canciones->consultar();
+		this->canciones->eliminar();
+	}
+	delete this->canciones;
 }
 
 //Getters
