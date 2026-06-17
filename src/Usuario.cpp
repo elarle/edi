@@ -64,8 +64,14 @@ Usuario::Usuario(const Usuario & otro_usuario){
 Usuario::~Usuario() {
 	delete this->fecha_nacimiento;
 
+	this->artistas_favoritos->moverPrimero();
+	while(!this->artistas_favoritos->estaVacia())
+		artistas_favoritos->eliminar();
+	delete this->artistas_favoritos;
+	
 	this->playlists->moverPrimero();
 	while(!this->playlists->estaVacia()){
+		delete this->playlists->consultar();
 		this->playlists->eliminar();
 	}
 	delete this->playlists;
