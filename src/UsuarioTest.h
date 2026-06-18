@@ -65,4 +65,19 @@ void pruebasAddPlaylistCompartida();
  */
 void pruebasAddArtistaFavorito();
 
+/*
+ * Creamos dos usuarios y una playtlist vacía.
+ * Le asignamos la playlist a un usuario y se la copiamos al otro.
+ * La eliminamos del primer usuario y luego comprobamos que el segundo siga teniendola.
+ * Por último comprobamos el resultado de eliminar una playlist que no existe.
+ */
+void pruebasEliminarPlaylist();
+
+/**
+ * Creamos un artista y un usuario
+ * Añadimos el artista a favoritos del usuario.
+ * Borramos el artista de favoritos y comprobamos que no siga en favoritos.
+ */
+void pruebasBorrarArtistaFavorito();
+
 #endif /* USUARIOTEST_H_ */

@@ -15,6 +15,8 @@ void pruebasUsuario(){
 	pruebasCompartirPlaylist();
 	pruebasAddPlaylistCompartida();
 	pruebasAddArtistaFavorito();
+	pruebasEliminarPlaylist();
+	pruebasBorrarArtistaFavorito();
 }
 
 void pruebasConstructoresUsuario(){
@@ -257,3 +259,52 @@ void pruebasCompartirPlaylist(){
 	cout << "Finalizadas pruebas de  compartirPlaylist" << endl;
 }
 
+void pruebasEliminarPlaylist(){
+	cout << "Iniciando pruebas de eliminarPlayList" << endl;
+
+	Usuario* u = new Usuario();
+	Usuario* u2 = new Usuario();
+	PlayList* p = nullptr;
+
+	u->crearPlayList("test");
+	u->compartirPlaylist("test", p);
+	u2->addPlaylistCompartida(p);
+	u->eliminarPlayList("test");
+	
+	//Ya no necesitamos la copia.
+	delete p;
+	p = nullptr;
+	
+	if(u->buscarPlaylist("test", p))
+		cerr << " * Error con la primera eliminación." << endl;
+	
+	p = nullptr;
+	if(!u2->buscarPlaylist("test", p))
+		cerr << " * Error con la playlist copiada." << endl;
+
+	if(u->eliminarPlayList("inexistente"))
+		cerr << " * Error eliminando playlist que no existe" << endl;
+
+	delete u;
+	delete u2;
+
+	cout << "Finalizadas pruebas de eliminarPlayList" << endl;
+}
+
+void pruebasBorrarArtistaFavorito() {
+	cout << "Iniciando pruebas de borrarArtistaFavorito" << endl;
+
+	Usuario* u = new Usuario();
+	Artista* a = new Artista("Andrez", "Sanchez", 1);
+	Artista* busqueda = nullptr;
+
+	u->addArtistaFavorito(a);
+	u->borrarArtistaFavorito("Andrez");
+	
+	if(u->buscarArtistaFavorito("Andrez", busqueda))
+		cerr << " * Error con el primer borrado." << endl;
+
+	delete u;
+
+	cout << "Finalizadas pruebas de borrarArtistaFavorito" << endl;
+}
