@@ -23,23 +23,37 @@ class GestorUsuarios{
 		 * COMP={O(1)}
 		 */
 		int numElementos() const;
+
 		/**
-		 * DESC={Devuelve true si hay algún usuario cuyo nombre coincida}
-		 * POST={Si se encuentra, se asigna el puntero al usuario. Si no, no se modifica.}
-		 * COMP={O(n)}
+		 * DESC={
+		 *		Busca un usario por su nombre
+		 *	}
+		 * POST={
+		 *		Si se encuentra, se asigna el puntero al usuario y devuelve true. 
+		 *		Si no, no se modifica y devuelve false.
+		 *	}
+		 * COMP={O(n). n = número de usuarios.}
 		 */
 		bool buscar(string nombre, Usuario* &usuario) const;
 		
 		/**
-		 * PRE={fecha debe estar correctamente inicializado}
-		 * DESC={Inserta un nuevo usuario en orden si no se repite el nombre}
-		 * COMP={O(n)}
+		 * PRE={
+		 *		fecha debe estar correctamente inicializada. No puede ser nullptr.
+		 *	}
+		 * DESC={
+		 *		Inserta un nuevo usuario en orden si no se repite el nombre.
+		 *	}
+		 *	POST={
+		 *		Si el nombre no se repite se inserta el usuario.
+		 *		La fecha se COPIA al usuario. Se puede eliminar después de la función.
+		 *	}
+		 * COMP={O(n). n = número de usuarios.}
 		 */
 		void insertar(string id, string nombre, string email, string contraseña, Fecha* fecha);
 		
 		/**
 		 * DESC={Muestra todos los usuarios del gestor}
-		 * COMP={O(n)}
+		 * COMP={O(n). n = número de usuarios.}
 		 */
 		void mostrar() const;
 
@@ -56,32 +70,52 @@ class GestorUsuarios{
 	
 	public:
 		GestorUsuarios();
+		
+		//Constructor por copia.
+		//COMP={O(n). n = número de usuarios de g}
 		GestorUsuarios(const GestorUsuarios & g);
-		~GestorUsuarios();
 
-		void destruirUsuarios(BSTree<KeyValue<string, Usuario*>> *a);
+		//Destructor.
+		//COMP={O(n). n = número de usuarios}
+		~GestorUsuarios();
 
 		/**
 		 * DESC={Devuelve el número de usuarios registrados}
 		 * COMP={O(1)}
 		 */
 		int numElementos() const;
+
 		/**
 		 * DESC={
-		 *		Devuelve true y pone a usuario apuntando al usuario cuyo nombre coincida.
-		 *		Si no exsiste ninguno con ese nombre devuelve false y no modifica usuario.
-		 * }
-		 * COMP={O(log(n))}
+		 *		Busca un usuario por su nombre.
+		 *	}
+		 * POST={
+		 *		Si se encuentra, se asigna el puntero al usuario y devuelve true. 
+		 *		Si no, no se modifica y devuelve false.
+		 *	}
+		 * COMP={O(log(n)). n = número de usuarios.}
 		 */
 		bool buscar(string nombre, Usuario* &usuario) const;
 
 		/**
-		 * PRE={fecha debe estar apuntando a una fecha válida}
-		 * DESC={Inserta un nuevo usuario en órden si no se repite ni el id, nombre ni email}
-		 * COMP={O(log(n))}
+		 * PRE={
+		 *		fecha debe estar correctamente inicializada. No puede ser nullptr.
+		 *	}
+		 * DESC={
+		 *		Inserta un nuevo usuario en orden si no se repite el nombre.
+		 *	}
+		 *	POST={
+		 *		Si el nombre no se repite se inserta el usuario.
+		 *		La fecha se COPIA al usuario. Se puede eliminar después de la función.
+		 *	}
+		 * COMP={O(log(n)). n = número de usuarios.}
 		 */
 		void insertar(string id, string nombre, string email, string contraseña, Fecha* fecha);
 		
+		/**
+		 * DESC={Muestra todos los usuarios del gestor}
+		 * COMP={O(n). n = número de usuarios.}
+		 */
 		void mostrar() const;
 
 

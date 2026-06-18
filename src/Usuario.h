@@ -32,7 +32,11 @@ private:
 public:
 	Usuario();
 	Usuario(string id, string nombre, string email, string contraseña, Fecha* fecha);
+	//Constructor por copia
+	//COMP={O(p*n). p = número de playlists. n = número de canciones de las playlists.}
 	Usuario(const Usuario & otro_usuario);
+	//Destructor
+	//COMP={O(p*n). p = número de playlists. n = número de canciones de las playlists.}
 	~Usuario();
 
 	//Setters
@@ -61,75 +65,76 @@ public:
 	
 	/**
 	 * DESC={Crea una playlist del usuario si no existe una con ese nombre}
-	 * COMP={O(n)}
+	 * COMP={O(n). n = número de playlists}
 	 */
 	void crearPlayList(string nombre);
 
 	/**
 	 * PRE={cancion debe ser un puntero válido (no nullptr)}
 	 * DESC={Si la playlist existe se le añade la canción}
-	 * COMP={O(n)}
+	 * COMP={O(n). n = número playlists y canciones de la playlist}
 	 */
 	void addCancionPlaylist(string nombre_playlist, Cancion * cancion);
 
 	/**
 	 * DESC={Si encuentra la playlist, muestra sus canciones y devuelve true}
-	 * COMP={O(n)}
+	 * COMP={O(n). n = número playlists y canciones de la playlist}
 	 */
 	bool reproducirPlayList(string nombre) const;
 
 	/**
 	 * PRE={La playlist debe ser un nullptr / no estar reservada}
 	 * DESC={Crea una copia de la lista de este usuario en playlist. La memoria es responsabilidad del usuario}
-	 * COMP={O(n)}
+	 * COMP={O(n). n = número playlists y canciones de la playlist}
 	 */
 	void compartirPlaylist(string nombre, PlayList* &playlist) const;
 
 	/**
 	 * DESC={Elimina una playlist del usuario si existe}
-	 * COMP={O(n)}
+	 * COMP={O(n). n = número de playlists y canciones de la playlist}
 	 */
 	bool eliminarPlayList(string nombre);
 
 	/**
 	 * PRE={playlist debe ser un puntero válido (no nullptr)}
 	 * DESC={Añade a las listas de usuario una copia de la playlist}
-	 * COMP={O(n)}
+	 * COMP={O(n). n = número de playlists y canciones de la playlist}
 	 */
 	void addPlaylistCompartida(const PlayList* playlist);
 
 	/**
-		 * PRE={Si artista no es nullptr, debe ser un puntero válido}
-		 * DESC={Inserta un artista favorito en el usuario si NO está ya en favoritos}
-	 * COMP={O(n)}
+	 * PRE={Si artista no es nullptr, debe ser un puntero válido}
+	 * DESC={Inserta un artista favorito en el usuario si NO está ya en favoritos}
+	 * COMP={O(n). n = número de artistas favoritos.}
 	 */
 	void addArtistaFavorito(Artista* artista);
 
 	/**
 	 * DESC={Elimina un artista favorito del usuario si existe}
-	 * COMP={O(n)}
+	 * COMP={O(n). n = número de artistas favoritos.}
 	 */
 	void borrarArtistaFavorito(string nombre);
 
 	/**
 	 * DESC={Busca un artista favorito por nombre}
 	 * POST={Si no se encuentra el artista, no se modifica el puntero}
-	 * COMP={O(n)}
+	 * COMP={O(n). n = número de artistas favoritos.}
 	 */
 	bool buscarArtistaFavorito(string nombre, Artista *&artista) const;
 
 	/**
 	 * DESC={Busca una playlist por nombre}
 	 * POST={Si no se encuentra la playlist, no se modifica el puntero}
-	 * COMP={O(n)}
+	 * COMP={O(n). n = número de playlists.}
 	 */
 	bool buscarPlaylist (string nombre, PlayList *&p) const;
 
 	/**
 	 * DESC={Muestra a cout el usuario}
-	 * COMP={O(1)}
+	 * COMP={O(n). n = número de playlists y artistas}
 	 */
 	void mostrar() const;
+
 	/**
 	 * DESC={Pasa el usuario a cadena.}
 	 * COMP={O(1)}

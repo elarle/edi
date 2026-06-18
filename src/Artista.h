@@ -19,7 +19,13 @@ class Artista {
 	public:
 		Artista();
 		Artista(string nombre, string country, int seguidores);
+		
+		//Constructor por copia.
+		//COMP={O(n). n = número de canciones del artista.}
 		Artista(const Artista & artista);
+		
+		//Destructor.
+		//COMP={O(n). n = número de canciones del artista.}
 		~Artista();
 
 		//Getters
@@ -54,12 +60,12 @@ class Artista {
 		/**
 		 * DESC={Busca una canción por título en la lista del artista}
 		 * POST={Si se encuentra, se devuelve true y se asigna el puntero. Si no, no se modifica.}
-		 * COMP={O(n)}
+		 * COMP={O(n). n = número de canciones del artista}
 		 */
 		bool buscarCancion(string titulo, Cancion* &cancion) const;
 		/**
 		 * DESC={Inserta una canción en el artista si no existe ya una con ese título}
-		 * COMP={O(n)}
+		 * COMP={O(n). n = número de canciones del artista}
 		 */
 		void insertarCancion(string titulo, string genero, int duracion);
 
@@ -76,7 +82,7 @@ class Artista {
 
 		/**
 		 * DESC={Muestra la información del artista y sus canciones}
-		 * COMP={O(n)}
+		 * COMP={O(n). n = número de canciones del artista}
 		 */
 		void mostrar() const;
 

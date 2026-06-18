@@ -15,7 +15,13 @@ class GestorArtistas{
 		
 	public:
 		GestorArtistas();
+		
+		//Constructor por copia.
+		//COMP={O(n). n = número de artistas de g}
 		GestorArtistas(const GestorArtistas & g);
+		
+		//Destructor.
+		//COMP={O(n). n = número de artistas}
 		~GestorArtistas();
 
 		/**
@@ -27,34 +33,36 @@ class GestorArtistas{
 		/**
 		 * DESC={
 		 *		Busca si hay algún artista cuyo nombre coincida.
-		 *		Devuelve un puntero al artista original.
 		 *	}
 		 * POST={
 		 *		Si se encuentra, copia el puntero a artista y devuelve true.
 		 *		Si no se encuentra, no se modifica el puntero artista y devuelve false.
 		 * }
-		 * COMP={O(n)}
+		 * COMP={O(n). n = número de artistas}
 		 */
 		bool buscar(string nombre, Artista* &artista) const;
 		
 		/**
 		 * DESC={Inserta un nuevo artista por orden si no se repite el nombre}
-		 * COMP={O(n)}
+		 * COMP={O(n). n = número de artistas}
 		 */
 		void insertar(string nombre, string country, int seguidores);
 		
 		/**
 		 * DESC={
-		 *		Devuelve un puntero al artista con más seguidores
+		 *		Busca el artista con más seguidores.
+		 *	}
+		 *	POST={
+		 *		Devuelve un puntero al artista con más seguidores si lo encuentra.
 		 *		Si no hay artistas devuelve nullptr. 
 		 *	}
-		 * COMP={O(n)}
+		 * COMP={O(n). n = número de artistas}
 		 */
 		Artista* mayorSeguidores() const;
 
 		/**
 		 * DESC={Muestra todos los artistas del gestor}
-		 * COMP={O(n)}
+		 * COMP={O(a*c). a = número de artistas. c = número de canciones de los artistas}
 		 */
 		void mostrar() const;
 
@@ -70,16 +78,20 @@ class GestorArtistas{
 		int numero_artistas;
 
 		//Auxiliares
+		
+		//COMP={O(log(n)). n = número de artistas}
 		bool buscarAux(BSTree<KeyValue<string, Artista*>> *arbol, string nombre, Artista* &artista) const;
+		
+		//COMP={O(n). n = número de artistas}
 		void mostrarAux(BSTree<KeyValue<string, Artista*>> *g) const;
+
+		//COMP={O(n). n = número de artistas}
 		Artista* mayorSeguidoresAux(BSTree<KeyValue<string, Artista*>> *a) const;
 
 	public:
 		GestorArtistas();
 		GestorArtistas(const GestorArtistas & g);
 		~GestorArtistas();
-
-		void destruirArtistas(BSTree<KeyValue<string, Artista*>> *g);
 
 		/**
 		 * DESC={Devuelve el número de artistas registrados}
@@ -89,28 +101,43 @@ class GestorArtistas{
 
 		/**
 		 * DESC={
+		 *		Busca un artista con el mismo nombre.
+		 *	}
+		 *	POST={
 		 *		Devuelve true y asigna un artista si hay algún alguno cuyo nombre coincida
 		 *		En caso de no exsitir no modifica el puntero a artista;
 		 *	}
-		 * COMP={O(log(n))}
+		 * COMP={O(log(n). n = número de artistas)}
 		 */
 		bool buscar(string nombre, Artista *&a) const;
 
 		/**
-		 * DESC={Inserta un nuevo usuario en órden si no se repite ni el id, nombre ni email}
-		 * COMP={O(log(n))}
+		 * DESC={
+		 *		Inserta un nuevo artista en órden.
+		 *	}
+		 *	POST={
+		 *		Solo se inserta si no coincide el nombre.
+		 *	}
+		 * COMP={O(log(n)). n = número de artistas}
 		 */
 		void insertar(string nombre, string country, int seguidores);
 
 		/**
 		 * DESC={
-		 *		Devuelve un puntero al artista con más seguidores
+		 *		Busca el artista con más seguidores.
+		 *	}
+		 *	POST={
+		 *		Devuelve un puntero al artista con más seguidores si lo encuentra.
 		 *		Si no hay artistas devuelve nullptr. 
 		 *	}
-		 * COMP={O(log(n))}
+		 * COMP={O(log(n)). n = número de artistas}
 		 */
 		Artista* mayorSeguidores() const;
 
+		/**
+		 * DESC={Muestra todos los artistas del gestor.}
+		 * COMP={O(n). n = número de artistas del gestor.}
+		 */
 		void mostrar() const;
 };
 
