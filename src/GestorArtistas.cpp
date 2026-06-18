@@ -131,10 +131,14 @@ Artista* GestorArtistas::mayorSeguidores() const{
 #else
 
 #include "Cola.h"
+
+//Función auxiliar
+//COMP={O(1)}
 KeyValue<string, Artista*> copiarKV(KeyValue<string, Artista*> kv){
 	return KeyValue<string, Artista*>(kv.getKey(), new Artista(*kv.getValue()));
 }
-
+//Funcion auxiliar
+//COMP={O(n). n = número de artistas}
 void copiarArbol(BSTree<KeyValue<string, Artista*>> *arbol, BSTree<KeyValue<string, Artista*>> *arbol2){
 	KeyValue <string, Artista*> a;
 	if(arbol != nullptr && !arbol->estaVacio()){
@@ -155,17 +159,18 @@ GestorArtistas::GestorArtistas(const GestorArtistas &g){
 	copiarArbol(g.artistas, this->artistas);
 }
 
-GestorArtistas::~GestorArtistas(){
-	destruirArtistas(this->artistas);
-	delete this->artistas;
-}
-
-void GestorArtistas::destruirArtistas(BSTree<KeyValue<string, Artista*>> *arbol){
+//Función auxiliar
+//COMP={O(n). n = número de artistas}
+void destruirArtistas(BSTree<KeyValue<string, Artista*>> *arbol){
     if(arbol != nullptr && !arbol->estaVacio()){
         destruirArtistas(arbol->getIzq());
         destruirArtistas(arbol->getDer());
         delete arbol->getDato().getValue();
     }
+}
+GestorArtistas::~GestorArtistas(){
+	destruirArtistas(this->artistas);
+	delete this->artistas;
 }
 
 int GestorArtistas::numElementos() const{
@@ -176,22 +181,21 @@ bool GestorArtistas::buscar(string nombre, Artista *&a) const{
 	bool enc = buscarAux(this->artistas, nombre, a);
 	return enc;
 }
-
 bool GestorArtistas::buscarAux(BSTree<KeyValue<string, Artista*>> *arbol, string nombre, Artista* &a) const{
     bool enc = false;
+	 string nom;
 
     if(arbol != nullptr && !arbol->estaVacio()){
     	Artista *aux = arbol->getDato().getValue();
+		nom = aux->getNombre();
 
-		if(aux->getNombre() == nombre){
+		if(nom == nombre){
 			a = aux;
 			enc = true;
-		}
-		if(!enc)
+		} else if(nom > nombre)
 			enc = buscarAux(arbol->getIzq(), nombre, a);
-
-        if(!enc)
-            enc = buscarAux(arbol->getDer(), nombre, a);
+		else
+         enc = buscarAux(arbol->getDer(), nombre, a);
     }
     return enc;
 }

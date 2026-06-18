@@ -135,15 +135,29 @@ void GestorUsuarios::mostrar() const{
 
 #else
 
+//Funcion auxiliar
+//COMP={O(1)}
 KeyValue<string, Usuario*> copiarKV(KeyValue<string, Usuario*> kv){
 	return KeyValue<string, Usuario*>(kv.getKey(), new Usuario(*kv.getValue()));
 }
+//Funcion auxiliar
+//COMP={O(n). n = número de usuarios}
 void copiarArbol(BSTree<KeyValue<string, Usuario*>> *arbol, BSTree<KeyValue<string, Usuario*>> *arbol2){
 	KeyValue<string, Usuario*> u;
 	if(arbol != nullptr && !arbol->estaVacio()){
 		arbol2->insertar(copiarKV(arbol->getDato()));
 		copiarArbol(arbol->getIzq(), arbol2);
 		copiarArbol(arbol->getDer(), arbol2);
+	}
+}
+//Función auxiliar
+//COMP={O(n). n = número de usuarios}
+void destruirUsuarios(BSTree<KeyValue<string, Usuario*>> *arbol){
+	if(arbol != nullptr && !arbol->estaVacio()){
+		destruirUsuarios(arbol->getIzq());
+		destruirUsuarios(arbol->getDer());
+		//Destruimos solo el usuario
+		delete arbol->getDato().getValue();
 	}
 }
 
@@ -161,15 +175,6 @@ GestorUsuarios::GestorUsuarios(const GestorUsuarios &g){
 GestorUsuarios::~GestorUsuarios(){
 	destruirUsuarios(this->usuarios);
 	delete this->usuarios;
-}
-
-void GestorUsuarios::destruirUsuarios(BSTree<KeyValue<string, Usuario*>> *arbol){
-	if(arbol != nullptr && !arbol->estaVacio()){
-		destruirUsuarios(arbol->getIzq());
-		destruirUsuarios(arbol->getDer());
-		//Destruimos solo el usuario
-		delete arbol->getDato().getValue();
-	}
 }
 
 int GestorUsuarios::numElementos() const{
@@ -215,6 +220,8 @@ void GestorUsuarios::insertar(string id, string nombre, string email, string con
 	}
 }
 
+//Función auxiliar
+//COMP={O(n). n = número de usuarios.}
 void mostrarAux(BSTree<KeyValue<string, Usuario*>>* arbol){
 	if(arbol != nullptr && !arbol->estaVacio()){
 		mostrarAux(arbol->getIzq());
