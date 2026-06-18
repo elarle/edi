@@ -32,7 +32,6 @@ class Artista {
 		string getNombre() const;
 		string getCountry() const;
 		int getSeguidores() const;
-		int getNumCanciones() const;
 
 		//Setters
 		void setNombre(string nombre);
