@@ -34,11 +34,8 @@ class Cancion {
 
 		//Operadores
 		/**
-		 * DESC={
-		 *		Compara el titulo de las canciones.
-		 *		Devuelve true si los nombres coinciden.
-		 *		Del caso contrario devuelve false.
-		 *	}
+		 * DESC={Compara el título de las canciones.
+		 * 		 Devuelve true si los títulos son iguales.}
 		 * COMP={O(1)}
 		 */
 		bool operator==(const Cancion &cancion) const;
@@ -53,6 +50,7 @@ class Cancion {
 		 */
 		bool operator<(const Cancion &cancion) const;
 		
+
 		/**
 		 * DESC={Muestra la canción}
 		 * COMP={O(1)}

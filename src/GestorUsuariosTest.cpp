@@ -49,18 +49,21 @@ void pruebasInsertarGestorUsuarios(){
 			<< "	nombre: Paco" << endl
 			<< "	fecha: 1/2/3" << endl
 			<< "	favoritos: [	]" << endl
+			<< "	playlists: [	]" << endl
 			<< "}" << endl
 			<< "Usuario{" << endl
 			<< "	id: 2" << endl
 			<< "	nombre: Paco2" << endl
 			<< "	fecha: 1/2/3" << endl
 			<< "	favoritos: [	]" << endl
+			<< "	playlists: [	]" << endl
 			<< "}" << endl
 			<< "Usuario{" << endl
 			<< "	id: 3" << endl
 			<< "	nombre: Paco3" << endl
 			<< "	fecha: 1/2/3" << endl
 			<< "	favoritos: [	]" << endl
+			<< "	playlists: [	]" << endl
 			<< "}" << endl;
 
 	cout << "Valor:" << endl;
