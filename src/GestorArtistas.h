@@ -16,12 +16,12 @@ class GestorArtistas{
 	public:
 		GestorArtistas();
 		
-		//Constructor por copia.
-		//COMP={O(n). n = número de artistas de g}
+		//Constructor por copia
+		//COMP={O(a*c). a = número de artistas. c = número de canciones de artistas}
 		GestorArtistas(const GestorArtistas & g);
 		
 		//Destructor.
-		//COMP={O(n). n = número de artistas}
+		//COMP={O(a*c). a = número de artistas. c = número de canciones de artistas}
 		~GestorArtistas();
 
 		/**
@@ -90,7 +90,12 @@ class GestorArtistas{
 
 	public:
 		GestorArtistas();
+		//Constructor por copia
+		//COMP={O(a*c). a = número de artistas. c = número de canciones de artistas}
 		GestorArtistas(const GestorArtistas & g);
+	
+		//Destructor
+		//COMP={O(a*c). a = número de artistas. c = número de canciones de artistas}
 		~GestorArtistas();
 
 		/**
@@ -130,7 +135,7 @@ class GestorArtistas{
 		 *		Devuelve un puntero al artista con más seguidores si lo encuentra.
 		 *		Si no hay artistas devuelve nullptr. 
 		 *	}
-		 * COMP={O(log(n)). n = número de artistas}
+		 * COMP={O(n). n = número de artistas}
 		 */
 		Artista* mayorSeguidores() const;
 

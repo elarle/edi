@@ -15,7 +15,12 @@ class GestorUsuarios{
 		
 	public:
 		GestorUsuarios();
+		//Constructor copia.
+		//COMP={O(u*p*n). u = número de usuarios de g. p = número de playlists. n = número de canciones de playlists}
 		GestorUsuarios(const GestorUsuarios & g);
+
+		//Destructor
+		//COMP={O(u*p*n). u = número de usuarios de g. p = número de playlists. n = número de canciones de playlists}
 		~GestorUsuarios();
 
 		/**
@@ -72,11 +77,11 @@ class GestorUsuarios{
 		GestorUsuarios();
 		
 		//Constructor por copia.
-		//COMP={O(n). n = número de usuarios de g}
+		//COMP={O(n*p*c). n = número de usuarios de g. p = número de playlists de usuario. c = número de canciones de playlists}
 		GestorUsuarios(const GestorUsuarios & g);
 
 		//Destructor.
-		//COMP={O(n). n = número de usuarios}
+		//COMP={O(n*p*c). n = número de usuarios de g. p = número de playlists de usuario. c = número de canciones de playlists}
 		~GestorUsuarios();
 
 		/**

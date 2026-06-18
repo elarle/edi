@@ -23,8 +23,8 @@ class Sistema{
 		/**
 		 * DESC={Carga las canciones de cada artista del archivo .csv}
 		 * COMP={
-		 *		Listas: O(c*a). c = número de canciones, a = número de artistas
-		 *		Ártboles: O(c*log(a)). c = número de canciones, a = número de artistas
+		 *		Listas: O(c^2 + a*c). c = número de canciones, a = número de artistas
+		 *		Ártboles: O(c^2 + log(a)*c). c = número de canciones, a = número de artistas
 		 *	}
 		 */
 		void cargarCanciones(string archivo);
@@ -66,7 +66,7 @@ class Sistema{
 		Sistema();
 		
 		/**
-		 * DESC={Constructor default. Copia toda la info necesaria.}
+		 * DESC={Constructor por copia. Copia toda la info necesaria.}
 		 * COMP={
 		 *		Listas: O(u*(a*ca+p*cp)).
 		 *		Árboles: O(u*(a*ca+p*cp)).
@@ -182,7 +182,7 @@ class Sistema{
 		 * }
 		 * COMP={
 		 *		Listas: O(u+a+f). u = número de usuarios, a = número de artistas, f = número de favoritos.
-		 *		Árboles: O(log(u)+log(a)+f). u = número de usuarios, a = número de artistas, f = número de favoritos.
+		 *		Árboles: O(log(u)+f). u = número de usuarios, f = número de favoritos.
 		 * }
 		 */
 		bool borrarFavorito(string usuario, string artista);

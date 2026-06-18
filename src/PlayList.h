@@ -40,21 +40,21 @@ public:
 	void eliminarCancion();
 	
 	//DESC={
-	//		Muestra la información de la playlist y de cada canción.
+	//		Muestra cada canción de la playlist.
 	//}
 	//COMP={O(n)}
 	void mostrar() const;
 
 	//DESC={
-	//		Este método va desencolando canciones desde la primera
-	//		hasta que se quede vacía. Reproducir no modifica la playlist.
+	//		Este método muestra las canciones de la playlist. 
+	//		Reproducir no modifica la playlist.
 	//}
 	//COMP={O(n)}
 	void reproducir(); //No puede ser const
 
+	//PRE={indice < número de canciones. indice >= 0}
 	//DESC={
-	//		Este método va desencolando canciones de la misma manera que reproducir()
-	//		pero empezando desde una canción concreta
+	//		Muestra las canciones desde la canción con el índice indicado
 	//}
 	//COMP={O(n)}
 	void reproducirDesde(int indice); //No puede ser const
